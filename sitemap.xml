@@ -3,7 +3,19 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://sryasuka.fun/</loc>
-    <lastmod>2020-10-09T00:00:00+00:00</lastmod>
+    <lastmod>2023-02-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://sryasuka.fun/categories/</loc>
+    <lastmod>2023-02-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://sryasuka.fun/categories/data-structure/</loc>
+    <lastmod>2023-02-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://sryasuka.fun/post/</loc>
+    <lastmod>2023-02-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://sryasuka.fun/p/linear-tables/</loc>
+    <lastmod>2023-02-12T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://sryasuka.fun/about/s/</loc>
     <lastmod>2020-10-09T00:00:00+00:00</lastmod>
@@ -11,13 +23,7 @@
     <loc>https://sryasuka.fun/page/</loc>
     <lastmod>2020-10-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://sryasuka.fun/categories/</loc>
-    <lastmod>2020-09-09T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://sryasuka.fun/p/test-chinese/</loc>
-    <lastmod>2020-09-09T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://sryasuka.fun/post/</loc>
     <lastmod>2020-09-09T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://sryasuka.fun/categories/test/</loc>
@@ -29,7 +35,11 @@
     <loc>https://sryasuka.fun/archives/s/</loc>
     <lastmod>2019-05-28T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://sryasuka.fun/categories/data-structure/</loc>
+  </url><url>
     <loc>https://sryasuka.fun/links/s/</loc>
+  </url><url>
+    <loc>https://sryasuka.fun/categories/linux/</loc>
   </url><url>
     <loc>https://sryasuka.fun/search/s/</loc>
   </url><url>
