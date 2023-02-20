@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='顺序表，链表'>
+<title>栈和队列</title>
+
+<link rel='canonical' href='https://sryasuka.fun/p/%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/'>
+
+<link rel="stylesheet" href="/scss/style.min.5be32ca3f6e1a997c75795c4359147cc6d4fbd34948c0acd51e31d237033978a.css"><meta property='og:title' content='栈和队列'>
+<meta property='og:description' content='顺序表，链表'>
+<meta property='og:url' content='https://sryasuka.fun/p/%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/'>
+<meta property='og:site_name' content='SryAsuka'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2023-02-14T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2023-02-14T00:00:00&#43;00:00'/><meta property='og:image' content='https://sryasuka.fun/p/%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/b21266efb258ceb90992f168f5d9d2e.png' />
+<meta name="twitter:title" content="栈和队列">
+<meta name="twitter:description" content="顺序表，链表"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://sryasuka.fun/p/%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/b21266efb258ceb90992f168f5d9d2e.png' />
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu4ae24c0d6920a998f721630cfb7a6277_6068_300x0_resize_box_3.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">✨</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">SryAsuka</a></h1>
+            <h2 class="site-description">Where of what&#39;s past is prologue.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/SryAsuka'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://sryasuka.fun/index.xml'
+                        target="_blank"
+                        title="RSS"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-rss" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="5" cy="19" r="1" />
+  <path d="M4 4a16 16 0 0 1 16 16" />
+  <path d="M4 11a9 9 0 0 1 9 9" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com/SryAsuka'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/s/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/s/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/s/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/links/s/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#栈和队列">栈和队列</a>
+      <ol>
+        <li><a href="#栈的定义">栈的定义</a></li>
+        <li><a href="#队列的定义">队列的定义</a></li>
+        <li><a href="#栈队列和一般线性表的区别">*栈，队列和一般线性表的区别</a></li>
+        <li><a href="#栈的表示和操作的实现">栈的表示和操作的实现</a>
+          <ol>
+            <li><a href="#顺序栈的表示">顺序栈的表示</a></li>
+            <li><a href="#链栈的表示">链栈的表示</a></li>
+          </ol>
+        </li>
+        <li><a href="#栈与递归">栈与递归</a>
+          <ol>
+            <li><a href="#函数调用过程">函数调用过程</a></li>
+            <li><a href="#递归的优缺点">递归的优缺点</a></li>
+          </ol>
+        </li>
+        <li><a href="#队列的表示和操作的实现">队列的表示和操作的实现</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/">
+                <img src="/p/%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/b21266efb258ceb90992f168f5d9d2e_huda7fe0680db057bb15a758c1801f5cde_24118_800x0_resize_box_3.png"
+                        srcset="/p/%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/b21266efb258ceb90992f168f5d9d2e_huda7fe0680db057bb15a758c1801f5cde_24118_800x0_resize_box_3.png 800w, /p/%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/b21266efb258ceb90992f168f5d9d2e_huda7fe0680db057bb15a758c1801f5cde_24118_1600x0_resize_box_3.png 1600w"
+                        width="800" 
+                        height="600" 
+                        loading="lazy"
+                        alt="Featured image of post 栈和队列" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/data-structure/" style="background-color: #2a9d8f; color: #fff;">
+                Data structure
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/">栈和队列</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            顺序表，链表
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Feb 14, 2023</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    3 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="栈和队列">栈和队列</h2>
+<pre><code>目标：
+1. 掌握栈和队列的特点，并能在相应的应用问题中正确选用
+2. 熟练掌握栈的两种存储结构的基本操作实现算法，特别应注意栈满和栈空的条件
+3. 熟练掌握循环队列和链队列的基本操作实现算法，特别注意队满和队空的条件
+4. 理解递归算法执行过程中栈的状态变化过程
+5. 掌握表达式求值 方法
+</code></pre>
+<h3 id="栈的定义">栈的定义</h3>
+<ol>
+<li>
+<p>定义：只能在表的一端（栈顶）进行插入和删除运算的线性表</p>
+</li>
+<li>
+<p>逻辑结构：与线性表相同，仍为一对一关系</p>
+</li>
+<li>
+<p>存储结构：用顺序栈或链栈存储均可，但以顺序栈更常见</p>
+</li>
+<li>
+<p>运算规则：只能在栈顶运算，且访问结点时依照后进先出（LIFO）或先进后出（FILO）的原则</p>
+</li>
+<li>
+<p>实现方法：关键是编写入栈和出栈函数，具体实现依顺序栈或链栈的不同而不同。基本操作有入栈、出栈、读栈顶元素值、建栈、判断栈满、栈空等</p>
+</li>
+</ol>
+<h3 id="队列的定义">队列的定义</h3>
+<ol>
+<li>
+<p>定义：只能在表的一端（队尾）进行插入，在另一端（队头）进行删除运算的线性表</p>
+</li>
+<li>
+<p>逻辑结构：与线性表相同，仍为一对一关系</p>
+</li>
+<li>
+<p>存储结构：用顺序队列或链队存储均可</p>
+</li>
+<li>
+<p>运算规则：先进先出（FIFO）</p>
+</li>
+<li>
+<p>实现方式：关键是编写入队和出队函数，具体实现依顺序队或链队的不同而不同</p>
+</li>
+</ol>
+<h3 id="栈队列和一般线性表的区别">*栈，队列和一般线性表的区别</h3>
+<p>栈、队列是一种特殊（操作受限）的线性表</p>
+<p>区别：仅在于运算规则不同</p>
+<p>一般线性表：</p>
+<ol>
+<li>逻辑结构：一对一</li>
+<li>存储结构：顺序表、链表</li>
+<li>运算规则：随机、顺序存取</li>
+</ol>
+<p>栈</p>
+<ol>
+<li>逻辑结构：一对一</li>
+<li>存储结构：顺序栈、链栈</li>
+<li>运算规则：后进先出</li>
+</ol>
+<p>队列</p>
+<ol>
+<li>逻辑结构：一对一</li>
+<li>存储结构：顺序队、链队</li>
+<li>运算规则：先进先出</li>
+</ol>
+<h3 id="栈的表示和操作的实现">栈的表示和操作的实现</h3>
+<p>进栈 = 压入 = PUSH()</p>
+<p>出栈 = 弹出 = POP()</p>
+<p><strong>顺序栈与顺序表的区别</strong></p>
+<p><img src="/p/%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/8fdc7ee61f6153bb363779999d8e622.png"
+	width="762"
+	height="572"
+	srcset="/p/%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/8fdc7ee61f6153bb363779999d8e622_hud1147f5ac4ba4c320d3a4d066a46debe_38411_480x0_resize_box_3.png 480w, /p/%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/8fdc7ee61f6153bb363779999d8e622_hud1147f5ac4ba4c320d3a4d066a46debe_38411_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="133"
+		data-flex-basis="319px"
+	
+></p>
+<h4 id="顺序栈的表示">顺序栈的表示</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">#define  MAXSIZE  100
+</span></span><span class="line"><span class="cl">typedef struct{
+</span></span><span class="line"><span class="cl">	SElemType   *base;
+</span></span><span class="line"><span class="cl">	SElemType   *top;
+</span></span><span class="line"><span class="cl">	int stacksize;
+</span></span><span class="line"><span class="cl">}SqStack;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol>
+<li>顺序栈初始化</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Status InitStack( SqStack &amp;S )
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">	S.base =new SElemType[MAXSIZE]；
+</span></span><span class="line"><span class="cl">	if( !S.base ) 	
+</span></span><span class="line"><span class="cl">           return OVERFLOW;
+</span></span><span class="line"><span class="cl">	S.top = S.base;
+</span></span><span class="line"><span class="cl">	S.stackSize = MAXSIZE;
+</span></span><span class="line"><span class="cl">	return OK;
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>判断顺序栈是否为空</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">bool StackEmpty( SqStack S )
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">	if(S.top == S.base) 
+</span></span><span class="line"><span class="cl">          return true;
+</span></span><span class="line"><span class="cl">   else 
+</span></span><span class="line"><span class="cl">          return false;
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li>清空顺序栈</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Status ClearStack( SqStack S )
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">	if( S.base ) S.top = S.base;
+</span></span><span class="line"><span class="cl">	return OK;
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="4">
+<li>销毁顺序栈</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Status DestroyStack( SqStack &amp;S )
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">	if( S.base )
+</span></span><span class="line"><span class="cl">	{
+</span></span><span class="line"><span class="cl">		delete S.base ;
+</span></span><span class="line"><span class="cl">		S.stacksize = 0;
+</span></span><span class="line"><span class="cl">		S.base = S.top = NULL;
+</span></span><span class="line"><span class="cl">	}
+</span></span><span class="line"><span class="cl">  return OK;
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="5">
+<li>顺序栈进栈</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Status Push( SqStack &amp;S, SElemType e)  
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">	if( S.top - S.base== S.stacksize ) // 栈满
+</span></span><span class="line"><span class="cl">        return ERROR; 	
+</span></span><span class="line"><span class="cl">	*S.top++=e; // *S.top = e; S.top++;
+</span></span><span class="line"><span class="cl">	return OK;
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="6">
+<li>顺序栈出栈</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Status Pop( SqStack &amp;S, SElemType &amp;e)  
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">	if( S.top == S.base ) // 栈空
+</span></span><span class="line"><span class="cl">        return ERROR; 	
+</span></span><span class="line"><span class="cl">	e＝ *--S.top; // --S.top; e = *S.top;
+</span></span><span class="line"><span class="cl">	return OK; 
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="链栈的表示">链栈的表示</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">typedef  struct StackNode {
+</span></span><span class="line"><span class="cl">      SElemType  data;
+</span></span><span class="line"><span class="cl">      struct StackNode *next;
+</span></span><span class="line"><span class="cl"> } StackNode,  *LinkStack;  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol>
+<li>初始化</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">void InitStack(LinkStack &amp;S )
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">	S=NULL;
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>判断链栈是否为空</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Status StackEmpty(LinkStack S)
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    if (S==NULL) return TRUE;
+</span></span><span class="line"><span class="cl">    else return FALSE;
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li>链栈进栈</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Status Push(LinkStack &amp;S , SElemType e)
+</span></span><span class="line"><span class="cl">{  
+</span></span><span class="line"><span class="cl">    p=new StackNode;      //生成新结点p 
+</span></span><span class="line"><span class="cl">    if (!p) exit(OVERFLOW);
+</span></span><span class="line"><span class="cl">    p-&gt;data=e; p-&gt;next=S; S=p; 
+</span></span><span class="line"><span class="cl">    return OK; 
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="4">
+<li>链栈出栈</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Status Pop (LinkStack &amp;S,SElemType &amp;e)
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    if (S==NULL) return ERROR;
+</span></span><span class="line"><span class="cl">    e = S-&gt; data;  p = S;   S =  S-&gt; next;
+</span></span><span class="line"><span class="cl">    delete p;  
+</span></span><span class="line"><span class="cl">    return OK; 
+</span></span><span class="line"><span class="cl">}  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="5">
+<li>取链栈栈顶元素</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">SElemType GetTop(LinkStack S)
+</span></span><span class="line"><span class="cl">   {
+</span></span><span class="line"><span class="cl">       if (S==NULL) exit(1)；
+</span></span><span class="line"><span class="cl">        else return S–&gt;data;
+</span></span><span class="line"><span class="cl">    }
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="栈与递归">栈与递归</h3>
+<p>递归的定义：若一个对象部分地包含它自己,  或用它自己给自己定义,  则称这个对象是递归的；若一个过程直接地或间接地调用自己, 则称这个过程是递归的过程</p>
+<h4 id="函数调用过程">函数调用过程</h4>
+<p><img src="/p/%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/05d4a809cde50e5a4d0ee8b7c9cd26d.png"
+	width="764"
+	height="568"
+	srcset="/p/%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/05d4a809cde50e5a4d0ee8b7c9cd26d_hu8a9f6bd18c77db0056b4b3ddce738c6e_63433_480x0_resize_box_3.png 480w, /p/%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/05d4a809cde50e5a4d0ee8b7c9cd26d_hu8a9f6bd18c77db0056b4b3ddce738c6e_63433_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="134"
+		data-flex-basis="322px"
+	
+></p>
+<p>时间效率：与递归树的结点数成正比 $$ \def \bar#1{#1^n} O(\bar{2}) $$</p>
+<p>空间效率：与递归树的深度成正比  $$ \def \bar#1{n} O(\bar{}) $$</p>
+<h4 id="递归的优缺点">递归的优缺点</h4>
+<ol>
+<li>
+<p>优点：结构清晰，程序易读</p>
+</li>
+<li>
+<p>缺点：每次调用要生成工作记录，保存状态信息，入栈；返回时要出栈，恢复状态信息。时间开销大。</p>
+</li>
+</ol>
+<h3 id="队列的表示和操作的实现">队列的表示和操作的实现</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">#define M  100   //最大队列长度
+</span></span><span class="line"><span class="cl">Typedef struct {
+</span></span><span class="line"><span class="cl">   QElemType *base;  //初始化的动态分配存储空间
+</span></span><span class="line"><span class="cl">   int  front;            //头指针   
+</span></span><span class="line"><span class="cl">   int  rear;             //尾指针
+</span></span><span class="line"><span class="cl">}SqQueue;  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>一维队列：</p>
+<p><img src="/p/%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/decb85254c6435b8a8eed76e795564b.png"
+	width="766"
+	height="573"
+	srcset="/p/%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/decb85254c6435b8a8eed76e795564b_hub64041402f87702c578f8138219d39d0_48689_480x0_resize_box_3.png 480w, /p/%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/decb85254c6435b8a8eed76e795564b_hub64041402f87702c578f8138219d39d0_48689_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="133"
+		data-flex-basis="320px"
+	
+></p>
+<pre><code>存在问题：无法确认是否真溢出
+</code></pre>
+<p>循环队列：</p>
+<p><img src="/p/%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/43683f506ad72a606004f7e13225358.png"
+	width="767"
+	height="570"
+	srcset="/p/%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/43683f506ad72a606004f7e13225358_hu6b4aae2c812d514f25964d34fda3ff52_196436_480x0_resize_box_3.png 480w, /p/%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/43683f506ad72a606004f7e13225358_hu6b4aae2c812d514f25964d34fda3ff52_196436_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="134"
+		data-flex-basis="322px"
+	
+></p>
+<p><img src="/p/%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/e3aed83776b9ed0e5b08f9a50b645ff.png"
+	width="761"
+	height="599"
+	srcset="/p/%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/e3aed83776b9ed0e5b08f9a50b645ff_hu7815fdb4f7f745b26724f7adba2bd8c7_60950_480x0_resize_box_3.png 480w, /p/%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/e3aed83776b9ed0e5b08f9a50b645ff_hu7815fdb4f7f745b26724f7adba2bd8c7_60950_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="127"
+		data-flex-basis="304px"
+	
+></p>
+<ol>
+<li>循环队列初始化</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">   Status InitQueue (SqQueue &amp;Q){
+</span></span><span class="line"><span class="cl">    Q.base =new QElemType[MAXQSIZE] 
+</span></span><span class="line"><span class="cl">   if(!Q.base) exit(OVERFLOW);
+</span></span><span class="line"><span class="cl">    Q.front=Q.rear=0;
+</span></span><span class="line"><span class="cl">    return OK;
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>求循环队列的长度</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">int  QueueLength (SqQueue Q){
+</span></span><span class="line"><span class="cl">    return (Q.rear-Q.front+MAXQSIZE)%MAXQSIZE;                             
+</span></span><span class="line"><span class="cl"> }
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li>循环队列入队</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Status EnQueue(SqQueue &amp;Q,QElemType e){
+</span></span><span class="line"><span class="cl">    if((Q.rear+1)%MAXQSIZE==Q.front)  return ERROR;
+</span></span><span class="line"><span class="cl">    Q.base[Q.rear]=e;
+</span></span><span class="line"><span class="cl">    Q.rear=(Q.rear+1)%MAXQSIZE;
+</span></span><span class="line"><span class="cl">     return OK;
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="4">
+<li>循环队列出队</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Status DeQueue (LinkQueue &amp;Q,QElemType &amp;e){
+</span></span><span class="line"><span class="cl">   if(Q.front==Q.rear) return ERROR;
+</span></span><span class="line"><span class="cl">   e=Q.base[Q.front];
+</span></span><span class="line"><span class="cl">   Q.front=(Q.front+1)%MAXQSIZE;
+</span></span><span class="line"><span class="cl">   return OK;
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>*链队列</p>
+<p><img src="/p/%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/e3becd2db5e4c5936ef80bcd2b34170.png"
+	width="760"
+	height="574"
+	srcset="/p/%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/e3becd2db5e4c5936ef80bcd2b34170_hu696358a241d63833534da8db3797f766_26253_480x0_resize_box_3.png 480w, /p/%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/e3becd2db5e4c5936ef80bcd2b34170_hu696358a241d63833534da8db3797f766_26253_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="132"
+		data-flex-basis="317px"
+	
+></p>
+<ol>
+<li>链队列初始化</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Status InitQueue (LinkQueue &amp;Q){
+</span></span><span class="line"><span class="cl">   Q.front=Q.rear=(QueuePtr) malloc(sizeof(QNode)); 
+</span></span><span class="line"><span class="cl">    if(!Q.front) exit(OVERFLOW);
+</span></span><span class="line"><span class="cl">    Q.front-&gt;next=NULL;
+</span></span><span class="line"><span class="cl">     return OK;
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>销毁链队列</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Status DestroyQueue (LinkQueue &amp;Q){
+</span></span><span class="line"><span class="cl">   while(Q.front){
+</span></span><span class="line"><span class="cl">      Q.rear=Q.front-&gt;next;
+</span></span><span class="line"><span class="cl">      free(Q.front);
+</span></span><span class="line"><span class="cl">      Q.front=Q.rear;   }    
+</span></span><span class="line"><span class="cl">   return OK;
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li>判断链队列是否为空</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"> Status QueueEmpty (LinkQueue Q){
+</span></span><span class="line"><span class="cl">    return (Q.front==Q.rear);                             
+</span></span><span class="line"><span class="cl"> }
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="4">
+<li>求链队列的队头元素</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Status GetHead (LinkQueue Q, QElemType &amp;e){
+</span></span><span class="line"><span class="cl">   if(Q.front==Q.rear) return ERROR;
+</span></span><span class="line"><span class="cl">   e=Q.front-&gt;next-&gt;data;
+</span></span><span class="line"><span class="cl">   return OK;
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="5">
+<li>链队列入队</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Status EnQueue(LinkQueue &amp;Q,QElemType e){
+</span></span><span class="line"><span class="cl">    p=(QueuePtr)malloc(sizeof(QNode));
+</span></span><span class="line"><span class="cl">    if(!p) exit(OVERFLOW);
+</span></span><span class="line"><span class="cl">    p-&gt;data=e; p-&gt;next=NULL;
+</span></span><span class="line"><span class="cl">    Q.rear-&gt;next=p;
+</span></span><span class="line"><span class="cl">    Q.rear=p;
+</span></span><span class="line"><span class="cl">    return OK;
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="6">
+<li>链队列出队</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Status DeQueue (LinkQueue &amp;Q,QElemType &amp;e){
+</span></span><span class="line"><span class="cl">   if(Q.front==Q.rear) return ERROR;
+</span></span><span class="line"><span class="cl">   p=Q.front-&gt;next;
+</span></span><span class="line"><span class="cl">   e=p-&gt;data;
+</span></span><span class="line"><span class="cl">   Q.front-&gt;next=p-&gt;next;
+</span></span><span class="line"><span class="cl">   if(Q.rear==p) Q.rear=Q.front;
+</span></span><span class="line"><span class="cl">   delete p;
+</span></span><span class="line"><span class="cl">   return OK;
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/%E7%BA%BF%E6%80%A7%E8%A1%A8/">
+        
+        
+            <div class="article-image">
+                <img src="/p/%E7%BA%BF%E6%80%A7%E8%A1%A8/_hua6ee4ed3cf660c859c134ad90be5e6ce_35023_bc5088cbddd2f48ad471c093aff55309.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 线性表"
+                        
+                        data-hash="md5-CsUJlQ4Su8aj6tBhi5vXyA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">线性表</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <script src="//cdn.jsdelivr.net/npm/twikoo@1.5.11/dist/twikoo.all.min.js"></script>
+<div id="tcomment"></div>
+<style>
+    .twikoo {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+    :root[data-scheme="dark"] {
+        --twikoo-body-text-color-main: rgba(255, 255, 255, 0.9);
+        --twikoo-body-text-color: rgba(255, 255, 255, 0.7);
+    }
+    .twikoo .el-input-group__prepend,
+    .twikoo .tk-action-icon,
+    .twikoo .tk-time,
+    .twikoo .tk-comments-count {
+        color: var(--twikoo-body-text-color);
+    }
+    .twikoo .el-input__inner,
+    .twikoo .el-textarea__inner,
+    .twikoo .tk-preview-container,
+    .twikoo .tk-content,
+    .twikoo .tk-nick,
+    .twikoo .tk-send {
+        color: var(--twikoo-body-text-color-main);
+    }
+    .twikoo .el-button{
+        color: var(--twikoo-body-text-color)!important;
+    }
+    .OwO .OwO-body {
+        background-color: var(--body-background) !important;
+        color: var(--body-text-color) !important;
+    }
+</style><script>
+    twikoo.init({
+        envId: 'https:\/\/twikoo.sryasuka.fun\/',
+        el: '#tcomment',lang: 'zh-CN',})
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2021 - 
+        
+        2023 SryAsuka
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.16.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

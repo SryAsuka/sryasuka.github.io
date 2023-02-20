@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Linux-ch02'>
+<title>标准输入输出</title>
+
+<link rel='canonical' href='https://sryasuka.fun/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/'>
+
+<link rel="stylesheet" href="/scss/style.min.5be32ca3f6e1a997c75795c4359147cc6d4fbd34948c0acd51e31d237033978a.css"><meta property='og:title' content='标准输入输出'>
+<meta property='og:description' content='Linux-ch02'>
+<meta property='og:url' content='https://sryasuka.fun/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/'>
+<meta property='og:site_name' content='SryAsuka'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2023-02-20T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2023-02-20T00:00:00&#43;00:00'/><meta property='og:image' content='https://sryasuka.fun/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/80955e488502fef29dd4b726cbfaec9.png' />
+<meta name="twitter:title" content="标准输入输出">
+<meta name="twitter:description" content="Linux-ch02"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://sryasuka.fun/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/80955e488502fef29dd4b726cbfaec9.png' />
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu4ae24c0d6920a998f721630cfb7a6277_6068_300x0_resize_box_3.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">✨</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">SryAsuka</a></h1>
+            <h2 class="site-description">Where of what&#39;s past is prologue.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/SryAsuka'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://sryasuka.fun/index.xml'
+                        target="_blank"
+                        title="RSS"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-rss" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="5" cy="19" r="1" />
+  <path d="M4 4a16 16 0 0 1 16 16" />
+  <path d="M4 11a9 9 0 0 1 9 9" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com/SryAsuka'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/s/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/s/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/s/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/links/s/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#流和文件描述符及之间的关系">流和文件描述符及之间的关系</a></li>
+    <li><a href="#三个标准流">三个标准流</a></li>
+    <li><a href="#打开和关闭流">打开和关闭流</a></li>
+    <li><a href="#流缓冲区和内核缓冲区">流缓冲区和内核缓冲区</a></li>
+    <li><a href="#流缓冲区类型">流缓冲区类型</a></li>
+    <li><a href="#文件描述符表打开文件表和i-node表">文件描述符表、打开文件表和i-node表</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/">
+                <img src="/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/80955e488502fef29dd4b726cbfaec9_hu3f69bb3da5628383156e983128f03802_76860_800x0_resize_box_3.png"
+                        srcset="/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/80955e488502fef29dd4b726cbfaec9_hu3f69bb3da5628383156e983128f03802_76860_800x0_resize_box_3.png 800w, /p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/80955e488502fef29dd4b726cbfaec9_hu3f69bb3da5628383156e983128f03802_76860_1600x0_resize_box_3.png 1600w"
+                        width="800" 
+                        height="564" 
+                        loading="lazy"
+                        alt="Featured image of post 标准输入输出" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/linux/" style="background-color: #2a9d8f; color: #fff;">
+                Linux Programming
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/">标准输入输出</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            Linux-ch02
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Feb 20, 2023</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    1 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="流和文件描述符及之间的关系">流和文件描述符及之间的关系</h2>
+<p>在计算机操作系统中，流和文件描述符是紧密相关的概念，它们之间的关系如下：</p>
+<ol>
+<li>
+<p>文件描述符：文件描述符是一个非负整数，用于标识打开文件或其他输入/输出设备的唯一标识符。在Unix和类Unix系统中，每个打开的文件或设备都被分配一个文件描述符，它是操作系统内部使用的一个数字，程序可以通过文件描述符来访问文件或设备。</p>
+</li>
+<li>
+<p>流：流是一个抽象的概念，它表示从程序中一个地方到另一个地方的数据流动。流可以是输入流、输出流或输入/输出流，它们在程序中通过流对象来实现。流对象封装了文件描述符及其相关操作，使得程序可以以更高级别的方式进行输入和输出操作，而不需要直接操作文件描述符。</p>
+</li>
+<li>
+<p>流和文件描述符的关系：在Unix和类Unix系统中，每个流都与一个文件描述符相关联。例如，标准输入流stdin通常与文件描述符0相关联，标准输出流stdout通常与文件描述符1相关联，标准错误流stderr通常与文件描述符2相关联。在程序中使用流对象来进行输入/输出操作时，操作系统会自动将流对象转换为与其相关联的文件描述符来进行底层的读写操作。</p>
+</li>
+</ol>
+<h2 id="三个标准流">三个标准流</h2>
+<p>三个标准流通常指的是：标准输入流（stdin）、标准输出流（stdout）和标准错误流（stderr），在计算机操作系统中被广泛使用。</p>
+<ol>
+<li>
+<p>标准输入流（stdin）：这是程序从用户那里获取输入数据的标准方式。标准输入流通常通过键盘输入，但也可以通过文件、管道或其他设备输入。在Linux和Unix操作系统中，可以使用重定向符号 &ldquo;&lt;&rdquo; 来将一个文件中的内容输入到标准输入流中。</p>
+</li>
+<li>
+<p>标准输出流（stdout）：这是程序输出数据的标准方式。标准输出流通常是显示在屏幕上的文本信息，但也可以重定向到文件中。在Linux和Unix操作系统中，可以使用重定向符号 &ldquo;&gt;&rdquo; 来将标准输出流的内容写入一个文件中。</p>
+</li>
+<li>
+<p>标准错误流（stderr）：这是程序输出错误信息的标准方式。标准错误流通常是显示在屏幕上的红色文本信息，以便用户注意到它们。与标准输出流不同，标准错误流的输出不会被重定向到文件中，除非专门使用特定的符号 &ldquo;2&gt;&rdquo; 进行重定向。</p>
+</li>
+</ol>
+<h2 id="打开和关闭流">打开和关闭流</h2>
+<p><img src="/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/dbdaf47978b7a3ed4e1da7796d97c9b.png"
+	width="1039"
+	height="725"
+	srcset="/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/dbdaf47978b7a3ed4e1da7796d97c9b_hud8960e5f205a5c08c5468e38c5f395e3_339621_480x0_resize_box_3.png 480w, /p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/dbdaf47978b7a3ed4e1da7796d97c9b_hud8960e5f205a5c08c5468e38c5f395e3_339621_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="143"
+		data-flex-basis="343px"
+	
+></p>
+<p><img src="/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/acc0bb53ca198d5eb8f8aa5e6a18631.png"
+	width="1040"
+	height="694"
+	srcset="/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/acc0bb53ca198d5eb8f8aa5e6a18631_hu02a583e28e8351ddc5108b249ec1cb7c_365271_480x0_resize_box_3.png 480w, /p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/acc0bb53ca198d5eb8f8aa5e6a18631_hu02a583e28e8351ddc5108b249ec1cb7c_365271_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="149"
+		data-flex-basis="359px"
+	
+></p>
+<p><img src="/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/f8993d4a498f5079539cd612dff1596.png"
+	width="1037"
+	height="649"
+	srcset="/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/f8993d4a498f5079539cd612dff1596_hu03cdf560e30ff277f14be5f284443d6c_255907_480x0_resize_box_3.png 480w, /p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/f8993d4a498f5079539cd612dff1596_hu03cdf560e30ff277f14be5f284443d6c_255907_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="159"
+		data-flex-basis="383px"
+	
+></p>
+<h2 id="流缓冲区和内核缓冲区">流缓冲区和内核缓冲区</h2>
+<p>流缓冲区：流缓冲区是在程序内部使用的一个缓冲区，它存储了要写入或读取的数据。当程序进行输出操作时，数据首先被写入到流缓冲区中，直到缓冲区满或程序调用了flush()函数或关闭流时才将数据写入到内核缓冲区中。当程序进行输入操作时，数据也是首先从内核缓冲区读取到流缓冲区中，直到缓冲区为空或程序读取了足够的数据时才会再次从内核缓冲区中读取数据。</p>
+<p>内核缓冲区：内核缓冲区是操作系统内核使用的一个缓冲区，它用于存储要写入或读取的数据。当程序进行输出操作时，数据从流缓冲区写入到内核缓冲区中，然后由内核将数据写入到磁盘或网络中。当程序进行输入操作时，数据首先从磁盘或网络中读取到内核缓冲区中，然后由内核将数据从内核缓冲区中复制到流缓冲区中，供程序读取。</p>
+<p>总体上，流缓冲区是程序内部使用的缓冲区，它可以提高输入/输出操作的效率。内核缓冲区是操作系统内核使用的缓冲区，它可以提高磁盘和网络读写的效率。流缓冲区和内核缓冲区的关系是：程序将数据写入到流缓冲区中，然后由内核将数据从流缓冲区复制到内核缓冲区中；或者程序从内核缓冲区中读取数据，然后将数据存储到流缓冲区中。</p>
+<h2 id="流缓冲区类型">流缓冲区类型</h2>
+<p><img src="/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/c7f693f22d27681d106f68f63c621cd.png"
+	width="1042"
+	height="738"
+	srcset="/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/c7f693f22d27681d106f68f63c621cd_hu64c75ec206f9beae57026efca42c33b5_278010_480x0_resize_box_3.png 480w, /p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/c7f693f22d27681d106f68f63c621cd_hu64c75ec206f9beae57026efca42c33b5_278010_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="141"
+		data-flex-basis="338px"
+	
+></p>
+<h2 id="文件描述符表打开文件表和i-node表">文件描述符表、打开文件表和i-node表</h2>
+<p>在 Unix/Linux 系统中，文件是使用文件描述符（file descriptor）来进行操作的。文件描述符是一个整数，它代表一个文件被打开后在内核中的一个唯一标识符。当应用程序打开一个文件时，内核会分配一个文件描述符，并使用该文件描述符来标识该文件。文件描述符表、打开文件表和 i-node 表是三个与文件操作密切相关的概念，它们分别记录了文件描述符、打开文件和文件在磁盘上的存储位置。</p>
+<ol>
+<li>
+<p>文件描述符表：文件描述符表是每个进程都有的一个表，它记录了进程中每个打开的文件描述符与内核中的文件描述符之间的映射关系。当应用程序打开一个文件时，内核会分配一个文件描述符，并将其添加到文件描述符表中，以便应用程序在之后的操作中可以使用该文件描述符来标识该文件。</p>
+</li>
+<li>
+<p>打开文件表：打开文件表是内核中的一个表，它记录了所有当前被打开的文件的信息，包括文件描述符、文件偏移量、读写模式、文件状态等等。当应用程序打开一个文件时，内核会在打开文件表中创建一个新的表项，并将该表项与文件描述符关联起来。</p>
+</li>
+<li>
+<p>i-node 表：i-node 表是在磁盘上维护的一个表，它记录了文件的所有属性和存储位置。每个文件在 i-node 表中都有一个唯一的 i-node 号码，该号码与文件的所有属性和存储位置相关联。当应用程序打开一个文件时，内核会通过文件的 i-node 号码在 i-node 表中查找该文件的相关信息，包括文件类型、访问权限、文件大小、创建时间等等。</p>
+</li>
+</ol>
+<p>这三个表之间的关系是：文件描述符表中的文件描述符指向打开文件表中的打开文件，而打开文件表中的打开文件又与 i-node 表中的文件相关联。在进行文件操作时，应用程序使用文件描述符来标识文件，内核根据文件描述符在打开文件表中查找相应的打开文件，然后根据打开文件中的 i-node 号码在 i-node 表中查找文件的相关信息。</p>
+<p><img src="/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/127693479e49ee78034ea5bfe5c2357.png"
+	width="1038"
+	height="734"
+	srcset="/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/127693479e49ee78034ea5bfe5c2357_hu9be0fe81f573b98523b31413e22c1598_187349_480x0_resize_box_3.png 480w, /p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/127693479e49ee78034ea5bfe5c2357_hu9be0fe81f573b98523b31413e22c1598_187349_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="141"
+		data-flex-basis="339px"
+	
+></p>
+<p><img src="/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/d0fb83038beb32cae2c50b18acc52f0.png"
+	width="1048"
+	height="737"
+	srcset="/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/d0fb83038beb32cae2c50b18acc52f0_huaf8b97cb1279930ccec321e0dc6f1494_171038_480x0_resize_box_3.png 480w, /p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/d0fb83038beb32cae2c50b18acc52f0_huaf8b97cb1279930ccec321e0dc6f1494_171038_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="142"
+		data-flex-basis="341px"
+	
+></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/linuxgplunix%E4%BB%8B%E7%BB%8D/">
+        
+        
+            <div class="article-image">
+                <img src="/p/linuxgplunix%E4%BB%8B%E7%BB%8D/_hua27b2c25dc2bad5a4da2101f5d236246_119733_a35806e0ce3bed7df0855efe1817bd16.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Linux，GPL，UNIX介绍"
+                        
+                        data-hash="md5-YtZBoidcrSdONzRT9MTj8g==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Linux，GPL，UNIX介绍</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <script src="//cdn.jsdelivr.net/npm/twikoo@1.5.11/dist/twikoo.all.min.js"></script>
+<div id="tcomment"></div>
+<style>
+    .twikoo {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+    :root[data-scheme="dark"] {
+        --twikoo-body-text-color-main: rgba(255, 255, 255, 0.9);
+        --twikoo-body-text-color: rgba(255, 255, 255, 0.7);
+    }
+    .twikoo .el-input-group__prepend,
+    .twikoo .tk-action-icon,
+    .twikoo .tk-time,
+    .twikoo .tk-comments-count {
+        color: var(--twikoo-body-text-color);
+    }
+    .twikoo .el-input__inner,
+    .twikoo .el-textarea__inner,
+    .twikoo .tk-preview-container,
+    .twikoo .tk-content,
+    .twikoo .tk-nick,
+    .twikoo .tk-send {
+        color: var(--twikoo-body-text-color-main);
+    }
+    .twikoo .el-button{
+        color: var(--twikoo-body-text-color)!important;
+    }
+    .OwO .OwO-body {
+        background-color: var(--body-background) !important;
+        color: var(--body-text-color) !important;
+    }
+</style><script>
+    twikoo.init({
+        envId: 'https:\/\/twikoo.sryasuka.fun\/',
+        el: '#tcomment',lang: 'zh-CN',})
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2021 - 
+        
+        2023 SryAsuka
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.16.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

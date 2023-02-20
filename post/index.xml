@@ -6,13 +6,988 @@
         <description>Recent content in Posts on SryAsuka</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Sun, 12 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://sryasuka.fun/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 20 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://sryasuka.fun/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>标准输入输出</title>
+        <link>https://sryasuka.fun/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/</link>
+        <pubDate>Mon, 20 Feb 2023 00:00:00 +0000</pubDate>
+        
+        <guid>https://sryasuka.fun/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/</guid>
+        <description>&lt;img src="https://sryasuka.fun/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/80955e488502fef29dd4b726cbfaec9.png" alt="Featured image of post 标准输入输出" /&gt;&lt;h2 id=&#34;流和文件描述符及之间的关系&#34;&gt;流和文件描述符及之间的关系&lt;/h2&gt;
+&lt;p&gt;在计算机操作系统中，流和文件描述符是紧密相关的概念，它们之间的关系如下：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;文件描述符：文件描述符是一个非负整数，用于标识打开文件或其他输入/输出设备的唯一标识符。在Unix和类Unix系统中，每个打开的文件或设备都被分配一个文件描述符，它是操作系统内部使用的一个数字，程序可以通过文件描述符来访问文件或设备。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;流：流是一个抽象的概念，它表示从程序中一个地方到另一个地方的数据流动。流可以是输入流、输出流或输入/输出流，它们在程序中通过流对象来实现。流对象封装了文件描述符及其相关操作，使得程序可以以更高级别的方式进行输入和输出操作，而不需要直接操作文件描述符。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;流和文件描述符的关系：在Unix和类Unix系统中，每个流都与一个文件描述符相关联。例如，标准输入流stdin通常与文件描述符0相关联，标准输出流stdout通常与文件描述符1相关联，标准错误流stderr通常与文件描述符2相关联。在程序中使用流对象来进行输入/输出操作时，操作系统会自动将流对象转换为与其相关联的文件描述符来进行底层的读写操作。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;三个标准流&#34;&gt;三个标准流&lt;/h2&gt;
+&lt;p&gt;三个标准流通常指的是：标准输入流（stdin）、标准输出流（stdout）和标准错误流（stderr），在计算机操作系统中被广泛使用。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;标准输入流（stdin）：这是程序从用户那里获取输入数据的标准方式。标准输入流通常通过键盘输入，但也可以通过文件、管道或其他设备输入。在Linux和Unix操作系统中，可以使用重定向符号 &amp;ldquo;&amp;lt;&amp;rdquo; 来将一个文件中的内容输入到标准输入流中。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;标准输出流（stdout）：这是程序输出数据的标准方式。标准输出流通常是显示在屏幕上的文本信息，但也可以重定向到文件中。在Linux和Unix操作系统中，可以使用重定向符号 &amp;ldquo;&amp;gt;&amp;rdquo; 来将标准输出流的内容写入一个文件中。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;标准错误流（stderr）：这是程序输出错误信息的标准方式。标准错误流通常是显示在屏幕上的红色文本信息，以便用户注意到它们。与标准输出流不同，标准错误流的输出不会被重定向到文件中，除非专门使用特定的符号 &amp;ldquo;2&amp;gt;&amp;rdquo; 进行重定向。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;打开和关闭流&#34;&gt;打开和关闭流&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/dbdaf47978b7a3ed4e1da7796d97c9b.png&#34;
+	width=&#34;1039&#34;
+	height=&#34;725&#34;
+	srcset=&#34;https://sryasuka.fun/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/dbdaf47978b7a3ed4e1da7796d97c9b_hud8960e5f205a5c08c5468e38c5f395e3_339621_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/dbdaf47978b7a3ed4e1da7796d97c9b_hud8960e5f205a5c08c5468e38c5f395e3_339621_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;143&#34;
+		data-flex-basis=&#34;343px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/acc0bb53ca198d5eb8f8aa5e6a18631.png&#34;
+	width=&#34;1040&#34;
+	height=&#34;694&#34;
+	srcset=&#34;https://sryasuka.fun/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/acc0bb53ca198d5eb8f8aa5e6a18631_hu02a583e28e8351ddc5108b249ec1cb7c_365271_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/acc0bb53ca198d5eb8f8aa5e6a18631_hu02a583e28e8351ddc5108b249ec1cb7c_365271_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;149&#34;
+		data-flex-basis=&#34;359px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/f8993d4a498f5079539cd612dff1596.png&#34;
+	width=&#34;1037&#34;
+	height=&#34;649&#34;
+	srcset=&#34;https://sryasuka.fun/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/f8993d4a498f5079539cd612dff1596_hu03cdf560e30ff277f14be5f284443d6c_255907_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/f8993d4a498f5079539cd612dff1596_hu03cdf560e30ff277f14be5f284443d6c_255907_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;159&#34;
+		data-flex-basis=&#34;383px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;流缓冲区和内核缓冲区&#34;&gt;流缓冲区和内核缓冲区&lt;/h2&gt;
+&lt;p&gt;流缓冲区：流缓冲区是在程序内部使用的一个缓冲区，它存储了要写入或读取的数据。当程序进行输出操作时，数据首先被写入到流缓冲区中，直到缓冲区满或程序调用了flush()函数或关闭流时才将数据写入到内核缓冲区中。当程序进行输入操作时，数据也是首先从内核缓冲区读取到流缓冲区中，直到缓冲区为空或程序读取了足够的数据时才会再次从内核缓冲区中读取数据。&lt;/p&gt;
+&lt;p&gt;内核缓冲区：内核缓冲区是操作系统内核使用的一个缓冲区，它用于存储要写入或读取的数据。当程序进行输出操作时，数据从流缓冲区写入到内核缓冲区中，然后由内核将数据写入到磁盘或网络中。当程序进行输入操作时，数据首先从磁盘或网络中读取到内核缓冲区中，然后由内核将数据从内核缓冲区中复制到流缓冲区中，供程序读取。&lt;/p&gt;
+&lt;p&gt;总体上，流缓冲区是程序内部使用的缓冲区，它可以提高输入/输出操作的效率。内核缓冲区是操作系统内核使用的缓冲区，它可以提高磁盘和网络读写的效率。流缓冲区和内核缓冲区的关系是：程序将数据写入到流缓冲区中，然后由内核将数据从流缓冲区复制到内核缓冲区中；或者程序从内核缓冲区中读取数据，然后将数据存储到流缓冲区中。&lt;/p&gt;
+&lt;h2 id=&#34;流缓冲区类型&#34;&gt;流缓冲区类型&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/c7f693f22d27681d106f68f63c621cd.png&#34;
+	width=&#34;1042&#34;
+	height=&#34;738&#34;
+	srcset=&#34;https://sryasuka.fun/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/c7f693f22d27681d106f68f63c621cd_hu64c75ec206f9beae57026efca42c33b5_278010_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/c7f693f22d27681d106f68f63c621cd_hu64c75ec206f9beae57026efca42c33b5_278010_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;141&#34;
+		data-flex-basis=&#34;338px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;文件描述符表打开文件表和i-node表&#34;&gt;文件描述符表、打开文件表和i-node表&lt;/h2&gt;
+&lt;p&gt;在 Unix/Linux 系统中，文件是使用文件描述符（file descriptor）来进行操作的。文件描述符是一个整数，它代表一个文件被打开后在内核中的一个唯一标识符。当应用程序打开一个文件时，内核会分配一个文件描述符，并使用该文件描述符来标识该文件。文件描述符表、打开文件表和 i-node 表是三个与文件操作密切相关的概念，它们分别记录了文件描述符、打开文件和文件在磁盘上的存储位置。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;文件描述符表：文件描述符表是每个进程都有的一个表，它记录了进程中每个打开的文件描述符与内核中的文件描述符之间的映射关系。当应用程序打开一个文件时，内核会分配一个文件描述符，并将其添加到文件描述符表中，以便应用程序在之后的操作中可以使用该文件描述符来标识该文件。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;打开文件表：打开文件表是内核中的一个表，它记录了所有当前被打开的文件的信息，包括文件描述符、文件偏移量、读写模式、文件状态等等。当应用程序打开一个文件时，内核会在打开文件表中创建一个新的表项，并将该表项与文件描述符关联起来。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;i-node 表：i-node 表是在磁盘上维护的一个表，它记录了文件的所有属性和存储位置。每个文件在 i-node 表中都有一个唯一的 i-node 号码，该号码与文件的所有属性和存储位置相关联。当应用程序打开一个文件时，内核会通过文件的 i-node 号码在 i-node 表中查找该文件的相关信息，包括文件类型、访问权限、文件大小、创建时间等等。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;这三个表之间的关系是：文件描述符表中的文件描述符指向打开文件表中的打开文件，而打开文件表中的打开文件又与 i-node 表中的文件相关联。在进行文件操作时，应用程序使用文件描述符来标识文件，内核根据文件描述符在打开文件表中查找相应的打开文件，然后根据打开文件中的 i-node 号码在 i-node 表中查找文件的相关信息。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/127693479e49ee78034ea5bfe5c2357.png&#34;
+	width=&#34;1038&#34;
+	height=&#34;734&#34;
+	srcset=&#34;https://sryasuka.fun/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/127693479e49ee78034ea5bfe5c2357_hu9be0fe81f573b98523b31413e22c1598_187349_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/127693479e49ee78034ea5bfe5c2357_hu9be0fe81f573b98523b31413e22c1598_187349_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;141&#34;
+		data-flex-basis=&#34;339px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/d0fb83038beb32cae2c50b18acc52f0.png&#34;
+	width=&#34;1048&#34;
+	height=&#34;737&#34;
+	srcset=&#34;https://sryasuka.fun/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/d0fb83038beb32cae2c50b18acc52f0_huaf8b97cb1279930ccec321e0dc6f1494_171038_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/d0fb83038beb32cae2c50b18acc52f0_huaf8b97cb1279930ccec321e0dc6f1494_171038_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;142&#34;
+		data-flex-basis=&#34;341px&#34;
+	
+&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>Linux，GPL，UNIX介绍</title>
+        <link>https://sryasuka.fun/p/linuxgplunix%E4%BB%8B%E7%BB%8D/</link>
+        <pubDate>Sat, 18 Feb 2023 00:00:00 +0000</pubDate>
+        
+        <guid>https://sryasuka.fun/p/linuxgplunix%E4%BB%8B%E7%BB%8D/</guid>
+        <description>&lt;img src="https://sryasuka.fun/p/linuxgplunix%E4%BB%8B%E7%BB%8D/f32101afec18c9a89ec373492505e43.png" alt="Featured image of post Linux，GPL，UNIX介绍" /&gt;&lt;h2 id=&#34;unix标准及两级规范符号度&#34;&gt;UNIX标准及两级规范符号度&lt;/h2&gt;
+&lt;p&gt;UNIX是一个操作系统的家族，它的标准是由The Open Group制定的。该标准包括了Single UNIX Specification和POSIX标准两个级别。&lt;/p&gt;
+&lt;p&gt;Single UNIX Specification（SUS）是一份针对UNIX系统的单一规范，它包括了许多开放标准和互操作性标准，用于确保UNIX系统在不同的平台上保持一致的行为。SUS包括了许多子规范，包括基本系统接口、命令和工具、系统管理、应用程序接口等。&lt;/p&gt;
+&lt;p&gt;POSIX标准定义了UNIX系统应该提供的一组接口，这些接口主要用于实现可移植的UNIX应用程序。POSIX标准涵盖了操作系统、编程语言和工具等方面，包括了许多子规范，如POSIX.1，POSIX.2等。&lt;/p&gt;
+&lt;h2 id=&#34;gpllgpl&#34;&gt;GPL/LGPL&lt;/h2&gt;
+&lt;p&gt;GPL软件允许商业销售，但不允许闭源。它确保了程序代码永远能让所有人自由使用。&lt;/p&gt;
+&lt;p&gt;LGPL软件/库允许商业销售，但不允许闭源；但动态链接LGPL库时，允许软件闭源。它主要为库的使用而设计的许可。&lt;/p&gt;
+&lt;h2 id=&#34;unix哲学&#34;&gt;UNIX哲学&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;小即是美&lt;/li&gt;
+&lt;li&gt;让每一个程序只做好一件事&lt;/li&gt;
+&lt;li&gt;尽快建立原型&lt;/li&gt;
+&lt;li&gt;舍高效率而取可移植性 &amp;ndash;代码可移植&lt;/li&gt;
+&lt;li&gt;采用纯文本文件存储数据 &amp;ndash;数据可移植&lt;/li&gt;
+&lt;li&gt;充分利用软件的杠杆效应&lt;/li&gt;
+&lt;li&gt;使用shell脚本来提高杠杆效应和可移植性&lt;/li&gt;
+&lt;li&gt;避免强制性的用户界面&lt;/li&gt;
+&lt;li&gt;灵活性：编程时应尽量考虑到灵活性，尽量避免随意限制字段长度或记录数目。&lt;/li&gt;
+&lt;li&gt;可重用组件：将应用程序的核心实现为库。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;linux标准&#34;&gt;Linux标准&lt;/h2&gt;
+&lt;p&gt;Linux标准是由Linux Standard Base（LSB）组织定义和维护的，它是一个用于确保不同Linux发行版之间二进制兼容性的标准。&lt;/p&gt;
+&lt;p&gt;LSB规范定义了一组Linux系统所必须支持的接口、库和命令等，这些接口和命令可用于开发和运行Linux应用程序，从而提高应用程序的可移植性和互操作性。&lt;/p&gt;
+&lt;h2 id=&#34;内核态和用户态&#34;&gt;内核态和用户态&lt;/h2&gt;
+&lt;p&gt;现代处理器架构一般允许CPU至少在两种不同状态下运行，即内核态和用户态。执行硬件指令可使CPU在两种状态间来回切换。&lt;/p&gt;
+&lt;p&gt;进程所能访问的存储位置范围称为虚拟地址空间。与之对应，虚拟内存空间也分为内核空间和用户空间。进程在用户态下运行时，CPU只能访问用户空间，试图访问内核空间的内存将会引起硬件异常。当运行于内核态时，CPU既能访问用户空间内存，也能访问内核空间内存。&lt;/p&gt;
+&lt;h2 id=&#34;shell提示符结构&#34;&gt;shell提示符结构&lt;/h2&gt;
+&lt;p&gt;常见的 shell有：&lt;/p&gt;
+&lt;p&gt;Bash(the GNU Bourne-Again Shell)、TC shell、Z shell；   //Linux&lt;/p&gt;
+&lt;p&gt;Bourne shell、Korn shell、C shell  //UNIX&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/linuxgplunix%E4%BB%8B%E7%BB%8D/53a72d471cf5ecd5fcdab87448a9da2.png&#34;
+	width=&#34;1055&#34;
+	height=&#34;740&#34;
+	srcset=&#34;https://sryasuka.fun/p/linuxgplunix%E4%BB%8B%E7%BB%8D/53a72d471cf5ecd5fcdab87448a9da2_hu55f63cd296e4cb3b01385da22a6cc2d4_252315_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/linuxgplunix%E4%BB%8B%E7%BB%8D/53a72d471cf5ecd5fcdab87448a9da2_hu55f63cd296e4cb3b01385da22a6cc2d4_252315_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;142&#34;
+		data-flex-basis=&#34;342px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;常见的Shell提示符结构包括以下几个组成部分：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;用户名：表示当前登录系统的用户名，可以使用环境变量$USER或$(whoami)来获取。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;主机名：表示当前计算机的主机名或IP地址，可以使用环境变量$HOSTNAME或$(hostname)来获取。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;当前工作目录：表示当前所在的工作目录，可以使用环境变量$PWD来获取。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Shell类型或版本号：表示当前Shell的类型或版本号，可以使用环境变量$SHELL或$BASH_VERSION来获取。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;提示符符号：表示提示符的结束符号，一般为$或#，其中$表示普通用户，#表示超级用户（即root用户）。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;linux重定向命令&#34;&gt;Linux重定向命令&lt;/h2&gt;
+&lt;p&gt;输出重定向（&amp;gt;）：将命令执行的结果输出到一个文件中，可以使用大于符号（&amp;gt;）进行重定向。&lt;/p&gt;
+&lt;p&gt;输出追加重定向（&amp;raquo;）：与输出重定向类似，但是将命令执行的结果追加到文件的末尾而不是覆盖原有内容。&lt;/p&gt;
+&lt;p&gt;输入重定向（&amp;lt;）：将一个文件中的内容作为命令的输入数据，可以使用小于符号（&amp;lt;）进行重定向。&lt;/p&gt;
+&lt;p&gt;文件描述符重定向（&amp;amp;&amp;gt;）：将命令执行的结果同时重定向到标准输出和标准错误输出文件中。&lt;/p&gt;
+&lt;h2 id=&#34;后台运行命令&#34;&gt;后台运行命令&lt;/h2&gt;
+&lt;p&gt;在Linux或Unix系统中，可以通过在命令末尾加上&amp;amp;符号，将命令放入后台运行。这种方式可以使得命令在后台执行，而不会占用终端或命令行界面的资源，同时也可以在命令执行过程中继续使用终端或命令行界面进行其他操作。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;后台运行普通命令：在普通命令末尾加上&amp;amp;符号即可将命令放入后台运行&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;code&gt;sleep 10 &amp;amp;&lt;/code&gt;&lt;/p&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;后台运行交互式命令：对于交互式命令，如果直接加上&amp;amp;符号，命令仍然会在前台运行。可以使用nohup命令将交互式命令转为后台运行模式&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;code&gt;nohup python3 -i&lt;/code&gt;&lt;/p&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;挂起已经在前台运行的命令：如果已经在前台运行的命令需要挂起，可以使用Ctrl + Z快捷键将其暂停，并放入后台运行。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tar czf backup.tar.gz /path/to/backup &amp;amp;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;[1] 12345
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;$ fg
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;系统调用和库函数间关系&#34;&gt;系统调用和库函数间关系&lt;/h2&gt;
+&lt;p&gt;操作系统具有两种功能：为用户程序提供抽象和管理计算机资源。通常程序和OS之间处理的是前者，例如，创建、写入、读出和删除文件。对用户而言，资源管理部分主要是透明和自动完成的。&lt;/p&gt;
+&lt;p&gt;系统调用就是OS的一些内建函数，这些函数为应用程序提供了对计算机资源的抽象，使程序同硬件特性相隔离。从编程的角度看，系统调用的集合及系统调用的内部实现形成了OS的内核。&lt;/p&gt;
+&lt;p&gt;C使用_syscall宏，可以直接调用任何系统调用。然而，为了调用方便，标准C库提供了一组针对最常用系统调用的封装(wrapper)函数。封装函数与系统调用通常同名，它将系统调用参数打好包，通过适当的方式陷入内核执行，然后将返回状态传递给应用程序。&lt;/p&gt;
+&lt;p&gt;内核是为用户进程运行的，它不是与用户进程平行运行的独立的进程集合，而是每个用户进程的一部分。  用户进程的代码由用户代码(应用程序代码+库)和内核代码组成，执行时常常在用户态和内核态之间切换。&lt;/p&gt;
+&lt;p&gt;系统调用通常需要通过内核态和用户态之间的上下文切换来完成，因此效率相对较低，但提供了更底层、更强大的功能。开销大&lt;/p&gt;
+&lt;p&gt;库函数通常是在用户态中执行的，因此效率相对较高，但功能相对较弱。开销小。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/linuxgplunix%E4%BB%8B%E7%BB%8D/c4bfa8a76896792f95fbeaefe57bb84.png&#34;
+	width=&#34;1041&#34;
+	height=&#34;733&#34;
+	srcset=&#34;https://sryasuka.fun/p/linuxgplunix%E4%BB%8B%E7%BB%8D/c4bfa8a76896792f95fbeaefe57bb84_hu63518c9c20c7e0555eca2de175dc7abb_462478_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/linuxgplunix%E4%BB%8B%E7%BB%8D/c4bfa8a76896792f95fbeaefe57bb84_hu63518c9c20c7e0555eca2de175dc7abb_462478_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;142&#34;
+		data-flex-basis=&#34;340px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;在需要对系统进行精确控制时，最好使用系统调用，这可以避免使用库函数带来的一些想不到的问题。&lt;/p&gt;
+&lt;p&gt;保留字： 保留字是系统专门保留使用权，并有特定含义的名字，具有唯一性。&lt;/p&gt;
+&lt;h2 id=&#34;常见的一级目录&#34;&gt;常见的一级目录&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/linuxgplunix%E4%BB%8B%E7%BB%8D/62f4b67af991f0f25a7bc9b1df8218c.png&#34;
+	width=&#34;1037&#34;
+	height=&#34;739&#34;
+	srcset=&#34;https://sryasuka.fun/p/linuxgplunix%E4%BB%8B%E7%BB%8D/62f4b67af991f0f25a7bc9b1df8218c_hub86acc0889563d0d549c11357cb5d258_311131_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/linuxgplunix%E4%BB%8B%E7%BB%8D/62f4b67af991f0f25a7bc9b1df8218c_hub86acc0889563d0d549c11357cb5d258_311131_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;140&#34;
+		data-flex-basis=&#34;336px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/linuxgplunix%E4%BB%8B%E7%BB%8D/7eb2fdafc1082b0e3c4c8217b4f3549.png&#34;
+	width=&#34;1041&#34;
+	height=&#34;708&#34;
+	srcset=&#34;https://sryasuka.fun/p/linuxgplunix%E4%BB%8B%E7%BB%8D/7eb2fdafc1082b0e3c4c8217b4f3549_hu55c6049637ec3e5f19cc4f7abec42c05_223102_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/linuxgplunix%E4%BB%8B%E7%BB%8D/7eb2fdafc1082b0e3c4c8217b4f3549_hu55c6049637ec3e5f19cc4f7abec42c05_223102_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;147&#34;
+		data-flex-basis=&#34;352px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;链接和库&#34;&gt;链接和库&lt;/h2&gt;
+&lt;p&gt;可执行程序的生成需要经历预处理、编译、汇编、链接4个阶段。&lt;/p&gt;
+&lt;p&gt;默认情况下，链接器只搜索默认lib目录(/lib和/usr/lib)中的C标准库libc.a或者libc.so；其余的库(如数学库libm.a或libm.so)则需要指定库的名字甚至库的路径信息才能被链接器搜索到。&lt;/p&gt;
+&lt;p&gt;链接的时机：
+编译时，即源代码被翻译成机器代码时 (ld)
+加载时，即在程序被加载器加载到存储器并准备执行时(ld-linux.so)
+运行时，即程序正在运行时(libdl.so.2)&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/linuxgplunix%E4%BB%8B%E7%BB%8D/34a9e51eae304c6ec6ccf4a9c6c922c.png&#34;
+	width=&#34;1037&#34;
+	height=&#34;691&#34;
+	srcset=&#34;https://sryasuka.fun/p/linuxgplunix%E4%BB%8B%E7%BB%8D/34a9e51eae304c6ec6ccf4a9c6c922c_hu80f8a52ba8973e1f9e2a52dee9d9dc91_412641_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/linuxgplunix%E4%BB%8B%E7%BB%8D/34a9e51eae304c6ec6ccf4a9c6c922c_hu80f8a52ba8973e1f9e2a52dee9d9dc91_412641_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;150&#34;
+		data-flex-basis=&#34;360px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/linuxgplunix%E4%BB%8B%E7%BB%8D/4df6ddde168fe410e136292513817d3.png&#34;
+	width=&#34;1047&#34;
+	height=&#34;738&#34;
+	srcset=&#34;https://sryasuka.fun/p/linuxgplunix%E4%BB%8B%E7%BB%8D/4df6ddde168fe410e136292513817d3_hu56a3451afea25c775d826adad2878171_201930_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/linuxgplunix%E4%BB%8B%E7%BB%8D/4df6ddde168fe410e136292513817d3_hu56a3451afea25c775d826adad2878171_201930_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;141&#34;
+		data-flex-basis=&#34;340px&#34;
+	
+&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>栈和队列</title>
+        <link>https://sryasuka.fun/p/%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/</link>
+        <pubDate>Tue, 14 Feb 2023 00:00:00 +0000</pubDate>
+        
+        <guid>https://sryasuka.fun/p/%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/</guid>
+        <description>&lt;img src="https://sryasuka.fun/p/%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/b21266efb258ceb90992f168f5d9d2e.png" alt="Featured image of post 栈和队列" /&gt;&lt;h2 id=&#34;栈和队列&#34;&gt;栈和队列&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;目标：
+1. 掌握栈和队列的特点，并能在相应的应用问题中正确选用
+2. 熟练掌握栈的两种存储结构的基本操作实现算法，特别应注意栈满和栈空的条件
+3. 熟练掌握循环队列和链队列的基本操作实现算法，特别注意队满和队空的条件
+4. 理解递归算法执行过程中栈的状态变化过程
+5. 掌握表达式求值 方法
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;栈的定义&#34;&gt;栈的定义&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;定义：只能在表的一端（栈顶）进行插入和删除运算的线性表&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;逻辑结构：与线性表相同，仍为一对一关系&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;存储结构：用顺序栈或链栈存储均可，但以顺序栈更常见&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;运算规则：只能在栈顶运算，且访问结点时依照后进先出（LIFO）或先进后出（FILO）的原则&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;实现方法：关键是编写入栈和出栈函数，具体实现依顺序栈或链栈的不同而不同。基本操作有入栈、出栈、读栈顶元素值、建栈、判断栈满、栈空等&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;队列的定义&#34;&gt;队列的定义&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;定义：只能在表的一端（队尾）进行插入，在另一端（队头）进行删除运算的线性表&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;逻辑结构：与线性表相同，仍为一对一关系&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;存储结构：用顺序队列或链队存储均可&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;运算规则：先进先出（FIFO）&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;实现方式：关键是编写入队和出队函数，具体实现依顺序队或链队的不同而不同&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;栈队列和一般线性表的区别&#34;&gt;*栈，队列和一般线性表的区别&lt;/h3&gt;
+&lt;p&gt;栈、队列是一种特殊（操作受限）的线性表&lt;/p&gt;
+&lt;p&gt;区别：仅在于运算规则不同&lt;/p&gt;
+&lt;p&gt;一般线性表：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;逻辑结构：一对一&lt;/li&gt;
+&lt;li&gt;存储结构：顺序表、链表&lt;/li&gt;
+&lt;li&gt;运算规则：随机、顺序存取&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;栈&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;逻辑结构：一对一&lt;/li&gt;
+&lt;li&gt;存储结构：顺序栈、链栈&lt;/li&gt;
+&lt;li&gt;运算规则：后进先出&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;队列&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;逻辑结构：一对一&lt;/li&gt;
+&lt;li&gt;存储结构：顺序队、链队&lt;/li&gt;
+&lt;li&gt;运算规则：先进先出&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;栈的表示和操作的实现&#34;&gt;栈的表示和操作的实现&lt;/h3&gt;
+&lt;p&gt;进栈 = 压入 = PUSH()&lt;/p&gt;
+&lt;p&gt;出栈 = 弹出 = POP()&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;顺序栈与顺序表的区别&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/8fdc7ee61f6153bb363779999d8e622.png&#34;
+	width=&#34;762&#34;
+	height=&#34;572&#34;
+	srcset=&#34;https://sryasuka.fun/p/%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/8fdc7ee61f6153bb363779999d8e622_hud1147f5ac4ba4c320d3a4d066a46debe_38411_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/8fdc7ee61f6153bb363779999d8e622_hud1147f5ac4ba4c320d3a4d066a46debe_38411_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;133&#34;
+		data-flex-basis=&#34;319px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h4 id=&#34;顺序栈的表示&#34;&gt;顺序栈的表示&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;#define  MAXSIZE  100
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;typedef struct{
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	SElemType   *base;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	SElemType   *top;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	int stacksize;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}SqStack;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ol&gt;
+&lt;li&gt;顺序栈初始化&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Status InitStack( SqStack &amp;amp;S )
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	S.base =new SElemType[MAXSIZE]；
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	if( !S.base ) 	
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;           return OVERFLOW;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	S.top = S.base;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	S.stackSize = MAXSIZE;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	return OK;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;判断顺序栈是否为空&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;bool StackEmpty( SqStack S )
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	if(S.top == S.base) 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;          return true;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   else 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;          return false;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;清空顺序栈&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Status ClearStack( SqStack S )
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	if( S.base ) S.top = S.base;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	return OK;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;销毁顺序栈&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Status DestroyStack( SqStack &amp;amp;S )
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	if( S.base )
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	{
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		delete S.base ;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		S.stacksize = 0;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		S.base = S.top = NULL;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	}
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  return OK;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ol start=&#34;5&#34;&gt;
+&lt;li&gt;顺序栈进栈&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Status Push( SqStack &amp;amp;S, SElemType e)  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	if( S.top - S.base== S.stacksize ) // 栈满
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        return ERROR; 	
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	*S.top++=e; // *S.top = e; S.top++;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	return OK;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ol start=&#34;6&#34;&gt;
+&lt;li&gt;顺序栈出栈&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Status Pop( SqStack &amp;amp;S, SElemType &amp;amp;e)  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	if( S.top == S.base ) // 栈空
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        return ERROR; 	
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	e＝ *--S.top; // --S.top; e = *S.top;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	return OK; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;链栈的表示&#34;&gt;链栈的表示&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;typedef  struct StackNode {
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      SElemType  data;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      struct StackNode *next;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; } StackNode,  *LinkStack;  
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ol&gt;
+&lt;li&gt;初始化&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;void InitStack(LinkStack &amp;amp;S )
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	S=NULL;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;判断链栈是否为空&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Status StackEmpty(LinkStack S)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    if (S==NULL) return TRUE;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    else return FALSE;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;链栈进栈&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Status Push(LinkStack &amp;amp;S , SElemType e)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;{  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    p=new StackNode;      //生成新结点p 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    if (!p) exit(OVERFLOW);
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    p-&amp;gt;data=e; p-&amp;gt;next=S; S=p; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    return OK; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;链栈出栈&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Status Pop (LinkStack &amp;amp;S,SElemType &amp;amp;e)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    if (S==NULL) return ERROR;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    e = S-&amp;gt; data;  p = S;   S =  S-&amp;gt; next;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    delete p;  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    return OK; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}  
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ol start=&#34;5&#34;&gt;
+&lt;li&gt;取链栈栈顶元素&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;SElemType GetTop(LinkStack S)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   {
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;       if (S==NULL) exit(1)；
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        else return S–&amp;gt;data;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;栈与递归&#34;&gt;栈与递归&lt;/h3&gt;
+&lt;p&gt;递归的定义：若一个对象部分地包含它自己,  或用它自己给自己定义,  则称这个对象是递归的；若一个过程直接地或间接地调用自己, 则称这个过程是递归的过程&lt;/p&gt;
+&lt;h4 id=&#34;函数调用过程&#34;&gt;函数调用过程&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/05d4a809cde50e5a4d0ee8b7c9cd26d.png&#34;
+	width=&#34;764&#34;
+	height=&#34;568&#34;
+	srcset=&#34;https://sryasuka.fun/p/%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/05d4a809cde50e5a4d0ee8b7c9cd26d_hu8a9f6bd18c77db0056b4b3ddce738c6e_63433_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/05d4a809cde50e5a4d0ee8b7c9cd26d_hu8a9f6bd18c77db0056b4b3ddce738c6e_63433_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;134&#34;
+		data-flex-basis=&#34;322px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;时间效率：与递归树的结点数成正比 $$ \def \bar#1{#1^n} O(\bar{2}) $$&lt;/p&gt;
+&lt;p&gt;空间效率：与递归树的深度成正比  $$ \def \bar#1{n} O(\bar{}) $$&lt;/p&gt;
+&lt;h4 id=&#34;递归的优缺点&#34;&gt;递归的优缺点&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;优点：结构清晰，程序易读&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;缺点：每次调用要生成工作记录，保存状态信息，入栈；返回时要出栈，恢复状态信息。时间开销大。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;队列的表示和操作的实现&#34;&gt;队列的表示和操作的实现&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;#define M  100   //最大队列长度
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Typedef struct {
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   QElemType *base;  //初始化的动态分配存储空间
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   int  front;            //头指针   
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   int  rear;             //尾指针
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}SqQueue;  
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;一维队列：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/decb85254c6435b8a8eed76e795564b.png&#34;
+	width=&#34;766&#34;
+	height=&#34;573&#34;
+	srcset=&#34;https://sryasuka.fun/p/%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/decb85254c6435b8a8eed76e795564b_hub64041402f87702c578f8138219d39d0_48689_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/decb85254c6435b8a8eed76e795564b_hub64041402f87702c578f8138219d39d0_48689_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;133&#34;
+		data-flex-basis=&#34;320px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;存在问题：无法确认是否真溢出
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;循环队列：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/43683f506ad72a606004f7e13225358.png&#34;
+	width=&#34;767&#34;
+	height=&#34;570&#34;
+	srcset=&#34;https://sryasuka.fun/p/%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/43683f506ad72a606004f7e13225358_hu6b4aae2c812d514f25964d34fda3ff52_196436_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/43683f506ad72a606004f7e13225358_hu6b4aae2c812d514f25964d34fda3ff52_196436_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;134&#34;
+		data-flex-basis=&#34;322px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/e3aed83776b9ed0e5b08f9a50b645ff.png&#34;
+	width=&#34;761&#34;
+	height=&#34;599&#34;
+	srcset=&#34;https://sryasuka.fun/p/%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/e3aed83776b9ed0e5b08f9a50b645ff_hu7815fdb4f7f745b26724f7adba2bd8c7_60950_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/e3aed83776b9ed0e5b08f9a50b645ff_hu7815fdb4f7f745b26724f7adba2bd8c7_60950_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;127&#34;
+		data-flex-basis=&#34;304px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;循环队列初始化&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   Status InitQueue (SqQueue &amp;amp;Q){
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    Q.base =new QElemType[MAXQSIZE] 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   if(!Q.base) exit(OVERFLOW);
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    Q.front=Q.rear=0;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    return OK;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;求循环队列的长度&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;int  QueueLength (SqQueue Q){
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    return (Q.rear-Q.front+MAXQSIZE)%MAXQSIZE;                             
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; }
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;循环队列入队&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Status EnQueue(SqQueue &amp;amp;Q,QElemType e){
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    if((Q.rear+1)%MAXQSIZE==Q.front)  return ERROR;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    Q.base[Q.rear]=e;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    Q.rear=(Q.rear+1)%MAXQSIZE;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;     return OK;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;循环队列出队&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Status DeQueue (LinkQueue &amp;amp;Q,QElemType &amp;amp;e){
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   if(Q.front==Q.rear) return ERROR;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   e=Q.base[Q.front];
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   Q.front=(Q.front+1)%MAXQSIZE;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   return OK;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;*链队列&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/e3becd2db5e4c5936ef80bcd2b34170.png&#34;
+	width=&#34;760&#34;
+	height=&#34;574&#34;
+	srcset=&#34;https://sryasuka.fun/p/%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/e3becd2db5e4c5936ef80bcd2b34170_hu696358a241d63833534da8db3797f766_26253_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/e3becd2db5e4c5936ef80bcd2b34170_hu696358a241d63833534da8db3797f766_26253_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;132&#34;
+		data-flex-basis=&#34;317px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;链队列初始化&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Status InitQueue (LinkQueue &amp;amp;Q){
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   Q.front=Q.rear=(QueuePtr) malloc(sizeof(QNode)); 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    if(!Q.front) exit(OVERFLOW);
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    Q.front-&amp;gt;next=NULL;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;     return OK;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;销毁链队列&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Status DestroyQueue (LinkQueue &amp;amp;Q){
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   while(Q.front){
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      Q.rear=Q.front-&amp;gt;next;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      free(Q.front);
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      Q.front=Q.rear;   }    
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   return OK;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;判断链队列是否为空&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; Status QueueEmpty (LinkQueue Q){
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    return (Q.front==Q.rear);                             
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; }
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;求链队列的队头元素&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Status GetHead (LinkQueue Q, QElemType &amp;amp;e){
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   if(Q.front==Q.rear) return ERROR;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   e=Q.front-&amp;gt;next-&amp;gt;data;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   return OK;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ol start=&#34;5&#34;&gt;
+&lt;li&gt;链队列入队&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Status EnQueue(LinkQueue &amp;amp;Q,QElemType e){
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    p=(QueuePtr)malloc(sizeof(QNode));
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    if(!p) exit(OVERFLOW);
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    p-&amp;gt;data=e; p-&amp;gt;next=NULL;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    Q.rear-&amp;gt;next=p;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    Q.rear=p;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    return OK;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ol start=&#34;6&#34;&gt;
+&lt;li&gt;链队列出队&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Status DeQueue (LinkQueue &amp;amp;Q,QElemType &amp;amp;e){
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   if(Q.front==Q.rear) return ERROR;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   p=Q.front-&amp;gt;next;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   e=p-&amp;gt;data;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   Q.front-&amp;gt;next=p-&amp;gt;next;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   if(Q.rear==p) Q.rear=Q.front;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   delete p;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   return OK;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
+        </item>
+        <item>
         <title>线性表</title>
-        <link>https://sryasuka.fun/p/linear-tables/</link>
+        <link>https://sryasuka.fun/p/%E7%BA%BF%E6%80%A7%E8%A1%A8/</link>
         <pubDate>Sun, 12 Feb 2023 00:00:00 +0000</pubDate>
         
-        <guid>https://sryasuka.fun/p/linear-tables/</guid>
-        <description>&lt;img src="https://sryasuka.fun/p/linear-tables/168b829abbf5013cf165952489969f2.png" alt="Featured image of post 线性表" /&gt;&lt;h2 id=&#34;线性表&#34;&gt;线性表&lt;/h2&gt;
+        <guid>https://sryasuka.fun/p/%E7%BA%BF%E6%80%A7%E8%A1%A8/</guid>
+        <description>&lt;img src="https://sryasuka.fun/p/%E7%BA%BF%E6%80%A7%E8%A1%A8/168b829abbf5013cf165952489969f2.png" alt="Featured image of post 线性表" /&gt;&lt;h2 id=&#34;线性表&#34;&gt;线性表&lt;/h2&gt;
 &lt;pre&gt;&lt;code&gt;目标：  
 1. 线性结构特点
 2. 顺序表的定义，创建，插入，删除
@@ -26,10 +1001,10 @@
 &lt;p&gt;顺序表又称 顺序存储结构/顺序映像&lt;/p&gt;
 &lt;p&gt;定义: 逻辑上相邻，物理上也相邻&lt;/p&gt;
 &lt;p&gt;存储方法: 用一组地址连续的存储单元依次存储线性表的元素，可通过数组V[n]来实现。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/linear-tables/04ebf8cd51cb7f7efc0b718b435136a.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/%E7%BA%BF%E6%80%A7%E8%A1%A8/04ebf8cd51cb7f7efc0b718b435136a.png&#34;
 	width=&#34;710&#34;
 	height=&#34;534&#34;
-	srcset=&#34;https://sryasuka.fun/p/linear-tables/04ebf8cd51cb7f7efc0b718b435136a_hu47ec4708d0e5cf418e9a3306f5e51a6a_19988_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/linear-tables/04ebf8cd51cb7f7efc0b718b435136a_hu47ec4708d0e5cf418e9a3306f5e51a6a_19988_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://sryasuka.fun/p/%E7%BA%BF%E6%80%A7%E8%A1%A8/04ebf8cd51cb7f7efc0b718b435136a_hu47ec4708d0e5cf418e9a3306f5e51a6a_19988_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/%E7%BA%BF%E6%80%A7%E8%A1%A8/04ebf8cd51cb7f7efc0b718b435136a_hu47ec4708d0e5cf418e9a3306f5e51a6a_19988_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -39,10 +1014,10 @@
 	
 &gt;&lt;/p&gt;
 &lt;h4 id=&#34;顺序表的类型定义&#34;&gt;顺序表的类型定义&lt;/h4&gt;
-&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/linear-tables/08ea3928ba3a51556d9aca70ca20e0c.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/%E7%BA%BF%E6%80%A7%E8%A1%A8/08ea3928ba3a51556d9aca70ca20e0c.png&#34;
 	width=&#34;709&#34;
 	height=&#34;337&#34;
-	srcset=&#34;https://sryasuka.fun/p/linear-tables/08ea3928ba3a51556d9aca70ca20e0c_hu9d97a5fcdfd6d882e71226551ba6ba29_22300_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/linear-tables/08ea3928ba3a51556d9aca70ca20e0c_hu9d97a5fcdfd6d882e71226551ba6ba29_22300_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://sryasuka.fun/p/%E7%BA%BF%E6%80%A7%E8%A1%A8/08ea3928ba3a51556d9aca70ca20e0c_hu9d97a5fcdfd6d882e71226551ba6ba29_22300_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/%E7%BA%BF%E6%80%A7%E8%A1%A8/08ea3928ba3a51556d9aca70ca20e0c_hu9d97a5fcdfd6d882e71226551ba6ba29_22300_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -52,10 +1027,10 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;示例：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/linear-tables/9c66ae3da8cf972a7ccbbcb925c35af.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/%E7%BA%BF%E6%80%A7%E8%A1%A8/9c66ae3da8cf972a7ccbbcb925c35af.png&#34;
 	width=&#34;711&#34;
 	height=&#34;500&#34;
-	srcset=&#34;https://sryasuka.fun/p/linear-tables/9c66ae3da8cf972a7ccbbcb925c35af_hu672df7e40e91fa5e1ef331e391b27cd4_42767_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/linear-tables/9c66ae3da8cf972a7ccbbcb925c35af_hu672df7e40e91fa5e1ef331e391b27cd4_42767_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://sryasuka.fun/p/%E7%BA%BF%E6%80%A7%E8%A1%A8/9c66ae3da8cf972a7ccbbcb925c35af_hu672df7e40e91fa5e1ef331e391b27cd4_42767_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/%E7%BA%BF%E6%80%A7%E8%A1%A8/9c66ae3da8cf972a7ccbbcb925c35af_hu672df7e40e91fa5e1ef331e391b27cd4_42767_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -244,10 +1219,10 @@
 &lt;h3 id=&#34;链表&#34;&gt;链表&lt;/h3&gt;
 &lt;p&gt;结点在存储器中的位置是任意的即逻辑上相邻的数据元素在物理上不一定相邻&lt;/p&gt;
 &lt;p&gt;通过指针进行实现&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/linear-tables/c49c92009a803a7082856e43d355f05.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/%E7%BA%BF%E6%80%A7%E8%A1%A8/c49c92009a803a7082856e43d355f05.png&#34;
 	width=&#34;712&#34;
 	height=&#34;507&#34;
-	srcset=&#34;https://sryasuka.fun/p/linear-tables/c49c92009a803a7082856e43d355f05_hu0840fb224e63a2c3a8405bf387eca9f4_35150_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/linear-tables/c49c92009a803a7082856e43d355f05_hu0840fb224e63a2c3a8405bf387eca9f4_35150_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://sryasuka.fun/p/%E7%BA%BF%E6%80%A7%E8%A1%A8/c49c92009a803a7082856e43d355f05_hu0840fb224e63a2c3a8405bf387eca9f4_35150_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/%E7%BA%BF%E6%80%A7%E8%A1%A8/c49c92009a803a7082856e43d355f05_hu0840fb224e63a2c3a8405bf387eca9f4_35150_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -264,10 +1239,10 @@
 &lt;p&gt;双链表：结点有两个指针域的链表&lt;/p&gt;
 &lt;p&gt;循环链表：首尾相接的链表&lt;/p&gt;
 &lt;h4 id=&#34;头指针头结点和首元结点&#34;&gt;头指针，头结点和首元结点&lt;/h4&gt;
-&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/linear-tables/76aa9d3fff2bd19916aaad6c4947d2d.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/%E7%BA%BF%E6%80%A7%E8%A1%A8/76aa9d3fff2bd19916aaad6c4947d2d.png&#34;
 	width=&#34;712&#34;
 	height=&#34;534&#34;
-	srcset=&#34;https://sryasuka.fun/p/linear-tables/76aa9d3fff2bd19916aaad6c4947d2d_hucb844caa1bb6ab2acdefb8fe34f9aeda_51659_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/linear-tables/76aa9d3fff2bd19916aaad6c4947d2d_hucb844caa1bb6ab2acdefb8fe34f9aeda_51659_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://sryasuka.fun/p/%E7%BA%BF%E6%80%A7%E8%A1%A8/76aa9d3fff2bd19916aaad6c4947d2d_hucb844caa1bb6ab2acdefb8fe34f9aeda_51659_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/%E7%BA%BF%E6%80%A7%E8%A1%A8/76aa9d3fff2bd19916aaad6c4947d2d_hucb844caa1bb6ab2acdefb8fe34f9aeda_51659_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -289,10 +1264,10 @@
 &lt;h4 id=&#34;单链表的定义与实现&#34;&gt;单链表的定义与实现&lt;/h4&gt;
 &lt;p&gt;单链表是由表头唯一确定，因此单链表可以用头指针的名字来命名&lt;/p&gt;
 &lt;p&gt;若头指针名是L，则把链表称为表L&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/linear-tables/05d2654d226728c622e1b3b054e0a98.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/%E7%BA%BF%E6%80%A7%E8%A1%A8/05d2654d226728c622e1b3b054e0a98.png&#34;
 	width=&#34;712&#34;
 	height=&#34;537&#34;
-	srcset=&#34;https://sryasuka.fun/p/linear-tables/05d2654d226728c622e1b3b054e0a98_hua5f1488fefb6950702acf25e36931dc7_33905_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/linear-tables/05d2654d226728c622e1b3b054e0a98_hua5f1488fefb6950702acf25e36931dc7_33905_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://sryasuka.fun/p/%E7%BA%BF%E6%80%A7%E8%A1%A8/05d2654d226728c622e1b3b054e0a98_hua5f1488fefb6950702acf25e36931dc7_33905_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/%E7%BA%BF%E6%80%A7%E8%A1%A8/05d2654d226728c622e1b3b054e0a98_hua5f1488fefb6950702acf25e36931dc7_33905_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -574,10 +1549,10 @@
 &lt;p&gt;如果要在单链表中进行前插或删除操作，由于要从头查找前驱结点，所耗时间复杂度为O(n) 。&lt;/p&gt;
 &lt;h3 id=&#34;单链表的建立&#34;&gt;*单链表的建立&lt;/h3&gt;
 &lt;p&gt;方法一：前插法&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/linear-tables/5468c60ceed105bb45e959beed925dc.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/%E7%BA%BF%E6%80%A7%E8%A1%A8/5468c60ceed105bb45e959beed925dc.png&#34;
 	width=&#34;710&#34;
 	height=&#34;535&#34;
-	srcset=&#34;https://sryasuka.fun/p/linear-tables/5468c60ceed105bb45e959beed925dc_huaac79d02bb35966017232625ebf4c859_33596_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/linear-tables/5468c60ceed105bb45e959beed925dc_huaac79d02bb35966017232625ebf4c859_33596_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://sryasuka.fun/p/%E7%BA%BF%E6%80%A7%E8%A1%A8/5468c60ceed105bb45e959beed925dc_huaac79d02bb35966017232625ebf4c859_33596_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/%E7%BA%BF%E6%80%A7%E8%A1%A8/5468c60ceed105bb45e959beed925dc_huaac79d02bb35966017232625ebf4c859_33596_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -675,10 +1650,10 @@
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;h3 id=&#34;顺序表和链表的比较&#34;&gt;顺序表和链表的比较&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/linear-tables/a5bca11db7a0ffe88cf2437c1d390d0.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/%E7%BA%BF%E6%80%A7%E8%A1%A8/a5bca11db7a0ffe88cf2437c1d390d0.png&#34;
 	width=&#34;714&#34;
 	height=&#34;535&#34;
-	srcset=&#34;https://sryasuka.fun/p/linear-tables/a5bca11db7a0ffe88cf2437c1d390d0_huc51b11635fc4e22eb1b6a7b3227c1c9b_48836_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/linear-tables/a5bca11db7a0ffe88cf2437c1d390d0_huc51b11635fc4e22eb1b6a7b3227c1c9b_48836_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://sryasuka.fun/p/%E7%BA%BF%E6%80%A7%E8%A1%A8/a5bca11db7a0ffe88cf2437c1d390d0_huc51b11635fc4e22eb1b6a7b3227c1c9b_48836_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/%E7%BA%BF%E6%80%A7%E8%A1%A8/a5bca11db7a0ffe88cf2437c1d390d0_huc51b11635fc4e22eb1b6a7b3227c1c9b_48836_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -777,6 +1752,14 @@
 &lt;/div&gt;&lt;p&gt;相册语法来自 &lt;a class=&#34;link&#34; href=&#34;https://typlog.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Typlog&lt;/a&gt;&lt;/p&gt;
 </description>
+        </item>
+        <item>
+        <title></title>
+        <link>https://sryasuka.fun/p/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>https://sryasuka.fun/p/</guid>
+        <description></description>
         </item>
         
     </channel>

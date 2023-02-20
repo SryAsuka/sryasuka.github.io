@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Linux-ch01'>
+<title>Linux，GPL，UNIX介绍</title>
+
+<link rel='canonical' href='https://sryasuka.fun/p/linuxgplunix%E4%BB%8B%E7%BB%8D/'>
+
+<link rel="stylesheet" href="/scss/style.min.5be32ca3f6e1a997c75795c4359147cc6d4fbd34948c0acd51e31d237033978a.css"><meta property='og:title' content='Linux，GPL，UNIX介绍'>
+<meta property='og:description' content='Linux-ch01'>
+<meta property='og:url' content='https://sryasuka.fun/p/linuxgplunix%E4%BB%8B%E7%BB%8D/'>
+<meta property='og:site_name' content='SryAsuka'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2023-02-18T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2023-02-18T00:00:00&#43;00:00'/><meta property='og:image' content='https://sryasuka.fun/p/linuxgplunix%E4%BB%8B%E7%BB%8D/f32101afec18c9a89ec373492505e43.png' />
+<meta name="twitter:title" content="Linux，GPL，UNIX介绍">
+<meta name="twitter:description" content="Linux-ch01"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://sryasuka.fun/p/linuxgplunix%E4%BB%8B%E7%BB%8D/f32101afec18c9a89ec373492505e43.png' />
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu4ae24c0d6920a998f721630cfb7a6277_6068_300x0_resize_box_3.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">✨</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">SryAsuka</a></h1>
+            <h2 class="site-description">Where of what&#39;s past is prologue.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/SryAsuka'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://sryasuka.fun/index.xml'
+                        target="_blank"
+                        title="RSS"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-rss" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="5" cy="19" r="1" />
+  <path d="M4 4a16 16 0 0 1 16 16" />
+  <path d="M4 11a9 9 0 0 1 9 9" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com/SryAsuka'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/s/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/s/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/s/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/links/s/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#unix标准及两级规范符号度">UNIX标准及两级规范符号度</a></li>
+    <li><a href="#gpllgpl">GPL/LGPL</a></li>
+    <li><a href="#unix哲学">UNIX哲学</a></li>
+    <li><a href="#linux标准">Linux标准</a></li>
+    <li><a href="#内核态和用户态">内核态和用户态</a></li>
+    <li><a href="#shell提示符结构">shell提示符结构</a></li>
+    <li><a href="#linux重定向命令">Linux重定向命令</a></li>
+    <li><a href="#后台运行命令">后台运行命令</a></li>
+    <li><a href="#系统调用和库函数间关系">系统调用和库函数间关系</a></li>
+    <li><a href="#常见的一级目录">常见的一级目录</a></li>
+    <li><a href="#链接和库">链接和库</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/linuxgplunix%E4%BB%8B%E7%BB%8D/">
+                <img src="/p/linuxgplunix%E4%BB%8B%E7%BB%8D/f32101afec18c9a89ec373492505e43_hua27b2c25dc2bad5a4da2101f5d236246_119733_800x0_resize_box_3.png"
+                        srcset="/p/linuxgplunix%E4%BB%8B%E7%BB%8D/f32101afec18c9a89ec373492505e43_hua27b2c25dc2bad5a4da2101f5d236246_119733_800x0_resize_box_3.png 800w, /p/linuxgplunix%E4%BB%8B%E7%BB%8D/f32101afec18c9a89ec373492505e43_hua27b2c25dc2bad5a4da2101f5d236246_119733_1600x0_resize_box_3.png 1600w"
+                        width="800" 
+                        height="565" 
+                        loading="lazy"
+                        alt="Featured image of post Linux，GPL，UNIX介绍" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/linux/" style="background-color: #2a9d8f; color: #fff;">
+                Linux Programming
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/linuxgplunix%E4%BB%8B%E7%BB%8D/">Linux，GPL，UNIX介绍</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            Linux-ch01
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Feb 18, 2023</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    1 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="unix标准及两级规范符号度">UNIX标准及两级规范符号度</h2>
+<p>UNIX是一个操作系统的家族，它的标准是由The Open Group制定的。该标准包括了Single UNIX Specification和POSIX标准两个级别。</p>
+<p>Single UNIX Specification（SUS）是一份针对UNIX系统的单一规范，它包括了许多开放标准和互操作性标准，用于确保UNIX系统在不同的平台上保持一致的行为。SUS包括了许多子规范，包括基本系统接口、命令和工具、系统管理、应用程序接口等。</p>
+<p>POSIX标准定义了UNIX系统应该提供的一组接口，这些接口主要用于实现可移植的UNIX应用程序。POSIX标准涵盖了操作系统、编程语言和工具等方面，包括了许多子规范，如POSIX.1，POSIX.2等。</p>
+<h2 id="gpllgpl">GPL/LGPL</h2>
+<p>GPL软件允许商业销售，但不允许闭源。它确保了程序代码永远能让所有人自由使用。</p>
+<p>LGPL软件/库允许商业销售，但不允许闭源；但动态链接LGPL库时，允许软件闭源。它主要为库的使用而设计的许可。</p>
+<h2 id="unix哲学">UNIX哲学</h2>
+<ol>
+<li>小即是美</li>
+<li>让每一个程序只做好一件事</li>
+<li>尽快建立原型</li>
+<li>舍高效率而取可移植性 &ndash;代码可移植</li>
+<li>采用纯文本文件存储数据 &ndash;数据可移植</li>
+<li>充分利用软件的杠杆效应</li>
+<li>使用shell脚本来提高杠杆效应和可移植性</li>
+<li>避免强制性的用户界面</li>
+<li>灵活性：编程时应尽量考虑到灵活性，尽量避免随意限制字段长度或记录数目。</li>
+<li>可重用组件：将应用程序的核心实现为库。</li>
+</ol>
+<h2 id="linux标准">Linux标准</h2>
+<p>Linux标准是由Linux Standard Base（LSB）组织定义和维护的，它是一个用于确保不同Linux发行版之间二进制兼容性的标准。</p>
+<p>LSB规范定义了一组Linux系统所必须支持的接口、库和命令等，这些接口和命令可用于开发和运行Linux应用程序，从而提高应用程序的可移植性和互操作性。</p>
+<h2 id="内核态和用户态">内核态和用户态</h2>
+<p>现代处理器架构一般允许CPU至少在两种不同状态下运行，即内核态和用户态。执行硬件指令可使CPU在两种状态间来回切换。</p>
+<p>进程所能访问的存储位置范围称为虚拟地址空间。与之对应，虚拟内存空间也分为内核空间和用户空间。进程在用户态下运行时，CPU只能访问用户空间，试图访问内核空间的内存将会引起硬件异常。当运行于内核态时，CPU既能访问用户空间内存，也能访问内核空间内存。</p>
+<h2 id="shell提示符结构">shell提示符结构</h2>
+<p>常见的 shell有：</p>
+<p>Bash(the GNU Bourne-Again Shell)、TC shell、Z shell；   //Linux</p>
+<p>Bourne shell、Korn shell、C shell  //UNIX</p>
+<p><img src="/p/linuxgplunix%E4%BB%8B%E7%BB%8D/53a72d471cf5ecd5fcdab87448a9da2.png"
+	width="1055"
+	height="740"
+	srcset="/p/linuxgplunix%E4%BB%8B%E7%BB%8D/53a72d471cf5ecd5fcdab87448a9da2_hu55f63cd296e4cb3b01385da22a6cc2d4_252315_480x0_resize_box_3.png 480w, /p/linuxgplunix%E4%BB%8B%E7%BB%8D/53a72d471cf5ecd5fcdab87448a9da2_hu55f63cd296e4cb3b01385da22a6cc2d4_252315_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="142"
+		data-flex-basis="342px"
+	
+></p>
+<p>常见的Shell提示符结构包括以下几个组成部分：</p>
+<ol>
+<li>
+<p>用户名：表示当前登录系统的用户名，可以使用环境变量$USER或$(whoami)来获取。</p>
+</li>
+<li>
+<p>主机名：表示当前计算机的主机名或IP地址，可以使用环境变量$HOSTNAME或$(hostname)来获取。</p>
+</li>
+<li>
+<p>当前工作目录：表示当前所在的工作目录，可以使用环境变量$PWD来获取。</p>
+</li>
+<li>
+<p>Shell类型或版本号：表示当前Shell的类型或版本号，可以使用环境变量$SHELL或$BASH_VERSION来获取。</p>
+</li>
+<li>
+<p>提示符符号：表示提示符的结束符号，一般为$或#，其中$表示普通用户，#表示超级用户（即root用户）。</p>
+</li>
+</ol>
+<h2 id="linux重定向命令">Linux重定向命令</h2>
+<p>输出重定向（&gt;）：将命令执行的结果输出到一个文件中，可以使用大于符号（&gt;）进行重定向。</p>
+<p>输出追加重定向（&raquo;）：与输出重定向类似，但是将命令执行的结果追加到文件的末尾而不是覆盖原有内容。</p>
+<p>输入重定向（&lt;）：将一个文件中的内容作为命令的输入数据，可以使用小于符号（&lt;）进行重定向。</p>
+<p>文件描述符重定向（&amp;&gt;）：将命令执行的结果同时重定向到标准输出和标准错误输出文件中。</p>
+<h2 id="后台运行命令">后台运行命令</h2>
+<p>在Linux或Unix系统中，可以通过在命令末尾加上&amp;符号，将命令放入后台运行。这种方式可以使得命令在后台执行，而不会占用终端或命令行界面的资源，同时也可以在命令执行过程中继续使用终端或命令行界面进行其他操作。</p>
+<ol>
+<li>后台运行普通命令：在普通命令末尾加上&amp;符号即可将命令放入后台运行</li>
+</ol>
+<p><code>sleep 10 &amp;</code></p>
+<ol start="2">
+<li>后台运行交互式命令：对于交互式命令，如果直接加上&amp;符号，命令仍然会在前台运行。可以使用nohup命令将交互式命令转为后台运行模式</li>
+</ol>
+<p><code>nohup python3 -i</code></p>
+<ol start="3">
+<li>挂起已经在前台运行的命令：如果已经在前台运行的命令需要挂起，可以使用Ctrl + Z快捷键将其暂停，并放入后台运行。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">tar czf backup.tar.gz /path/to/backup &amp;
+</span></span><span class="line"><span class="cl">[1] 12345
+</span></span><span class="line"><span class="cl">$ fg
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="系统调用和库函数间关系">系统调用和库函数间关系</h2>
+<p>操作系统具有两种功能：为用户程序提供抽象和管理计算机资源。通常程序和OS之间处理的是前者，例如，创建、写入、读出和删除文件。对用户而言，资源管理部分主要是透明和自动完成的。</p>
+<p>系统调用就是OS的一些内建函数，这些函数为应用程序提供了对计算机资源的抽象，使程序同硬件特性相隔离。从编程的角度看，系统调用的集合及系统调用的内部实现形成了OS的内核。</p>
+<p>C使用_syscall宏，可以直接调用任何系统调用。然而，为了调用方便，标准C库提供了一组针对最常用系统调用的封装(wrapper)函数。封装函数与系统调用通常同名，它将系统调用参数打好包，通过适当的方式陷入内核执行，然后将返回状态传递给应用程序。</p>
+<p>内核是为用户进程运行的，它不是与用户进程平行运行的独立的进程集合，而是每个用户进程的一部分。  用户进程的代码由用户代码(应用程序代码+库)和内核代码组成，执行时常常在用户态和内核态之间切换。</p>
+<p>系统调用通常需要通过内核态和用户态之间的上下文切换来完成，因此效率相对较低，但提供了更底层、更强大的功能。开销大</p>
+<p>库函数通常是在用户态中执行的，因此效率相对较高，但功能相对较弱。开销小。</p>
+<p><img src="/p/linuxgplunix%E4%BB%8B%E7%BB%8D/c4bfa8a76896792f95fbeaefe57bb84.png"
+	width="1041"
+	height="733"
+	srcset="/p/linuxgplunix%E4%BB%8B%E7%BB%8D/c4bfa8a76896792f95fbeaefe57bb84_hu63518c9c20c7e0555eca2de175dc7abb_462478_480x0_resize_box_3.png 480w, /p/linuxgplunix%E4%BB%8B%E7%BB%8D/c4bfa8a76896792f95fbeaefe57bb84_hu63518c9c20c7e0555eca2de175dc7abb_462478_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="142"
+		data-flex-basis="340px"
+	
+></p>
+<p>在需要对系统进行精确控制时，最好使用系统调用，这可以避免使用库函数带来的一些想不到的问题。</p>
+<p>保留字： 保留字是系统专门保留使用权，并有特定含义的名字，具有唯一性。</p>
+<h2 id="常见的一级目录">常见的一级目录</h2>
+<p><img src="/p/linuxgplunix%E4%BB%8B%E7%BB%8D/62f4b67af991f0f25a7bc9b1df8218c.png"
+	width="1037"
+	height="739"
+	srcset="/p/linuxgplunix%E4%BB%8B%E7%BB%8D/62f4b67af991f0f25a7bc9b1df8218c_hub86acc0889563d0d549c11357cb5d258_311131_480x0_resize_box_3.png 480w, /p/linuxgplunix%E4%BB%8B%E7%BB%8D/62f4b67af991f0f25a7bc9b1df8218c_hub86acc0889563d0d549c11357cb5d258_311131_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="140"
+		data-flex-basis="336px"
+	
+></p>
+<p><img src="/p/linuxgplunix%E4%BB%8B%E7%BB%8D/7eb2fdafc1082b0e3c4c8217b4f3549.png"
+	width="1041"
+	height="708"
+	srcset="/p/linuxgplunix%E4%BB%8B%E7%BB%8D/7eb2fdafc1082b0e3c4c8217b4f3549_hu55c6049637ec3e5f19cc4f7abec42c05_223102_480x0_resize_box_3.png 480w, /p/linuxgplunix%E4%BB%8B%E7%BB%8D/7eb2fdafc1082b0e3c4c8217b4f3549_hu55c6049637ec3e5f19cc4f7abec42c05_223102_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="147"
+		data-flex-basis="352px"
+	
+></p>
+<h2 id="链接和库">链接和库</h2>
+<p>可执行程序的生成需要经历预处理、编译、汇编、链接4个阶段。</p>
+<p>默认情况下，链接器只搜索默认lib目录(/lib和/usr/lib)中的C标准库libc.a或者libc.so；其余的库(如数学库libm.a或libm.so)则需要指定库的名字甚至库的路径信息才能被链接器搜索到。</p>
+<p>链接的时机：
+编译时，即源代码被翻译成机器代码时 (ld)
+加载时，即在程序被加载器加载到存储器并准备执行时(ld-linux.so)
+运行时，即程序正在运行时(libdl.so.2)</p>
+<p><img src="/p/linuxgplunix%E4%BB%8B%E7%BB%8D/34a9e51eae304c6ec6ccf4a9c6c922c.png"
+	width="1037"
+	height="691"
+	srcset="/p/linuxgplunix%E4%BB%8B%E7%BB%8D/34a9e51eae304c6ec6ccf4a9c6c922c_hu80f8a52ba8973e1f9e2a52dee9d9dc91_412641_480x0_resize_box_3.png 480w, /p/linuxgplunix%E4%BB%8B%E7%BB%8D/34a9e51eae304c6ec6ccf4a9c6c922c_hu80f8a52ba8973e1f9e2a52dee9d9dc91_412641_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="150"
+		data-flex-basis="360px"
+	
+></p>
+<p><img src="/p/linuxgplunix%E4%BB%8B%E7%BB%8D/4df6ddde168fe410e136292513817d3.png"
+	width="1047"
+	height="738"
+	srcset="/p/linuxgplunix%E4%BB%8B%E7%BB%8D/4df6ddde168fe410e136292513817d3_hu56a3451afea25c775d826adad2878171_201930_480x0_resize_box_3.png 480w, /p/linuxgplunix%E4%BB%8B%E7%BB%8D/4df6ddde168fe410e136292513817d3_hu56a3451afea25c775d826adad2878171_201930_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="141"
+		data-flex-basis="340px"
+	
+></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/">
+        
+        
+            <div class="article-image">
+                <img src="/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/_hu3f69bb3da5628383156e983128f03802_76860_d4872e165dd73cc537c95744758e079d.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 标准输入输出"
+                        
+                        data-hash="md5-O3cYoAdhrvgrLezefAfYjg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">标准输入输出</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <script src="//cdn.jsdelivr.net/npm/twikoo@1.5.11/dist/twikoo.all.min.js"></script>
+<div id="tcomment"></div>
+<style>
+    .twikoo {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+    :root[data-scheme="dark"] {
+        --twikoo-body-text-color-main: rgba(255, 255, 255, 0.9);
+        --twikoo-body-text-color: rgba(255, 255, 255, 0.7);
+    }
+    .twikoo .el-input-group__prepend,
+    .twikoo .tk-action-icon,
+    .twikoo .tk-time,
+    .twikoo .tk-comments-count {
+        color: var(--twikoo-body-text-color);
+    }
+    .twikoo .el-input__inner,
+    .twikoo .el-textarea__inner,
+    .twikoo .tk-preview-container,
+    .twikoo .tk-content,
+    .twikoo .tk-nick,
+    .twikoo .tk-send {
+        color: var(--twikoo-body-text-color-main);
+    }
+    .twikoo .el-button{
+        color: var(--twikoo-body-text-color)!important;
+    }
+    .OwO .OwO-body {
+        background-color: var(--body-background) !important;
+        color: var(--body-text-color) !important;
+    }
+</style><script>
+    twikoo.init({
+        envId: 'https:\/\/twikoo.sryasuka.fun\/',
+        el: '#tcomment',lang: 'zh-CN',})
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2021 - 
+        
+        2023 SryAsuka
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.16.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
