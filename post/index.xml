@@ -12,7 +12,7 @@
         <pubDate>Mon, 20 Feb 2023 00:00:00 +0000</pubDate>
         
         <guid>https://sryasuka.fun/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/</guid>
-        <description>&lt;img src="https://sryasuka.fun/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/80955e488502fef29dd4b726cbfaec9.png" alt="Featured image of post 标准输入输出" /&gt;&lt;h2 id=&#34;流和文件描述符及之间的关系&#34;&gt;流和文件描述符及之间的关系&lt;/h2&gt;
+        <description>&lt;img src="https://sryasuka.fun/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/Linux_ch02.png" alt="Featured image of post 标准输入输出" /&gt;&lt;h2 id=&#34;流和文件描述符及之间的关系&#34;&gt;流和文件描述符及之间的关系&lt;/h2&gt;
 &lt;p&gt;在计算机操作系统中，流和文件描述符是紧密相关的概念，它们之间的关系如下：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;
@@ -138,7 +138,7 @@
         <pubDate>Sat, 18 Feb 2023 00:00:00 +0000</pubDate>
         
         <guid>https://sryasuka.fun/p/linuxgplunix%E4%BB%8B%E7%BB%8D/</guid>
-        <description>&lt;img src="https://sryasuka.fun/p/linuxgplunix%E4%BB%8B%E7%BB%8D/f32101afec18c9a89ec373492505e43.png" alt="Featured image of post Linux，GPL，UNIX介绍" /&gt;&lt;h2 id=&#34;unix标准及两级规范符号度&#34;&gt;UNIX标准及两级规范符号度&lt;/h2&gt;
+        <description>&lt;img src="https://sryasuka.fun/p/linuxgplunix%E4%BB%8B%E7%BB%8D/Linux_ch01.png" alt="Featured image of post Linux，GPL，UNIX介绍" /&gt;&lt;h2 id=&#34;unix标准及两级规范符号度&#34;&gt;UNIX标准及两级规范符号度&lt;/h2&gt;
 &lt;p&gt;UNIX是一个操作系统的家族，它的标准是由The Open Group制定的。该标准包括了Single UNIX Specification和POSIX标准两个级别。&lt;/p&gt;
 &lt;p&gt;Single UNIX Specification（SUS）是一份针对UNIX系统的单一规范，它包括了许多开放标准和互操作性标准，用于确保UNIX系统在不同的平台上保持一致的行为。SUS包括了许多子规范，包括基本系统接口、命令和工具、系统管理、应用程序接口等。&lt;/p&gt;
 &lt;p&gt;POSIX标准定义了UNIX系统应该提供的一组接口，这些接口主要用于实现可移植的UNIX应用程序。POSIX标准涵盖了操作系统、编程语言和工具等方面，包括了许多子规范，如POSIX.1，POSIX.2等。&lt;/p&gt;
@@ -313,7 +313,7 @@
         <pubDate>Tue, 14 Feb 2023 00:00:00 +0000</pubDate>
         
         <guid>https://sryasuka.fun/p/%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/</guid>
-        <description>&lt;img src="https://sryasuka.fun/p/%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/b21266efb258ceb90992f168f5d9d2e.png" alt="Featured image of post 栈和队列" /&gt;&lt;h2 id=&#34;栈和队列&#34;&gt;栈和队列&lt;/h2&gt;
+        <description>&lt;img src="https://sryasuka.fun/p/%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/Stacks_and_queues.png" alt="Featured image of post 栈和队列" /&gt;&lt;h2 id=&#34;栈和队列&#34;&gt;栈和队列&lt;/h2&gt;
 &lt;pre&gt;&lt;code&gt;目标：
 1. 掌握栈和队列的特点，并能在相应的应用问题中正确选用
 2. 熟练掌握栈的两种存储结构的基本操作实现算法，特别应注意栈满和栈空的条件
@@ -987,7 +987,7 @@
         <pubDate>Sun, 12 Feb 2023 00:00:00 +0000</pubDate>
         
         <guid>https://sryasuka.fun/p/%E7%BA%BF%E6%80%A7%E8%A1%A8/</guid>
-        <description>&lt;img src="https://sryasuka.fun/p/%E7%BA%BF%E6%80%A7%E8%A1%A8/168b829abbf5013cf165952489969f2.png" alt="Featured image of post 线性表" /&gt;&lt;h2 id=&#34;线性表&#34;&gt;线性表&lt;/h2&gt;
+        <description>&lt;img src="https://sryasuka.fun/p/%E7%BA%BF%E6%80%A7%E8%A1%A8/Linear_tables.png" alt="Featured image of post 线性表" /&gt;&lt;h2 id=&#34;线性表&#34;&gt;线性表&lt;/h2&gt;
 &lt;pre&gt;&lt;code&gt;目标：  
 1. 线性结构特点
 2. 顺序表的定义，创建，插入，删除
