@@ -7,12 +7,185 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <lastBuildDate>Mon, 20 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://sryasuka.fun/categories/linux/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>标准输入输出</title>
-        <link>https://sryasuka.fun/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/</link>
+        <title>文件操作</title>
+        <link>https://sryasuka.fun/p/linux_ch04/</link>
         <pubDate>Mon, 20 Feb 2023 00:00:00 +0000</pubDate>
         
-        <guid>https://sryasuka.fun/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/</guid>
-        <description>&lt;img src="https://sryasuka.fun/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/Linux_ch02.png" alt="Featured image of post 标准输入输出" /&gt;&lt;h2 id=&#34;流和文件描述符及之间的关系&#34;&gt;流和文件描述符及之间的关系&lt;/h2&gt;
+        <guid>https://sryasuka.fun/p/linux_ch04/</guid>
+        <description>&lt;img src="https://sryasuka.fun/p/linux_ch04/Linux_ch04.png" alt="Featured image of post 文件操作" /&gt;&lt;h2 id=&#34;文件结构&#34;&gt;文件结构&lt;/h2&gt;
+&lt;p&gt;在Linux文件系统中，每一个存放在磁盘上的文件由两部分组成：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;数据块－实际存放文件数据的磁盘块&lt;/li&gt;
+&lt;li&gt;i-node－描述文件属性的数据结构，常称为索引节点&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;i-node: 一个固定长度的数据结构，含有关于文件的大部分属性信息，如文件数据块的索引分配表(后面阐述)、权限、文件类型、大小、访问日期等等。&lt;/p&gt;
+&lt;p&gt;每一个i-node有其自己的数值标识，称为i-node number(索引节点号)，一个文件只能通过其inode节点进行访问。&lt;/p&gt;
+&lt;p&gt;为了便于用户使用，通常还会对一个文件进行命名，文件名实际上是文件的用户接口。&lt;/p&gt;
+&lt;h2 id=&#34;linux中七种文件类型&#34;&gt;Linux中七种文件类型&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;普通文件 (Regular file)：存储文本、图像、音频或二进制数据等常规文件的文件类型。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;目录 (Directory)：存储其他文件和目录的文件类型，可以包含其他目录和子目录。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;符号链接 (Symbolic link)：类似于Windows中的快捷方式，是指向另一个文件或目录的指针。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;套接字 (Socket)：用于进程间通信的特殊文件类型。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;块设备文件 (Block device file)：提供对块设备（如硬盘、USB设备等）的访问的文件类型。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;字符设备文件 (Character device file)：提供对字符设备（如串行端口、打印机等）的访问的文件类型。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;管道 (Named pipe)：用于进程间通信的一种文件类型，可以在不同的进程之间传输数据。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;chmod&#34;&gt;chmod&lt;/h2&gt;
+&lt;p&gt;chmod 一条命令，用于更改文件或目录的权限。&lt;/p&gt;
+&lt;p&gt;&amp;ldquo;chmod&amp;quot;代表&amp;quot;change mode&amp;rdquo;。使用chmod命令可以更改用户（所有者）、群组和其他用户的文件或目录权限。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/linux_ch04/d4f6c55b0da8679dfb5d4fa77c9e785.png&#34;
+	width=&#34;1035&#34;
+	height=&#34;734&#34;
+	srcset=&#34;https://sryasuka.fun/p/linux_ch04/d4f6c55b0da8679dfb5d4fa77c9e785_hu0c4a44fbddc2d753e4c956736533d618_224231_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/linux_ch04/d4f6c55b0da8679dfb5d4fa77c9e785_hu0c4a44fbddc2d753e4c956736533d618_224231_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;141&#34;
+		data-flex-basis=&#34;338px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;目录&#34;&gt;目录&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/linux_ch04/8314c93d36ad30e29c71175d69a5ca7.png&#34;
+	width=&#34;1039&#34;
+	height=&#34;739&#34;
+	srcset=&#34;https://sryasuka.fun/p/linux_ch04/8314c93d36ad30e29c71175d69a5ca7_hu92fea37a1b89da7de6a5cfb94e9fba9c_217277_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/linux_ch04/8314c93d36ad30e29c71175d69a5ca7_hu92fea37a1b89da7de6a5cfb94e9fba9c_217277_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;140&#34;
+		data-flex-basis=&#34;337px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/linux_ch04/710cc8b4c8719628f3924f1d67c45c3.png&#34;
+	width=&#34;1044&#34;
+	height=&#34;730&#34;
+	srcset=&#34;https://sryasuka.fun/p/linux_ch04/710cc8b4c8719628f3924f1d67c45c3_hu8655de331690356e23908c697d58c668_274148_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/linux_ch04/710cc8b4c8719628f3924f1d67c45c3_hu8655de331690356e23908c697d58c668_274148_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;143&#34;
+		data-flex-basis=&#34;343px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;硬链接和软链接&#34;&gt;硬链接和软链接&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/linux_ch04/aee4ea24557abdd04316217d03a05ba.png&#34;
+	width=&#34;1035&#34;
+	height=&#34;735&#34;
+	srcset=&#34;https://sryasuka.fun/p/linux_ch04/aee4ea24557abdd04316217d03a05ba_hu54fcede3cb0efebb6ccf8c1b2a924543_325969_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/linux_ch04/aee4ea24557abdd04316217d03a05ba_hu54fcede3cb0efebb6ccf8c1b2a924543_325969_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;140&#34;
+		data-flex-basis=&#34;337px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/linux_ch04/f2ec9c2409c7b5569a3e26432fd6401.png&#34;
+	width=&#34;1041&#34;
+	height=&#34;718&#34;
+	srcset=&#34;https://sryasuka.fun/p/linux_ch04/f2ec9c2409c7b5569a3e26432fd6401_hu0d95f180c63a161faa6a306babbeaceb_181416_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/linux_ch04/f2ec9c2409c7b5569a3e26432fd6401_hu0d95f180c63a161faa6a306babbeaceb_181416_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;144&#34;
+		data-flex-basis=&#34;347px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/linux_ch04/ef2b229c87325b2caeeeae1486feb6c.png&#34;
+	width=&#34;1036&#34;
+	height=&#34;733&#34;
+	srcset=&#34;https://sryasuka.fun/p/linux_ch04/ef2b229c87325b2caeeeae1486feb6c_hu2d0b302a41bbe2f477325707b4c554a7_266577_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/linux_ch04/ef2b229c87325b2caeeeae1486feb6c_hu2d0b302a41bbe2f477325707b4c554a7_266577_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;141&#34;
+		data-flex-basis=&#34;339px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/linux_ch04/a409931f7b14b2c9f2504a4ec12ecf9.png&#34;
+	width=&#34;1036&#34;
+	height=&#34;736&#34;
+	srcset=&#34;https://sryasuka.fun/p/linux_ch04/a409931f7b14b2c9f2504a4ec12ecf9_hu2ac5d979dba076ea3684798fdc1742dc_369910_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/linux_ch04/a409931f7b14b2c9f2504a4ec12ecf9_hu2ac5d979dba076ea3684798fdc1742dc_369910_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;140&#34;
+		data-flex-basis=&#34;337px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;12个文件访问权限&#34;&gt;12个文件访问权限&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/linux_ch04/37af34008c36925a2d4c047d9ec5473.png&#34;
+	width=&#34;1038&#34;
+	height=&#34;728&#34;
+	srcset=&#34;https://sryasuka.fun/p/linux_ch04/37af34008c36925a2d4c047d9ec5473_hu22a3539b109040d2becabff9ed8ec48c_251639_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/linux_ch04/37af34008c36925a2d4c047d9ec5473_hu22a3539b109040d2becabff9ed8ec48c_251639_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;142&#34;
+		data-flex-basis=&#34;342px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;文件所有者的权限 (User permissions)：通常表示为文件权限字符串中的前三个字符。这个权限定义了文件所有者的权限。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;文件所在组的权限 (Group permissions)：通常表示为文件权限字符串中的第四到第六个字符。这个权限定义了文件所在组的用户的权限。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;其他用户的权限 (Other permissions)：通常表示为文件权限字符串中的第七到第九个字符。这个权限定义了其他用户（不属于文件所在组，也不是文件所有者）的权限。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;目录权限规则&#34;&gt;目录权限规则&lt;/h2&gt;
+&lt;p&gt;因目录也是文件，对目录读权限指可查看目录中的文件列表；对目录写权限指可删除移动创建目录里的文件或目录，即允许修改目录文件内容(对普通文件有写权限并不代表可删除该文件，只有该文件所在的目录有写权限才可删除该文件)；对目录有执行权限表示可进入该目录(检索权限)。&lt;/p&gt;
+&lt;p&gt;用户必须拥有目录的执行权限才能进入该目录并访问其中的文件和子目录。因此，即使用户拥有目录中某个文件的读权限，如果目录本身没有执行权限，用户也无法访问该文件。&lt;/p&gt;
+&lt;h2 id=&#34;实际用户组id有效用户组id和设置用户组id&#34;&gt;实际用户(组)ID、有效用户(组)ID和设置用户(组)ID&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/linux_ch04/8ce4b2cbe46fbe17b5a553d54e0413d.png&#34;
+	width=&#34;1040&#34;
+	height=&#34;734&#34;
+	srcset=&#34;https://sryasuka.fun/p/linux_ch04/8ce4b2cbe46fbe17b5a553d54e0413d_hue9252ae500b954421c1f990b055fb43f_340327_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/linux_ch04/8ce4b2cbe46fbe17b5a553d54e0413d_hue9252ae500b954421c1f990b055fb43f_340327_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;141&#34;
+		data-flex-basis=&#34;340px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;掩码umask&#34;&gt;掩码(umask)&lt;/h2&gt;
+&lt;p&gt;文件模式创建掩码（简称umask）会对这些设置进行修改，umask是一种进程属性，通常继承自其父shell，用户可以使用shell内置命令umask来改变shell进程的umask，从而控制在shell下运行程序的umask.&lt;/p&gt;
+&lt;p&gt;Linux系统默认创建文件的权限位是0666(&amp;mdash;rw- rw- rw-)，默认创建目录的权限位是0777(&amp;mdash;rwxrwxrwx)，当umask值为0022(&amp;mdash; &amp;mdash; -w- -w-)时，实际创建文件的权限位是0644，目录的权限位是0755。&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>标准输入输出/低级输入输出</title>
+        <link>https://sryasuka.fun/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/%E4%BD%8E%E7%BA%A7%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/</link>
+        <pubDate>Mon, 20 Feb 2023 00:00:00 +0000</pubDate>
+        
+        <guid>https://sryasuka.fun/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/%E4%BD%8E%E7%BA%A7%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/</guid>
+        <description>&lt;img src="https://sryasuka.fun/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/%E4%BD%8E%E7%BA%A7%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/Linux_ch02.png" alt="Featured image of post 标准输入输出/低级输入输出" /&gt;&lt;h2 id=&#34;流和文件描述符及之间的关系&#34;&gt;流和文件描述符及之间的关系&lt;/h2&gt;
 &lt;p&gt;在计算机操作系统中，流和文件描述符是紧密相关的概念，它们之间的关系如下：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;
@@ -39,10 +212,10 @@
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;h2 id=&#34;打开和关闭流&#34;&gt;打开和关闭流&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/dbdaf47978b7a3ed4e1da7796d97c9b.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/%E4%BD%8E%E7%BA%A7%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/dbdaf47978b7a3ed4e1da7796d97c9b.png&#34;
 	width=&#34;1039&#34;
 	height=&#34;725&#34;
-	srcset=&#34;https://sryasuka.fun/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/dbdaf47978b7a3ed4e1da7796d97c9b_hud8960e5f205a5c08c5468e38c5f395e3_339621_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/dbdaf47978b7a3ed4e1da7796d97c9b_hud8960e5f205a5c08c5468e38c5f395e3_339621_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://sryasuka.fun/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/%E4%BD%8E%E7%BA%A7%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/dbdaf47978b7a3ed4e1da7796d97c9b_hud8960e5f205a5c08c5468e38c5f395e3_339621_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/%E4%BD%8E%E7%BA%A7%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/dbdaf47978b7a3ed4e1da7796d97c9b_hud8960e5f205a5c08c5468e38c5f395e3_339621_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -51,10 +224,10 @@
 		data-flex-basis=&#34;343px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/acc0bb53ca198d5eb8f8aa5e6a18631.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/%E4%BD%8E%E7%BA%A7%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/acc0bb53ca198d5eb8f8aa5e6a18631.png&#34;
 	width=&#34;1040&#34;
 	height=&#34;694&#34;
-	srcset=&#34;https://sryasuka.fun/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/acc0bb53ca198d5eb8f8aa5e6a18631_hu02a583e28e8351ddc5108b249ec1cb7c_365271_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/acc0bb53ca198d5eb8f8aa5e6a18631_hu02a583e28e8351ddc5108b249ec1cb7c_365271_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://sryasuka.fun/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/%E4%BD%8E%E7%BA%A7%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/acc0bb53ca198d5eb8f8aa5e6a18631_hu02a583e28e8351ddc5108b249ec1cb7c_365271_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/%E4%BD%8E%E7%BA%A7%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/acc0bb53ca198d5eb8f8aa5e6a18631_hu02a583e28e8351ddc5108b249ec1cb7c_365271_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -63,10 +236,10 @@
 		data-flex-basis=&#34;359px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/f8993d4a498f5079539cd612dff1596.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/%E4%BD%8E%E7%BA%A7%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/f8993d4a498f5079539cd612dff1596.png&#34;
 	width=&#34;1037&#34;
 	height=&#34;649&#34;
-	srcset=&#34;https://sryasuka.fun/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/f8993d4a498f5079539cd612dff1596_hu03cdf560e30ff277f14be5f284443d6c_255907_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/f8993d4a498f5079539cd612dff1596_hu03cdf560e30ff277f14be5f284443d6c_255907_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://sryasuka.fun/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/%E4%BD%8E%E7%BA%A7%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/f8993d4a498f5079539cd612dff1596_hu03cdf560e30ff277f14be5f284443d6c_255907_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/%E4%BD%8E%E7%BA%A7%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/f8993d4a498f5079539cd612dff1596_hu03cdf560e30ff277f14be5f284443d6c_255907_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -80,10 +253,10 @@
 &lt;p&gt;内核缓冲区：内核缓冲区是操作系统内核使用的一个缓冲区，它用于存储要写入或读取的数据。当程序进行输出操作时，数据从流缓冲区写入到内核缓冲区中，然后由内核将数据写入到磁盘或网络中。当程序进行输入操作时，数据首先从磁盘或网络中读取到内核缓冲区中，然后由内核将数据从内核缓冲区中复制到流缓冲区中，供程序读取。&lt;/p&gt;
 &lt;p&gt;总体上，流缓冲区是程序内部使用的缓冲区，它可以提高输入/输出操作的效率。内核缓冲区是操作系统内核使用的缓冲区，它可以提高磁盘和网络读写的效率。流缓冲区和内核缓冲区的关系是：程序将数据写入到流缓冲区中，然后由内核将数据从流缓冲区复制到内核缓冲区中；或者程序从内核缓冲区中读取数据，然后将数据存储到流缓冲区中。&lt;/p&gt;
 &lt;h2 id=&#34;流缓冲区类型&#34;&gt;流缓冲区类型&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/c7f693f22d27681d106f68f63c621cd.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/%E4%BD%8E%E7%BA%A7%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/c7f693f22d27681d106f68f63c621cd.png&#34;
 	width=&#34;1042&#34;
 	height=&#34;738&#34;
-	srcset=&#34;https://sryasuka.fun/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/c7f693f22d27681d106f68f63c621cd_hu64c75ec206f9beae57026efca42c33b5_278010_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/c7f693f22d27681d106f68f63c621cd_hu64c75ec206f9beae57026efca42c33b5_278010_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://sryasuka.fun/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/%E4%BD%8E%E7%BA%A7%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/c7f693f22d27681d106f68f63c621cd_hu64c75ec206f9beae57026efca42c33b5_278010_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/%E4%BD%8E%E7%BA%A7%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/c7f693f22d27681d106f68f63c621cd_hu64c75ec206f9beae57026efca42c33b5_278010_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -106,10 +279,10 @@
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;这三个表之间的关系是：文件描述符表中的文件描述符指向打开文件表中的打开文件，而打开文件表中的打开文件又与 i-node 表中的文件相关联。在进行文件操作时，应用程序使用文件描述符来标识文件，内核根据文件描述符在打开文件表中查找相应的打开文件，然后根据打开文件中的 i-node 号码在 i-node 表中查找文件的相关信息。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/127693479e49ee78034ea5bfe5c2357.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/%E4%BD%8E%E7%BA%A7%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/127693479e49ee78034ea5bfe5c2357.png&#34;
 	width=&#34;1038&#34;
 	height=&#34;734&#34;
-	srcset=&#34;https://sryasuka.fun/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/127693479e49ee78034ea5bfe5c2357_hu9be0fe81f573b98523b31413e22c1598_187349_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/127693479e49ee78034ea5bfe5c2357_hu9be0fe81f573b98523b31413e22c1598_187349_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://sryasuka.fun/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/%E4%BD%8E%E7%BA%A7%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/127693479e49ee78034ea5bfe5c2357_hu9be0fe81f573b98523b31413e22c1598_187349_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/%E4%BD%8E%E7%BA%A7%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/127693479e49ee78034ea5bfe5c2357_hu9be0fe81f573b98523b31413e22c1598_187349_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -118,10 +291,10 @@
 		data-flex-basis=&#34;339px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/d0fb83038beb32cae2c50b18acc52f0.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/%E4%BD%8E%E7%BA%A7%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/d0fb83038beb32cae2c50b18acc52f0.png&#34;
 	width=&#34;1048&#34;
 	height=&#34;737&#34;
-	srcset=&#34;https://sryasuka.fun/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/d0fb83038beb32cae2c50b18acc52f0_huaf8b97cb1279930ccec321e0dc6f1494_171038_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/d0fb83038beb32cae2c50b18acc52f0_huaf8b97cb1279930ccec321e0dc6f1494_171038_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://sryasuka.fun/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/%E4%BD%8E%E7%BA%A7%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/d0fb83038beb32cae2c50b18acc52f0_huaf8b97cb1279930ccec321e0dc6f1494_171038_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/%E4%BD%8E%E7%BA%A7%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/d0fb83038beb32cae2c50b18acc52f0_huaf8b97cb1279930ccec321e0dc6f1494_171038_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
