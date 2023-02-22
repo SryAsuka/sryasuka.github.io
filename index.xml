@@ -6,7 +6,207 @@
         <description>Recent content on SryAsuka</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Mon, 20 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://sryasuka.fun/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 22 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://sryasuka.fun/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Linux 05.06.13</title>
+        <link>https://sryasuka.fun/p/linux-05.06.13/</link>
+        <pubDate>Wed, 22 Feb 2023 00:00:00 +0000</pubDate>
+        
+        <guid>https://sryasuka.fun/p/linux-05.06.13/</guid>
+        <description>&lt;img src="https://sryasuka.fun/p/linux-05.06.13/Linux_ch05.png" alt="Featured image of post Linux 05.06.13" /&gt;&lt;h1 id=&#34;ch05&#34;&gt;ch05&lt;/h1&gt;
+&lt;h2 id=&#34;main和初启函数&#34;&gt;main和初启函数&lt;/h2&gt;
+&lt;p&gt;一个进程的代码由用户代码和内核代码组成，进程的用户代码是从main函数才开始执行的。许多程序运行时，往往需要提供一些信息作为main函数的参数来运行，其典型代表是各个命令行程序。编写带参数的程序时，需要使用带参数的main函数，其原型如下:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;int main(int argc,char **argv)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;int main(int argc, char *argv[])&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;进程的真正启动点是系统提供的一个初启函数，该函数位于名为crt0.o的文件中。当编译C程序时，链接器ld会将此文件与C程序文件装配在一起形成可执行文件，并指定该初启函数为程序的开始执行地址。&lt;/p&gt;
+&lt;h2 id=&#34;getopt中的模板&#34;&gt;getopt中的“模板”&lt;/h2&gt;
+&lt;p&gt;如果程序中的命令行参数遵守前面列出的语法规定，则可以用函数getopt()来读取其中的选项。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;#include &amp;lt;unistd.h&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;int getopt(int argc, char * const argv[], const char *optstring);
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;extern char *optarg;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;extern int optind, opterr, optopt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;getopt()从argc和argv所指定的参数表中获取下一选项。&lt;/p&gt;
+&lt;p&gt;参数optstring是一字符串，它给出对该程序而言合法的选项字符。在此字符串中的选项字符可以跟有冒号“:”指出它要求带有值。例如，字符串“if:ls”表示允许选项-i、-f、-l和-s，且-f要求跟有一个值。&lt;/p&gt;
+&lt;h1 id=&#34;ch06&#34;&gt;ch06&lt;/h1&gt;
+&lt;h2 id=&#34;进程抽象&#34;&gt;进程抽象&lt;/h2&gt;
+&lt;p&gt;进程：&lt;/p&gt;
+&lt;p&gt;程序是指令和数据的集合。可执行程序是文本形式程序的机器版本，是指令和数据的二进制处理机表示。&lt;/p&gt;
+&lt;p&gt;运行一个程序就得到一个进程。哪怕两个用户同时通过网络登录运行同一计算机上的同一个程序bash，他们也创建的是不同的进程。尽管这两个进程会共享程序的代码和数据，但它们的运行有自己独立的流程，各自分配的系统资源也是不一样的，因此是不同的进程&lt;/p&gt;
+&lt;p&gt;进程是计算机科学中最深刻最成功的概念之一。&lt;/p&gt;
+&lt;p&gt;在编程中，进程提供给应用程序2个关键抽象：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;一个独立的逻辑控制流，它提供一个假象，使程序觉得在独占地使用处理器。(分时调度技术，上下文切换)&lt;/li&gt;
+&lt;li&gt;一个私有的地址空间，它提供一个假象，使程序觉得在独占地使用存储器系统。(虚拟存储器，上下文切换)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;进程并发&#34;&gt;进程并发&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/linux-05.06.13/33bd911411ebe93ba6c4dad91fbadd5.png&#34;
+	width=&#34;1040&#34;
+	height=&#34;732&#34;
+	srcset=&#34;https://sryasuka.fun/p/linux-05.06.13/33bd911411ebe93ba6c4dad91fbadd5_hubb00403385202e0e3a63a8dd14912e54_276013_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/linux-05.06.13/33bd911411ebe93ba6c4dad91fbadd5_hubb00403385202e0e3a63a8dd14912e54_276013_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;142&#34;
+		data-flex-basis=&#34;340px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;上下文&#34;&gt;上下文&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/linux-05.06.13/c9cd2523b278f000d622454b400f62d.png&#34;
+	width=&#34;1040&#34;
+	height=&#34;737&#34;
+	srcset=&#34;https://sryasuka.fun/p/linux-05.06.13/c9cd2523b278f000d622454b400f62d_hub408ffb7dff27c4987af14e393b365fd_279408_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/linux-05.06.13/c9cd2523b278f000d622454b400f62d_hub408ffb7dff27c4987af14e393b365fd_279408_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;141&#34;
+		data-flex-basis=&#34;338px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;linux进程的状态&#34;&gt;Linux进程的状态&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/linux-05.06.13/0a45e111166babc1a5e59800a1ec8c0.png&#34;
+	width=&#34;1041&#34;
+	height=&#34;735&#34;
+	srcset=&#34;https://sryasuka.fun/p/linux-05.06.13/0a45e111166babc1a5e59800a1ec8c0_hu4dd7734289a1f3fe1d2aae86afdcd020_201536_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/linux-05.06.13/0a45e111166babc1a5e59800a1ec8c0_hu4dd7734289a1f3fe1d2aae86afdcd020_201536_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;141&#34;
+		data-flex-basis=&#34;339px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;pid与pcb&#34;&gt;PID与PCB&lt;/h2&gt;
+&lt;p&gt;每个进程都有一个按顺序分配的整型编号，称为进程标识符或PID，内核代码通过PID来标识不同的进程，同时PID也是内核提供给用户程序的接口，用户程序可以通过PID来操纵进程.&lt;/p&gt;
+&lt;p&gt;在32bit的平台中，PID是int类型，但为了与传统硬件平台(16位)兼容，允许的最大编号为32767。当创建第32768号进程时，必须重新从300开始使用已闲置的进程号。&lt;/p&gt;
+&lt;p&gt;除了第一个进程(进程0，也叫init_task进程)是用“手工”创建之外，其余的都是已有进程使用fork系统调用创建的新进程。init_task进程创建了PID为1的init进程，它是后续所有进程的祖先。&lt;/p&gt;
+&lt;h2 id=&#34;exce函数&#34;&gt;exce函数&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/linux-05.06.13/exce.png&#34;
+	width=&#34;1038&#34;
+	height=&#34;2711&#34;
+	srcset=&#34;https://sryasuka.fun/p/linux-05.06.13/exce_hu4a6a2993d66d90cef61f0c48c1ae9bd5_912686_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/linux-05.06.13/exce_hu4a6a2993d66d90cef61f0c48c1ae9bd5_912686_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;38&#34;
+		data-flex-basis=&#34;91px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;fork函数&#34;&gt;fork函数&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/linux-05.06.13/fork.png&#34;
+	width=&#34;1041&#34;
+	height=&#34;2238&#34;
+	srcset=&#34;https://sryasuka.fun/p/linux-05.06.13/fork_hu9093f0e26d179a2eb89c6dfc6181755c_842624_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/linux-05.06.13/fork_hu9093f0e26d179a2eb89c6dfc6181755c_842624_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;46&#34;
+		data-flex-basis=&#34;111px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;5种进程终止&#34;&gt;5种进程终止&lt;/h2&gt;
+&lt;p&gt;对于进程，有5种方式使其终止：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;正常终止：从main返回、调用exit、调用_exit。&lt;/li&gt;
+&lt;li&gt;异常终止：调用abort、由一个信号终止。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;通过main函数返回而终止进程是常用的方法。当main函数返回后，由初启函数crt0.o调用exit函数终止进程。如果用C来写该初启过程，则它将按如下方式调用main：&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;exit(main(argc, argv));&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;程序中也常常会用到exit，但较少用到_exit。事实上，这两个函数均终止进程，不同的是_exit直接进入到内核；而exit则会先执行一些清理工作，然后调用_exit进入到内核，因此不推荐应用程序直接调用_exit。&lt;/p&gt;
+&lt;h2 id=&#34;wait&#34;&gt;wait&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/linux-05.06.13/wait.png&#34;
+	width=&#34;1035&#34;
+	height=&#34;1414&#34;
+	srcset=&#34;https://sryasuka.fun/p/linux-05.06.13/wait_hu67826342428836184bd947fa0f2e7e53_417762_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/linux-05.06.13/wait_hu67826342428836184bd947fa0f2e7e53_417762_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;73&#34;
+		data-flex-basis=&#34;175px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;孤儿进程与僵尸进程&#34;&gt;孤儿进程与僵尸进程&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/linux-05.06.13/20230222225433.png&#34;
+	width=&#34;1037&#34;
+	height=&#34;2241&#34;
+	srcset=&#34;https://sryasuka.fun/p/linux-05.06.13/20230222225433_hub76034cc747309393af2e8309136ec0a_690140_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/linux-05.06.13/20230222225433_hub76034cc747309393af2e8309136ec0a_690140_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;46&#34;
+		data-flex-basis=&#34;111px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h1 id=&#34;管道&#34;&gt;管道&lt;/h1&gt;
+&lt;h2 id=&#34;管道概述&#34;&gt;管道概述&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/linux-05.06.13/81a141850821533fe4cbc98de06ff2d.png&#34;
+	width=&#34;1040&#34;
+	height=&#34;725&#34;
+	srcset=&#34;https://sryasuka.fun/p/linux-05.06.13/81a141850821533fe4cbc98de06ff2d_huffebc895d21505e4801a01727772da7b_233943_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/linux-05.06.13/81a141850821533fe4cbc98de06ff2d_huffebc895d21505e4801a01727772da7b_233943_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;143&#34;
+		data-flex-basis=&#34;344px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;pipe&#34;&gt;pipe&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/linux-05.06.13/e91f22422287bf0e38f7a1bc6894a49.png&#34;
+	width=&#34;1042&#34;
+	height=&#34;725&#34;
+	srcset=&#34;https://sryasuka.fun/p/linux-05.06.13/e91f22422287bf0e38f7a1bc6894a49_huf387ef04aa939a0d9a0636094376689d_260912_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/linux-05.06.13/e91f22422287bf0e38f7a1bc6894a49_huf387ef04aa939a0d9a0636094376689d_260912_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;143&#34;
+		data-flex-basis=&#34;344px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;pipe常见方法&#34;&gt;pipe常见方法&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/linux-05.06.13/pipe-command.png&#34;
+	width=&#34;1040&#34;
+	height=&#34;2265&#34;
+	srcset=&#34;https://sryasuka.fun/p/linux-05.06.13/pipe-command_hu04dd6f640146260693b1bf28c7219617_694820_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/linux-05.06.13/pipe-command_hu04dd6f640146260693b1bf28c7219617_694820_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;45&#34;
+		data-flex-basis=&#34;110px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;命名管道&#34;&gt;命名管道&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/linux-05.06.13/84159c84ecff64e88c849b42e60ad88.png&#34;
+	width=&#34;1039&#34;
+	height=&#34;666&#34;
+	srcset=&#34;https://sryasuka.fun/p/linux-05.06.13/84159c84ecff64e88c849b42e60ad88_huc35e13dedcc9d4b251cf162e6d106bc1_302741_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/linux-05.06.13/84159c84ecff64e88c849b42e60ad88_huc35e13dedcc9d4b251cf162e6d106bc1_302741_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;156&#34;
+		data-flex-basis=&#34;374px&#34;
+	
+&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>文件操作</title>
         <link>https://sryasuka.fun/p/linux_ch04/</link>
         <pubDate>Mon, 20 Feb 2023 00:00:00 +0000</pubDate>
@@ -250,7 +450,7 @@
 &gt;&lt;/p&gt;
 &lt;h2 id=&#34;流缓冲区和内核缓冲区&#34;&gt;流缓冲区和内核缓冲区&lt;/h2&gt;
 &lt;p&gt;流缓冲区：流缓冲区是在程序内部使用的一个缓冲区，它存储了要写入或读取的数据。当程序进行输出操作时，数据首先被写入到流缓冲区中，直到缓冲区满或程序调用了flush()函数或关闭流时才将数据写入到内核缓冲区中。当程序进行输入操作时，数据也是首先从内核缓冲区读取到流缓冲区中，直到缓冲区为空或程序读取了足够的数据时才会再次从内核缓冲区中读取数据。&lt;/p&gt;
-&lt;p&gt;内核缓冲区：内核缓冲区是操作系统内核使用的一个缓冲区，它用于存储要写入或读取的数据。当程序进行输出操作时，数据从流缓冲区写入到内核缓冲区中，然后由内核将数据写入到磁盘或网络中。当程序进行输入操作时，数据首先从磁盘或网络中读取到内核缓冲区中，然后由内核将数据从内核缓冲区中复制到流缓冲区中，供程序读取。&lt;/p&gt;
+&lt;p&gt;内核缓冲区：内核缓冲区是操作系统内核使用的一个缓冲区，它用于存储要写入或读取的数据。当程序进行输入操作时，数据从流缓冲区写入到内核缓冲区中，然后由内核将数据写入到磁盘或网络中。当程序进行输出操作时，数据首先从磁盘或网络中读取到内核缓冲区中，然后由内核将数据从内核缓冲区中复制到流缓冲区中，供程序读取。&lt;/p&gt;
 &lt;p&gt;总体上，流缓冲区是程序内部使用的缓冲区，它可以提高输入/输出操作的效率。内核缓冲区是操作系统内核使用的缓冲区，它可以提高磁盘和网络读写的效率。流缓冲区和内核缓冲区的关系是：程序将数据写入到流缓冲区中，然后由内核将数据从流缓冲区复制到内核缓冲区中；或者程序从内核缓冲区中读取数据，然后将数据存储到流缓冲区中。&lt;/p&gt;
 &lt;h2 id=&#34;流缓冲区类型&#34;&gt;流缓冲区类型&lt;/h2&gt;
 &lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/%E4%BD%8E%E7%BA%A7%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/c7f693f22d27681d106f68f63c621cd.png&#34;

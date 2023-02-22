@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Linux-ch02/ch03'>
-<title>标准输入输出/低级输入输出</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Linux-ch05/06/13'>
+<title>Linux 05.06.13</title>
 
-<link rel='canonical' href='https://sryasuka.fun/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/%E4%BD%8E%E7%BA%A7%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/'>
+<link rel='canonical' href='https://sryasuka.fun/p/linux-05.06.13/'>
 
-<link rel="stylesheet" href="/scss/style.min.5be32ca3f6e1a997c75795c4359147cc6d4fbd34948c0acd51e31d237033978a.css"><meta property='og:title' content='标准输入输出/低级输入输出'>
-<meta property='og:description' content='Linux-ch02/ch03'>
-<meta property='og:url' content='https://sryasuka.fun/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/%E4%BD%8E%E7%BA%A7%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/'>
+<link rel="stylesheet" href="/scss/style.min.5be32ca3f6e1a997c75795c4359147cc6d4fbd34948c0acd51e31d237033978a.css"><meta property='og:title' content='Linux 05.06.13'>
+<meta property='og:description' content='Linux-ch05/06/13'>
+<meta property='og:url' content='https://sryasuka.fun/p/linux-05.06.13/'>
 <meta property='og:site_name' content='SryAsuka'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2023-02-20T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2023-02-20T00:00:00&#43;00:00'/><meta property='og:image' content='https://sryasuka.fun/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/%E4%BD%8E%E7%BA%A7%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/Linux_ch02.png' />
-<meta name="twitter:title" content="标准输入输出/低级输入输出">
-<meta name="twitter:description" content="Linux-ch02/ch03"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='https://sryasuka.fun/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/%E4%BD%8E%E7%BA%A7%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/Linux_ch02.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2023-02-22T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2023-02-22T00:00:00&#43;00:00'/><meta property='og:image' content='https://sryasuka.fun/p/linux-05.06.13/Linux_ch05.png' />
+<meta name="twitter:title" content="Linux 05.06.13">
+<meta name="twitter:description" content="Linux-ch05/06/13"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://sryasuka.fun/p/linux-05.06.13/Linux_ch05.png' />
     <link rel="shortcut icon" href="/favicon.ico" />
 
     </head>
@@ -289,12 +289,28 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#流和文件描述符及之间的关系">流和文件描述符及之间的关系</a></li>
-    <li><a href="#三个标准流">三个标准流</a></li>
-    <li><a href="#打开和关闭流">打开和关闭流</a></li>
-    <li><a href="#流缓冲区和内核缓冲区">流缓冲区和内核缓冲区</a></li>
-    <li><a href="#流缓冲区类型">流缓冲区类型</a></li>
-    <li><a href="#文件描述符表打开文件表和i-node表">文件描述符表、打开文件表和i-node表</a></li>
+    <li><a href="#main和初启函数">main和初启函数</a></li>
+    <li><a href="#getopt中的模板">getopt中的“模板”</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#进程抽象">进程抽象</a></li>
+    <li><a href="#进程并发">进程并发</a></li>
+    <li><a href="#上下文">上下文</a></li>
+    <li><a href="#linux进程的状态">Linux进程的状态</a></li>
+    <li><a href="#pid与pcb">PID与PCB</a></li>
+    <li><a href="#exce函数">exce函数</a></li>
+    <li><a href="#fork函数">fork函数</a></li>
+    <li><a href="#5种进程终止">5种进程终止</a></li>
+    <li><a href="#wait">wait</a></li>
+    <li><a href="#孤儿进程与僵尸进程">孤儿进程与僵尸进程</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#管道概述">管道概述</a></li>
+    <li><a href="#pipe">pipe</a></li>
+    <li><a href="#pipe常见方法">pipe常见方法</a></li>
+    <li><a href="#命名管道">命名管道</a></li>
   </ol>
 </nav>
         </div>
@@ -309,13 +325,13 @@
     <article class="has-image main-article">
     <header class="article-header">
         <div class="article-image">
-            <a href="/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/%E4%BD%8E%E7%BA%A7%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/">
-                <img src="/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/%E4%BD%8E%E7%BA%A7%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/Linux_ch02_hu3f69bb3da5628383156e983128f03802_76860_800x0_resize_box_3.png"
-                        srcset="/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/%E4%BD%8E%E7%BA%A7%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/Linux_ch02_hu3f69bb3da5628383156e983128f03802_76860_800x0_resize_box_3.png 800w, /p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/%E4%BD%8E%E7%BA%A7%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/Linux_ch02_hu3f69bb3da5628383156e983128f03802_76860_1600x0_resize_box_3.png 1600w"
+            <a href="/p/linux-05.06.13/">
+                <img src="/p/linux-05.06.13/Linux_ch05_hu2e1ab1ce08434c0cf141c387658b4781_68554_800x0_resize_box_3.png"
+                        srcset="/p/linux-05.06.13/Linux_ch05_hu2e1ab1ce08434c0cf141c387658b4781_68554_800x0_resize_box_3.png 800w, /p/linux-05.06.13/Linux_ch05_hu2e1ab1ce08434c0cf141c387658b4781_68554_1600x0_resize_box_3.png 1600w"
                         width="800" 
-                        height="564" 
+                        height="567" 
                         loading="lazy"
-                        alt="Featured image of post 标准输入输出/低级输入输出" />
+                        alt="Featured image of post Linux 05.06.13" />
                 
             </a>
         </div>
@@ -334,12 +350,12 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/%E4%BD%8E%E7%BA%A7%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/">标准输入输出/低级输入输出</a>
+            <a href="/p/linux-05.06.13/">Linux 05.06.13</a>
         </h2>
     
         
         <h3 class="article-subtitle">
-            Linux-ch02/ch03
+            Linux-ch05/06/13
         </h3>
         
     </div>
@@ -360,7 +376,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">Feb 20, 2023</time>
+                <time class="article-time--published">Feb 22, 2023</time>
             </div>
         
 
@@ -390,78 +406,59 @@
     <section class="article-content">
     
     
-    <h2 id="流和文件描述符及之间的关系">流和文件描述符及之间的关系</h2>
-<p>在计算机操作系统中，流和文件描述符是紧密相关的概念，它们之间的关系如下：</p>
+    <h1 id="ch05">ch05</h1>
+<h2 id="main和初启函数">main和初启函数</h2>
+<p>一个进程的代码由用户代码和内核代码组成，进程的用户代码是从main函数才开始执行的。许多程序运行时，往往需要提供一些信息作为main函数的参数来运行，其典型代表是各个命令行程序。编写带参数的程序时，需要使用带参数的main函数，其原型如下:</p>
+<p><code>int main(int argc,char **argv)</code></p>
+<p><code>int main(int argc, char *argv[])</code></p>
+<p>进程的真正启动点是系统提供的一个初启函数，该函数位于名为crt0.o的文件中。当编译C程序时，链接器ld会将此文件与C程序文件装配在一起形成可执行文件，并指定该初启函数为程序的开始执行地址。</p>
+<h2 id="getopt中的模板">getopt中的“模板”</h2>
+<p>如果程序中的命令行参数遵守前面列出的语法规定，则可以用函数getopt()来读取其中的选项。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">#include &lt;unistd.h&gt;
+</span></span><span class="line"><span class="cl">int getopt(int argc, char * const argv[], const char *optstring);
+</span></span><span class="line"><span class="cl">extern char *optarg;
+</span></span><span class="line"><span class="cl">extern int optind, opterr, optopt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>getopt()从argc和argv所指定的参数表中获取下一选项。</p>
+<p>参数optstring是一字符串，它给出对该程序而言合法的选项字符。在此字符串中的选项字符可以跟有冒号“:”指出它要求带有值。例如，字符串“if:ls”表示允许选项-i、-f、-l和-s，且-f要求跟有一个值。</p>
+<h1 id="ch06">ch06</h1>
+<h2 id="进程抽象">进程抽象</h2>
+<p>进程：</p>
+<p>程序是指令和数据的集合。可执行程序是文本形式程序的机器版本，是指令和数据的二进制处理机表示。</p>
+<p>运行一个程序就得到一个进程。哪怕两个用户同时通过网络登录运行同一计算机上的同一个程序bash，他们也创建的是不同的进程。尽管这两个进程会共享程序的代码和数据，但它们的运行有自己独立的流程，各自分配的系统资源也是不一样的，因此是不同的进程</p>
+<p>进程是计算机科学中最深刻最成功的概念之一。</p>
+<p>在编程中，进程提供给应用程序2个关键抽象：</p>
 <ol>
-<li>
-<p>文件描述符：文件描述符是一个非负整数，用于标识打开文件或其他输入/输出设备的唯一标识符。在Unix和类Unix系统中，每个打开的文件或设备都被分配一个文件描述符，它是操作系统内部使用的一个数字，程序可以通过文件描述符来访问文件或设备。</p>
-</li>
-<li>
-<p>流：流是一个抽象的概念，它表示从程序中一个地方到另一个地方的数据流动。流可以是输入流、输出流或输入/输出流，它们在程序中通过流对象来实现。流对象封装了文件描述符及其相关操作，使得程序可以以更高级别的方式进行输入和输出操作，而不需要直接操作文件描述符。</p>
-</li>
-<li>
-<p>流和文件描述符的关系：在Unix和类Unix系统中，每个流都与一个文件描述符相关联。例如，标准输入流stdin通常与文件描述符0相关联，标准输出流stdout通常与文件描述符1相关联，标准错误流stderr通常与文件描述符2相关联。在程序中使用流对象来进行输入/输出操作时，操作系统会自动将流对象转换为与其相关联的文件描述符来进行底层的读写操作。</p>
-</li>
+<li>一个独立的逻辑控制流，它提供一个假象，使程序觉得在独占地使用处理器。(分时调度技术，上下文切换)</li>
+<li>一个私有的地址空间，它提供一个假象，使程序觉得在独占地使用存储器系统。(虚拟存储器，上下文切换)</li>
 </ol>
-<h2 id="三个标准流">三个标准流</h2>
-<p>三个标准流通常指的是：标准输入流（stdin）、标准输出流（stdout）和标准错误流（stderr），在计算机操作系统中被广泛使用。</p>
-<ol>
-<li>
-<p>标准输入流（stdin）：这是程序从用户那里获取输入数据的标准方式。标准输入流通常通过键盘输入，但也可以通过文件、管道或其他设备输入。在Linux和Unix操作系统中，可以使用重定向符号 &ldquo;&lt;&rdquo; 来将一个文件中的内容输入到标准输入流中。</p>
-</li>
-<li>
-<p>标准输出流（stdout）：这是程序输出数据的标准方式。标准输出流通常是显示在屏幕上的文本信息，但也可以重定向到文件中。在Linux和Unix操作系统中，可以使用重定向符号 &ldquo;&gt;&rdquo; 来将标准输出流的内容写入一个文件中。</p>
-</li>
-<li>
-<p>标准错误流（stderr）：这是程序输出错误信息的标准方式。标准错误流通常是显示在屏幕上的红色文本信息，以便用户注意到它们。与标准输出流不同，标准错误流的输出不会被重定向到文件中，除非专门使用特定的符号 &ldquo;2&gt;&rdquo; 进行重定向。</p>
-</li>
-</ol>
-<h2 id="打开和关闭流">打开和关闭流</h2>
-<p><img src="/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/%E4%BD%8E%E7%BA%A7%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/dbdaf47978b7a3ed4e1da7796d97c9b.png"
-	width="1039"
-	height="725"
-	srcset="/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/%E4%BD%8E%E7%BA%A7%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/dbdaf47978b7a3ed4e1da7796d97c9b_hud8960e5f205a5c08c5468e38c5f395e3_339621_480x0_resize_box_3.png 480w, /p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/%E4%BD%8E%E7%BA%A7%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/dbdaf47978b7a3ed4e1da7796d97c9b_hud8960e5f205a5c08c5468e38c5f395e3_339621_1024x0_resize_box_3.png 1024w"
-	loading="lazy"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="143"
-		data-flex-basis="343px"
-	
-></p>
-<p><img src="/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/%E4%BD%8E%E7%BA%A7%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/acc0bb53ca198d5eb8f8aa5e6a18631.png"
+<h2 id="进程并发">进程并发</h2>
+<p><img src="/p/linux-05.06.13/33bd911411ebe93ba6c4dad91fbadd5.png"
 	width="1040"
-	height="694"
-	srcset="/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/%E4%BD%8E%E7%BA%A7%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/acc0bb53ca198d5eb8f8aa5e6a18631_hu02a583e28e8351ddc5108b249ec1cb7c_365271_480x0_resize_box_3.png 480w, /p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/%E4%BD%8E%E7%BA%A7%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/acc0bb53ca198d5eb8f8aa5e6a18631_hu02a583e28e8351ddc5108b249ec1cb7c_365271_1024x0_resize_box_3.png 1024w"
+	height="732"
+	srcset="/p/linux-05.06.13/33bd911411ebe93ba6c4dad91fbadd5_hubb00403385202e0e3a63a8dd14912e54_276013_480x0_resize_box_3.png 480w, /p/linux-05.06.13/33bd911411ebe93ba6c4dad91fbadd5_hubb00403385202e0e3a63a8dd14912e54_276013_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
 	
 		class="gallery-image" 
-		data-flex-grow="149"
-		data-flex-basis="359px"
+		data-flex-grow="142"
+		data-flex-basis="340px"
 	
 ></p>
-<p><img src="/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/%E4%BD%8E%E7%BA%A7%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/f8993d4a498f5079539cd612dff1596.png"
-	width="1037"
-	height="649"
-	srcset="/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/%E4%BD%8E%E7%BA%A7%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/f8993d4a498f5079539cd612dff1596_hu03cdf560e30ff277f14be5f284443d6c_255907_480x0_resize_box_3.png 480w, /p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/%E4%BD%8E%E7%BA%A7%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/f8993d4a498f5079539cd612dff1596_hu03cdf560e30ff277f14be5f284443d6c_255907_1024x0_resize_box_3.png 1024w"
-	loading="lazy"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="159"
-		data-flex-basis="383px"
-	
-></p>
-<h2 id="流缓冲区和内核缓冲区">流缓冲区和内核缓冲区</h2>
-<p>流缓冲区：流缓冲区是在程序内部使用的一个缓冲区，它存储了要写入或读取的数据。当程序进行输出操作时，数据首先被写入到流缓冲区中，直到缓冲区满或程序调用了flush()函数或关闭流时才将数据写入到内核缓冲区中。当程序进行输入操作时，数据也是首先从内核缓冲区读取到流缓冲区中，直到缓冲区为空或程序读取了足够的数据时才会再次从内核缓冲区中读取数据。</p>
-<p>内核缓冲区：内核缓冲区是操作系统内核使用的一个缓冲区，它用于存储要写入或读取的数据。当程序进行输入操作时，数据从流缓冲区写入到内核缓冲区中，然后由内核将数据写入到磁盘或网络中。当程序进行输出操作时，数据首先从磁盘或网络中读取到内核缓冲区中，然后由内核将数据从内核缓冲区中复制到流缓冲区中，供程序读取。</p>
-<p>总体上，流缓冲区是程序内部使用的缓冲区，它可以提高输入/输出操作的效率。内核缓冲区是操作系统内核使用的缓冲区，它可以提高磁盘和网络读写的效率。流缓冲区和内核缓冲区的关系是：程序将数据写入到流缓冲区中，然后由内核将数据从流缓冲区复制到内核缓冲区中；或者程序从内核缓冲区中读取数据，然后将数据存储到流缓冲区中。</p>
-<h2 id="流缓冲区类型">流缓冲区类型</h2>
-<p><img src="/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/%E4%BD%8E%E7%BA%A7%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/c7f693f22d27681d106f68f63c621cd.png"
-	width="1042"
-	height="738"
-	srcset="/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/%E4%BD%8E%E7%BA%A7%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/c7f693f22d27681d106f68f63c621cd_hu64c75ec206f9beae57026efca42c33b5_278010_480x0_resize_box_3.png 480w, /p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/%E4%BD%8E%E7%BA%A7%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/c7f693f22d27681d106f68f63c621cd_hu64c75ec206f9beae57026efca42c33b5_278010_1024x0_resize_box_3.png 1024w"
+<h2 id="上下文">上下文</h2>
+<p><img src="/p/linux-05.06.13/c9cd2523b278f000d622454b400f62d.png"
+	width="1040"
+	height="737"
+	srcset="/p/linux-05.06.13/c9cd2523b278f000d622454b400f62d_hub408ffb7dff27c4987af14e393b365fd_279408_480x0_resize_box_3.png 480w, /p/linux-05.06.13/c9cd2523b278f000d622454b400f62d_hub408ffb7dff27c4987af14e393b365fd_279408_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
 	
@@ -470,24 +467,11 @@
 		data-flex-basis="338px"
 	
 ></p>
-<h2 id="文件描述符表打开文件表和i-node表">文件描述符表、打开文件表和i-node表</h2>
-<p>在 Unix/Linux 系统中，文件是使用文件描述符（file descriptor）来进行操作的。文件描述符是一个整数，它代表一个文件被打开后在内核中的一个唯一标识符。当应用程序打开一个文件时，内核会分配一个文件描述符，并使用该文件描述符来标识该文件。文件描述符表、打开文件表和 i-node 表是三个与文件操作密切相关的概念，它们分别记录了文件描述符、打开文件和文件在磁盘上的存储位置。</p>
-<ol>
-<li>
-<p>文件描述符表：文件描述符表是每个进程都有的一个表，它记录了进程中每个打开的文件描述符与内核中的文件描述符之间的映射关系。当应用程序打开一个文件时，内核会分配一个文件描述符，并将其添加到文件描述符表中，以便应用程序在之后的操作中可以使用该文件描述符来标识该文件。</p>
-</li>
-<li>
-<p>打开文件表：打开文件表是内核中的一个表，它记录了所有当前被打开的文件的信息，包括文件描述符、文件偏移量、读写模式、文件状态等等。当应用程序打开一个文件时，内核会在打开文件表中创建一个新的表项，并将该表项与文件描述符关联起来。</p>
-</li>
-<li>
-<p>i-node 表：i-node 表是在磁盘上维护的一个表，它记录了文件的所有属性和存储位置。每个文件在 i-node 表中都有一个唯一的 i-node 号码，该号码与文件的所有属性和存储位置相关联。当应用程序打开一个文件时，内核会通过文件的 i-node 号码在 i-node 表中查找该文件的相关信息，包括文件类型、访问权限、文件大小、创建时间等等。</p>
-</li>
-</ol>
-<p>这三个表之间的关系是：文件描述符表中的文件描述符指向打开文件表中的打开文件，而打开文件表中的打开文件又与 i-node 表中的文件相关联。在进行文件操作时，应用程序使用文件描述符来标识文件，内核根据文件描述符在打开文件表中查找相应的打开文件，然后根据打开文件中的 i-node 号码在 i-node 表中查找文件的相关信息。</p>
-<p><img src="/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/%E4%BD%8E%E7%BA%A7%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/127693479e49ee78034ea5bfe5c2357.png"
-	width="1038"
-	height="734"
-	srcset="/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/%E4%BD%8E%E7%BA%A7%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/127693479e49ee78034ea5bfe5c2357_hu9be0fe81f573b98523b31413e22c1598_187349_480x0_resize_box_3.png 480w, /p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/%E4%BD%8E%E7%BA%A7%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/127693479e49ee78034ea5bfe5c2357_hu9be0fe81f573b98523b31413e22c1598_187349_1024x0_resize_box_3.png 1024w"
+<h2 id="linux进程的状态">Linux进程的状态</h2>
+<p><img src="/p/linux-05.06.13/0a45e111166babc1a5e59800a1ec8c0.png"
+	width="1041"
+	height="735"
+	srcset="/p/linux-05.06.13/0a45e111166babc1a5e59800a1ec8c0_hu4dd7734289a1f3fe1d2aae86afdcd020_201536_480x0_resize_box_3.png 480w, /p/linux-05.06.13/0a45e111166babc1a5e59800a1ec8c0_hu4dd7734289a1f3fe1d2aae86afdcd020_201536_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
 	
@@ -496,16 +480,122 @@
 		data-flex-basis="339px"
 	
 ></p>
-<p><img src="/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/%E4%BD%8E%E7%BA%A7%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/d0fb83038beb32cae2c50b18acc52f0.png"
-	width="1048"
-	height="737"
-	srcset="/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/%E4%BD%8E%E7%BA%A7%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/d0fb83038beb32cae2c50b18acc52f0_huaf8b97cb1279930ccec321e0dc6f1494_171038_480x0_resize_box_3.png 480w, /p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/%E4%BD%8E%E7%BA%A7%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/d0fb83038beb32cae2c50b18acc52f0_huaf8b97cb1279930ccec321e0dc6f1494_171038_1024x0_resize_box_3.png 1024w"
+<h2 id="pid与pcb">PID与PCB</h2>
+<p>每个进程都有一个按顺序分配的整型编号，称为进程标识符或PID，内核代码通过PID来标识不同的进程，同时PID也是内核提供给用户程序的接口，用户程序可以通过PID来操纵进程.</p>
+<p>在32bit的平台中，PID是int类型，但为了与传统硬件平台(16位)兼容，允许的最大编号为32767。当创建第32768号进程时，必须重新从300开始使用已闲置的进程号。</p>
+<p>除了第一个进程(进程0，也叫init_task进程)是用“手工”创建之外，其余的都是已有进程使用fork系统调用创建的新进程。init_task进程创建了PID为1的init进程，它是后续所有进程的祖先。</p>
+<h2 id="exce函数">exce函数</h2>
+<p><img src="/p/linux-05.06.13/exce.png"
+	width="1038"
+	height="2711"
+	srcset="/p/linux-05.06.13/exce_hu4a6a2993d66d90cef61f0c48c1ae9bd5_912686_480x0_resize_box_3.png 480w, /p/linux-05.06.13/exce_hu4a6a2993d66d90cef61f0c48c1ae9bd5_912686_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
 	
 		class="gallery-image" 
-		data-flex-grow="142"
-		data-flex-basis="341px"
+		data-flex-grow="38"
+		data-flex-basis="91px"
+	
+></p>
+<h2 id="fork函数">fork函数</h2>
+<p><img src="/p/linux-05.06.13/fork.png"
+	width="1041"
+	height="2238"
+	srcset="/p/linux-05.06.13/fork_hu9093f0e26d179a2eb89c6dfc6181755c_842624_480x0_resize_box_3.png 480w, /p/linux-05.06.13/fork_hu9093f0e26d179a2eb89c6dfc6181755c_842624_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="46"
+		data-flex-basis="111px"
+	
+></p>
+<h2 id="5种进程终止">5种进程终止</h2>
+<p>对于进程，有5种方式使其终止：</p>
+<ol>
+<li>正常终止：从main返回、调用exit、调用_exit。</li>
+<li>异常终止：调用abort、由一个信号终止。</li>
+</ol>
+<p>通过main函数返回而终止进程是常用的方法。当main函数返回后，由初启函数crt0.o调用exit函数终止进程。如果用C来写该初启过程，则它将按如下方式调用main：</p>
+<p><code>exit(main(argc, argv));</code></p>
+<p>程序中也常常会用到exit，但较少用到_exit。事实上，这两个函数均终止进程，不同的是_exit直接进入到内核；而exit则会先执行一些清理工作，然后调用_exit进入到内核，因此不推荐应用程序直接调用_exit。</p>
+<h2 id="wait">wait</h2>
+<p><img src="/p/linux-05.06.13/wait.png"
+	width="1035"
+	height="1414"
+	srcset="/p/linux-05.06.13/wait_hu67826342428836184bd947fa0f2e7e53_417762_480x0_resize_box_3.png 480w, /p/linux-05.06.13/wait_hu67826342428836184bd947fa0f2e7e53_417762_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="73"
+		data-flex-basis="175px"
+	
+></p>
+<h2 id="孤儿进程与僵尸进程">孤儿进程与僵尸进程</h2>
+<p><img src="/p/linux-05.06.13/20230222225433.png"
+	width="1037"
+	height="2241"
+	srcset="/p/linux-05.06.13/20230222225433_hub76034cc747309393af2e8309136ec0a_690140_480x0_resize_box_3.png 480w, /p/linux-05.06.13/20230222225433_hub76034cc747309393af2e8309136ec0a_690140_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="46"
+		data-flex-basis="111px"
+	
+></p>
+<h1 id="管道">管道</h1>
+<h2 id="管道概述">管道概述</h2>
+<p><img src="/p/linux-05.06.13/81a141850821533fe4cbc98de06ff2d.png"
+	width="1040"
+	height="725"
+	srcset="/p/linux-05.06.13/81a141850821533fe4cbc98de06ff2d_huffebc895d21505e4801a01727772da7b_233943_480x0_resize_box_3.png 480w, /p/linux-05.06.13/81a141850821533fe4cbc98de06ff2d_huffebc895d21505e4801a01727772da7b_233943_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="143"
+		data-flex-basis="344px"
+	
+></p>
+<h2 id="pipe">pipe</h2>
+<p><img src="/p/linux-05.06.13/e91f22422287bf0e38f7a1bc6894a49.png"
+	width="1042"
+	height="725"
+	srcset="/p/linux-05.06.13/e91f22422287bf0e38f7a1bc6894a49_huf387ef04aa939a0d9a0636094376689d_260912_480x0_resize_box_3.png 480w, /p/linux-05.06.13/e91f22422287bf0e38f7a1bc6894a49_huf387ef04aa939a0d9a0636094376689d_260912_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="143"
+		data-flex-basis="344px"
+	
+></p>
+<h2 id="pipe常见方法">pipe常见方法</h2>
+<p><img src="/p/linux-05.06.13/pipe-command.png"
+	width="1040"
+	height="2265"
+	srcset="/p/linux-05.06.13/pipe-command_hu04dd6f640146260693b1bf28c7219617_694820_480x0_resize_box_3.png 480w, /p/linux-05.06.13/pipe-command_hu04dd6f640146260693b1bf28c7219617_694820_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="45"
+		data-flex-basis="110px"
+	
+></p>
+<h2 id="命名管道">命名管道</h2>
+<p><img src="/p/linux-05.06.13/84159c84ecff64e88c849b42e60ad88.png"
+	width="1039"
+	height="666"
+	srcset="/p/linux-05.06.13/84159c84ecff64e88c849b42e60ad88_huc35e13dedcc9d4b251cf162e6d106bc1_302741_480x0_resize_box_3.png 480w, /p/linux-05.06.13/84159c84ecff64e88c849b42e60ad88_huc35e13dedcc9d4b251cf162e6d106bc1_302741_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="156"
+		data-flex-basis="374px"
 	
 ></p>
 
@@ -567,30 +657,6 @@
             
                 
 <article class="has-image">
-    <a href="/p/linux-05.06.13/">
-        
-        
-            <div class="article-image">
-                <img src="/p/linux-05.06.13/Linux_ch05.51712ddb855eee845e22720cd4cb4cab_hu2e1ab1ce08434c0cf141c387658b4781_68554_250x150_fill_box_smart1_3.png" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy"
-                        alt="Featured image of post Linux 05.06.13"
-                        
-                        data-hash="md5-UXEt24Ve7oReInIM1MtMqw==">
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">Linux 05.06.13</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
     <a href="/p/linux_ch04/">
         
         
@@ -608,6 +674,30 @@
 
         <div class="article-details">
             <h2 class="article-title">文件操作</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/%E4%BD%8E%E7%BA%A7%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/">
+        
+        
+            <div class="article-image">
+                <img src="/p/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/%E4%BD%8E%E7%BA%A7%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/Linux_ch02.3b7718a00761aef82b2decde7c07d88e_hu3f69bb3da5628383156e983128f03802_76860_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 标准输入输出/低级输入输出"
+                        
+                        data-hash="md5-O3cYoAdhrvgrLezefAfYjg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">标准输入输出/低级输入输出</h2>
         </div>
     </a>
 </article>
