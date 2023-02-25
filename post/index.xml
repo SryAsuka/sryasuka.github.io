@@ -6,7 +6,1010 @@
         <description>Recent content in Posts on SryAsuka</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Wed, 22 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://sryasuka.fun/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 25 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://sryasuka.fun/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>串、数组和广义表</title>
+        <link>https://sryasuka.fun/p/%E4%B8%B2%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8/</link>
+        <pubDate>Sat, 25 Feb 2023 00:00:00 +0000</pubDate>
+        
+        <guid>https://sryasuka.fun/p/%E4%B8%B2%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8/</guid>
+        <description>&lt;img src="https://sryasuka.fun/p/%E4%B8%B2%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8/SAAGT.png" alt="Featured image of post 串、数组和广义表" /&gt;&lt;h2 id=&#34;串&#34;&gt;串&lt;/h2&gt;
+&lt;h3 id=&#34;串的定义&#34;&gt;串的定义&lt;/h3&gt;
+&lt;p&gt;串(String)&amp;mdash;-零个或多个字符组成的有限序列&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/%E4%B8%B2%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8/fe3f8967a8372b60cc8f93aac31966c.png&#34;
+	width=&#34;670&#34;
+	height=&#34;337&#34;
+	srcset=&#34;https://sryasuka.fun/p/%E4%B8%B2%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8/fe3f8967a8372b60cc8f93aac31966c_hu15977babbe31143af00a3c1de44496ad_9708_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/%E4%B8%B2%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8/fe3f8967a8372b60cc8f93aac31966c_hu15977babbe31143af00a3c1de44496ad_9708_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;198&#34;
+		data-flex-basis=&#34;477px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;串的类型定义存储结构及运算&#34;&gt;串的类型定义、存储结构及运算&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/%E4%B8%B2%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8/daeab1bb816463a2424d9c84d237892.png&#34;
+	width=&#34;698&#34;
+	height=&#34;168&#34;
+	srcset=&#34;https://sryasuka.fun/p/%E4%B8%B2%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8/daeab1bb816463a2424d9c84d237892_hu1eec1911e094b5f8bb986c7159455362_12436_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/%E4%B8%B2%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8/daeab1bb816463a2424d9c84d237892_hu1eec1911e094b5f8bb986c7159455362_12436_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;415&#34;
+		data-flex-basis=&#34;997px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;基本操作：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;(1)  StrAssign (&amp;amp;T,chars)                //串赋值
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;(2) StrCompare (S,T)                      //串比较
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;(3) StrLength (S)                             //求串长
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;(4) Concat(&amp;amp;T,S1,S2)                     //串联     
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;(5) SubString(&amp;amp;Sub,S,pos,len)     //求子串
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;(6) StrCopy(&amp;amp;T,S)                       //串拷贝
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;(7) StrEmpty(S)                           //串判空
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;(8) ClearString (&amp;amp;S)                   //清空串
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;(9)  Index(S,T,pos)                     //子串的位置
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;(11) Replace(&amp;amp;S,T,V)                //串替换
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;(12) StrInsert(&amp;amp;S,pos,T)            //子串插入
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;(13) StrDelete(&amp;amp;S,pos,len)        //子串删除
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;(14) DestroyString(&amp;amp;S)             //串销毁
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;串的存储结构&#34;&gt;串的存储结构&lt;/h4&gt;
+&lt;p&gt;顺序存储：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;typedef struct{
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; char *ch;      //若串非空,则按串长分配存储区,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                //否则ch为NULL
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; int  length;   //串长度
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}HString;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;链式存储：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/%E4%B8%B2%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8/4634f9faa1b9319d3a2471fd395b0e2.png&#34;
+	width=&#34;877&#34;
+	height=&#34;357&#34;
+	srcset=&#34;https://sryasuka.fun/p/%E4%B8%B2%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8/4634f9faa1b9319d3a2471fd395b0e2_hu7c70d2b30dd0e7cac1cb4cac0f524f04_11280_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/%E4%B8%B2%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8/4634f9faa1b9319d3a2471fd395b0e2_hu7c70d2b30dd0e7cac1cb4cac0f524f04_11280_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;245&#34;
+		data-flex-basis=&#34;589px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;#define CHUNKSIZE 80       //可由用户定义的块大小
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;typedef struct Chunk{
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; char  ch[CHUNKSIZE];
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; struct Chunk *next;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}Chunk;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;typedef struct{
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; Chunk *head,*tail;      //串的头指针和尾指针
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; int curlen;             //串的当前长度
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}LString;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;链式存储的优缺点&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;优点：操作方便&lt;/li&gt;
+&lt;li&gt;缺点：存储密度较低&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;em&gt;PS: 存储密度 = 串值所占的存储位/实际分配的存储位&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;可以使用可将多个字符存放在一个结点中，以克服其缺点&lt;/strong&gt;&lt;/p&gt;
+&lt;h4 id=&#34;串的模式匹配算法&#34;&gt;串的模式匹配算法&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;BF算法&lt;/strong&gt; :&lt;/p&gt;
+&lt;p&gt;Index(S,T,pos)&lt;/p&gt;
+&lt;p&gt;将主串的第pos个字符和模式的第一个字符比较，若相等，继续逐个比较后续字符；
+若不等，从主串的下一字符起，重新与模式的第一个字符比较。&lt;/p&gt;
+&lt;p&gt;直到主串的一个连续子串字符序列与模式相等 。返回值为S中与T匹配的子序列第一个字符的序号，即匹配成功。&lt;/p&gt;
+&lt;p&gt;否则，匹配失败，返回值 0&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-C++&#34; data-lang=&#34;C++&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;Index&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;SString&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;S&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;SString&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;T&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;pos&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;pos&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;j&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;k&#34;&gt;while&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;S&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;j&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;T&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;     &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;S&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;T&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;j&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;o&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;j&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;     &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;else&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;j&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;j&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;j&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;T&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;   
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;T&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;k&#34;&gt;else&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/%E4%B8%B2%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8/1677312267808.jpg&#34;
+	width=&#34;763&#34;
+	height=&#34;257&#34;
+	srcset=&#34;https://sryasuka.fun/p/%E4%B8%B2%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8/1677312267808_hufeca99dc5160045cce64b25d508d9d8d_53531_480x0_resize_q75_box.jpg 480w, https://sryasuka.fun/p/%E4%B8%B2%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8/1677312267808_hufeca99dc5160045cce64b25d508d9d8d_53531_1024x0_resize_q75_box.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;296&#34;
+		data-flex-basis=&#34;712px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;BF算法时间复杂度&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;例： S=‘0000000001’，T=‘0001’，pos=1&lt;/p&gt;
+&lt;p&gt;若n为主串长度，m为子串长度，最坏情况是&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;主串前面n-m个位置都部分匹配到子串的最后一位，即这n-m位各比较了m次&lt;/li&gt;
+&lt;li&gt;最后m位也各比较了1次&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;总次数为：(n-m) * m+m＝(n-m+1) * m&lt;/p&gt;
+&lt;p&gt;若m &amp;laquo; n，则算法复杂度O(n*m)&lt;/p&gt;
+&lt;h2 id=&#34;数组&#34;&gt;数组&lt;/h2&gt;
+&lt;p&gt;本章的数组既可以是顺序的，也可以是链式结构，用户可根据需要选择。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/%E4%B8%B2%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8/a3e28b50cdc648321215fbdbebad162.png&#34;
+	width=&#34;747&#34;
+	height=&#34;566&#34;
+	srcset=&#34;https://sryasuka.fun/p/%E4%B8%B2%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8/a3e28b50cdc648321215fbdbebad162_hua26d11645460780a290917b590791a12_30206_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/%E4%B8%B2%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8/a3e28b50cdc648321215fbdbebad162_hua26d11645460780a290917b590791a12_30206_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;131&#34;
+		data-flex-basis=&#34;316px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;基本操作：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;```
+(1) InitArray (&amp;amp;A,n,bound1, boundn)     //构造数组A
+(2) DestroyArray (&amp;amp;A)                     // 销毁数组A
+(3) Value(A,&amp;amp;e,index1,…,indexn)   //取数组元素值
+(4) Assign (A,&amp;amp;e,index1,…,indexn) //给数组元素赋值
+```
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;一维数组&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/%E4%B8%B2%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8/4a895fb10cba357af629d841383853b.png&#34;
+	width=&#34;750&#34;
+	height=&#34;456&#34;
+	srcset=&#34;https://sryasuka.fun/p/%E4%B8%B2%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8/4a895fb10cba357af629d841383853b_huac6f0241f649ec97482ee483f92ff746_25660_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/%E4%B8%B2%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8/4a895fb10cba357af629d841383853b_huac6f0241f649ec97482ee483f92ff746_25660_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;164&#34;
+		data-flex-basis=&#34;394px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;二维数组&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/%E4%B8%B2%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8/f414f7af66b9f11a92bf29d90da79dc.png&#34;
+	width=&#34;757&#34;
+	height=&#34;563&#34;
+	srcset=&#34;https://sryasuka.fun/p/%E4%B8%B2%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8/f414f7af66b9f11a92bf29d90da79dc_hu762fdb624e37beb05a7091538caaa0c8_25744_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/%E4%B8%B2%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8/f414f7af66b9f11a92bf29d90da79dc_hu762fdb624e37beb05a7091538caaa0c8_25744_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;134&#34;
+		data-flex-basis=&#34;322px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/%E4%B8%B2%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8/4252eabe92e6c6e43a93abddbeb8ace.png&#34;
+	width=&#34;701&#34;
+	height=&#34;302&#34;
+	srcset=&#34;https://sryasuka.fun/p/%E4%B8%B2%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8/4252eabe92e6c6e43a93abddbeb8ace_huae3c1398daea288d89d2971c6a247179_18233_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/%E4%B8%B2%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8/4252eabe92e6c6e43a93abddbeb8ace_huae3c1398daea288d89d2971c6a247179_18233_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;232&#34;
+		data-flex-basis=&#34;557px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;行序优先的表示：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/%E4%B8%B2%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8/15952b38b5fb77bec9e7da20b4bb7d1.png&#34;
+	width=&#34;754&#34;
+	height=&#34;566&#34;
+	srcset=&#34;https://sryasuka.fun/p/%E4%B8%B2%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8/15952b38b5fb77bec9e7da20b4bb7d1_huf3b4cddc0e7526561c6e1569479c7ec9_36380_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/%E4%B8%B2%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8/15952b38b5fb77bec9e7da20b4bb7d1_huf3b4cddc0e7526561c6e1569479c7ec9_36380_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;133&#34;
+		data-flex-basis=&#34;319px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/%E4%B8%B2%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8/eac7029d1f0f3d07fe1eb41ae62aa76.png&#34;
+	width=&#34;725&#34;
+	height=&#34;356&#34;
+	srcset=&#34;https://sryasuka.fun/p/%E4%B8%B2%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8/eac7029d1f0f3d07fe1eb41ae62aa76_huca4c846ee7f77f36a2bf3b73dbe06f6b_21659_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/%E4%B8%B2%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8/eac7029d1f0f3d07fe1eb41ae62aa76_huca4c846ee7f77f36a2bf3b73dbe06f6b_21659_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;203&#34;
+		data-flex-basis=&#34;488px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;广义表&#34;&gt;广义表&lt;/h2&gt;
+&lt;p&gt;广义表（列表）: n (&amp;gt;=0)个表元素组成的有限序列，记作LS = (a0, a1, a2, …, an-1)&lt;/p&gt;
+&lt;p&gt;LS是表名，ai是表元素，它可以是表 (称为子表)，可以是数据元素(称为原子)。&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;PS:n为表的长度。n = 0 的广义表为空表&lt;/em&gt;&lt;/p&gt;
+&lt;h3 id=&#34;广义表的基本运算&#34;&gt;广义表的基本运算&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;求表头GetHead(L)：非空广义表的第一个元素，可以是一个单元素，也可以是一个子表&lt;/li&gt;
+&lt;li&gt;求表尾GetTail(L)：非空广义表除去表头元素以外其它元素所构成的表。表尾一定是一个表&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;练习  A=(a,b,(c,d),(e,(f,g)))&lt;/p&gt;
+&lt;p&gt;GetHead(GetTail(GetHead(GetTail(GetTail(A))))) = ?&lt;/p&gt;
+&lt;p&gt;解题过程&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;GetTail(A)= (b,(c,d),(e,(f,g))) = S&lt;/li&gt;
+&lt;li&gt;GetTail(S)=((c,d),(e,(f,g)))=S1&lt;/li&gt;
+&lt;li&gt;GetHead(S1)=(c,d)=S2&lt;/li&gt;
+&lt;li&gt;GetTail(S2)=(d)=S3&lt;/li&gt;
+&lt;li&gt;GetHead(S3)=d&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;广义表的特点&#34;&gt;广义表的特点&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;有次序性: 一个直接前驱和一个直接后继&lt;/li&gt;
+&lt;li&gt;有长度 ＝表中元素个数&lt;/li&gt;
+&lt;li&gt;有深度 ＝表中括号的重数&lt;/li&gt;
+&lt;li&gt;可递归: 自己可以作为自己的子表&lt;/li&gt;
+&lt;li&gt;可共享: 可以为其他广义表所共享&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        </item>
+        <item>
+        <title>图</title>
+        <link>https://sryasuka.fun/p/%E5%9B%BE/</link>
+        <pubDate>Sat, 25 Feb 2023 00:00:00 +0000</pubDate>
+        
+        <guid>https://sryasuka.fun/p/%E5%9B%BE/</guid>
+        <description>&lt;img src="https://sryasuka.fun/p/%E5%9B%BE/Pic.png" alt="Featured image of post 图" /&gt;&lt;h2 id=&#34;图的定义和基本术语&#34;&gt;图的定义和基本术语&lt;/h2&gt;
+&lt;p&gt;图：Graph=(V,E)&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;V：顶点(数据元素)的有穷非空集合；&lt;/li&gt;
+&lt;li&gt;E：边的有穷集合。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/%E5%9B%BE/1677320804059.jpg&#34;
+	width=&#34;221&#34;
+	height=&#34;249&#34;
+	srcset=&#34;https://sryasuka.fun/p/%E5%9B%BE/1677320804059_hu0f3bab7181634439615118cd25bc2195_3768_480x0_resize_q75_box.jpg 480w, https://sryasuka.fun/p/%E5%9B%BE/1677320804059_hu0f3bab7181634439615118cd25bc2195_3768_1024x0_resize_q75_box.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;88&#34;
+		data-flex-basis=&#34;213px&#34;
+	
+&gt;   &lt;img src=&#34;https://sryasuka.fun/p/%E5%9B%BE/1677320813608.jpg&#34;
+	width=&#34;228&#34;
+	height=&#34;257&#34;
+	srcset=&#34;https://sryasuka.fun/p/%E5%9B%BE/1677320813608_hu9a255b1c3bf7b11bbd6fcc4a415892f2_4740_480x0_resize_q75_box.jpg 480w, https://sryasuka.fun/p/%E5%9B%BE/1677320813608_hu9a255b1c3bf7b11bbd6fcc4a415892f2_4740_1024x0_resize_q75_box.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;88&#34;
+		data-flex-basis=&#34;212px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;有向图： 每条边都是有方向的&lt;/li&gt;
+&lt;li&gt;无向图： 每条边都是无方向的&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/%E5%9B%BE/1677320963681.jpg&#34;
+	width=&#34;264&#34;
+	height=&#34;267&#34;
+	srcset=&#34;https://sryasuka.fun/p/%E5%9B%BE/1677320963681_huf979c344818959caba0fe1621d939ffb_14886_480x0_resize_q75_box.jpg 480w, https://sryasuka.fun/p/%E5%9B%BE/1677320963681_huf979c344818959caba0fe1621d939ffb_14886_1024x0_resize_q75_box.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;98&#34;
+		data-flex-basis=&#34;237px&#34;
+	
+&gt;   &lt;img src=&#34;https://sryasuka.fun/p/%E5%9B%BE/1677320973124.jpg&#34;
+	width=&#34;292&#34;
+	height=&#34;297&#34;
+	srcset=&#34;https://sryasuka.fun/p/%E5%9B%BE/1677320973124_huf7d1dbc9d6af03e8f59f283b8180c817_25623_480x0_resize_q75_box.jpg 480w, https://sryasuka.fun/p/%E5%9B%BE/1677320973124_huf7d1dbc9d6af03e8f59f283b8180c817_25623_1024x0_resize_q75_box.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;98&#34;
+		data-flex-basis=&#34;235px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;完全图：任意两个点都有一条边相连&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;无向完全图：n(n-1)/2 条边&lt;/li&gt;
+&lt;li&gt;有向完全图：n(n-1) 条边&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;稀疏图：有很少边或弧的图。&lt;/p&gt;
+&lt;p&gt;稠密图：有较多边或弧的图。&lt;/p&gt;
+&lt;p&gt;网：边/弧带权的图。&lt;/p&gt;
+&lt;p&gt;邻接：有边/弧相连的两个顶点之间的关系。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;存在(vi, vj)，则称vi和vj互为邻接点；&lt;/li&gt;
+&lt;li&gt;存在&amp;lt;vi, vj&amp;gt;，则称vi邻接到vj， vj邻接于vi&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;关联(依附)：边/弧与顶点之间的关系。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;存在(vi, vj)/ &amp;lt;vi, vj&amp;gt;， 则称该边/弧关联于vi和vj&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;顶点的度：与该顶点相关联的边的数目，记为TD(v)&lt;/p&gt;
+&lt;p&gt;在有向图中, 顶点的度等于该顶点的入度与出度之和。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;顶点 v 的入度是以 v 为终点的有向边的条数, 记作 ID(v)&lt;/li&gt;
+&lt;li&gt;顶点 v 的出度是以 v 为始点的有向边的条数, 记作OD(v)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;有向树：仅1个顶点的入度为0,其余顶点的入度均为1&lt;/p&gt;
+&lt;p&gt;路径：接续的边构成的顶点序列。&lt;/p&gt;
+&lt;p&gt;路径长度：路径上边或弧的数目/权值之和。&lt;/p&gt;
+&lt;p&gt;回路(环)：第一个顶点和最后一个顶点相同的路径。&lt;/p&gt;
+&lt;p&gt;简单路径：除路径起点和终点可以相同外，其余顶点均不相同的路径。&lt;/p&gt;
+&lt;p&gt;简单回路(简单环)：除路径起点和终点相同外，其余顶点均不相同的路径。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/%E5%9B%BE/1677322384188.jpg&#34;
+	width=&#34;656&#34;
+	height=&#34;228&#34;
+	srcset=&#34;https://sryasuka.fun/p/%E5%9B%BE/1677322384188_hu195de8d52eda8eadec2639790107baea_27340_480x0_resize_q75_box.jpg 480w, https://sryasuka.fun/p/%E5%9B%BE/1677322384188_hu195de8d52eda8eadec2639790107baea_27340_1024x0_resize_q75_box.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;287&#34;
+		data-flex-basis=&#34;690px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;连通图（强连通图）：&lt;/p&gt;
+&lt;p&gt;在无（有）向图G=( V, {E} )中，若对任何两个顶点 v、u 都存在从v 到 u 的路径，则称G是连通图（强连通图）。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/%E5%9B%BE/1677322669217.png&#34;
+	width=&#34;680&#34;
+	height=&#34;337&#34;
+	srcset=&#34;https://sryasuka.fun/p/%E5%9B%BE/1677322669217_hu7e5612c7716e33cb622d1ed51f3e73a2_32228_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/%E5%9B%BE/1677322669217_hu7e5612c7716e33cb622d1ed51f3e73a2_32228_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;201&#34;
+		data-flex-basis=&#34;484px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;图的类型定义&#34;&gt;图的类型定义&lt;/h2&gt;
+&lt;p&gt;CreateGraph(&amp;amp;G,V,VR)&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;初始条件：V是图的顶点集，VR是图中弧的集合。&lt;/li&gt;
+&lt;li&gt;操作结果：按V和VR的定义构造图G。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;DFSTraverse(G)&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;初始条件：图G存在。&lt;/li&gt;
+&lt;li&gt;操作结果：对图进行深度优先遍历。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;BFSTraverse(G)&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;初始条件：图G存在。&lt;/li&gt;
+&lt;li&gt;操作结果：对图进行广度优先遍历。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;邻接矩阵&#34;&gt;邻接矩阵&lt;/h3&gt;
+&lt;p&gt;邻接矩阵：建立一个顶点表（记录各个顶点信息）和一个邻接矩阵（表示各个顶点之间关系）&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/%E5%9B%BE/1677323005614.png&#34;
+	width=&#34;761&#34;
+	height=&#34;567&#34;
+	srcset=&#34;https://sryasuka.fun/p/%E5%9B%BE/1677323005614_hu9c004404cd879e64504a822e6ac2772c_49964_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/%E5%9B%BE/1677323005614_hu9c004404cd879e64504a822e6ac2772c_49964_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;134&#34;
+		data-flex-basis=&#34;322px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/%E5%9B%BE/1677323093843.png&#34;
+	width=&#34;760&#34;
+	height=&#34;571&#34;
+	srcset=&#34;https://sryasuka.fun/p/%E5%9B%BE/1677323093843_hu380cdea7289da6597b17cceabfd94a16_69799_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/%E5%9B%BE/1677323093843_hu380cdea7289da6597b17cceabfd94a16_69799_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;133&#34;
+		data-flex-basis=&#34;319px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/%E5%9B%BE/1677323160750.png&#34;
+	width=&#34;763&#34;
+	height=&#34;393&#34;
+	srcset=&#34;https://sryasuka.fun/p/%E5%9B%BE/1677323160750_hu259cdd74dbd982670ff9bfa04291aaf5_41294_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/%E5%9B%BE/1677323160750_hu259cdd74dbd982670ff9bfa04291aaf5_41294_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;194&#34;
+		data-flex-basis=&#34;465px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h4 id=&#34;邻接矩阵的特点&#34;&gt;邻接矩阵的特点&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;优点：容易实现图的操作，如：求某顶点的度、判断顶点之间是否有边、找顶点的邻接点等等。&lt;/li&gt;
+&lt;li&gt;缺点：n个顶点需要n*n个单元存储边;空间效率为O(n2)。 对稀疏图而言尤其浪费空间。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;邻接矩阵的储存表示&#34;&gt;邻接矩阵的储存表示&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;#define MaxInt 32767                    	//表示极大值，即∞
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;#define MVNum 100                       	//最大顶点数 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;typedef char VerTexType;              	//假设顶点的数据类型为字符型 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;typedef int ArcType;                  	//假设边的权值类型为整型 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;typedef struct{ 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;VerTexType vexs[MVNum];            		//顶点表 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ArcType arcs[MVNum][MVNum];      		//邻接矩阵 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;int vexnum,arcnum;                		//图的当前点数和边数 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}AMGraph; 
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;采用邻接矩阵表示法创建无向网&#34;&gt;采用邻接矩阵表示法创建无向网&lt;/h4&gt;
+&lt;p&gt;算法思路：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;输入总顶点数和总边数。&lt;/li&gt;
+&lt;li&gt;依次输入点的信息存入顶点表中。&lt;/li&gt;
+&lt;li&gt;初始化邻接矩阵，使每个权值初始化为极大值。&lt;/li&gt;
+&lt;li&gt;构造邻接矩阵。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Status CreateUDN(AMGraph &amp;amp;G){ 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    //采用邻接矩阵表示法，创建无向网G 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    cin&amp;gt;&amp;gt;G.vexnum&amp;gt;&amp;gt;G.arcnum; 	//输入总顶点数，总边数 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    for(i = 0; i&amp;lt;G.vexnum; ++i)    
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      cin&amp;gt;&amp;gt;G.vexs[i];                        	//依次输入点的信息 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    for(i = 0; i&amp;lt;G.vexnum;++i) 	//初始化邻接矩阵，边的权值均置为极大值
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;       for(j = 0; j&amp;lt;G.vexnum;++j)   
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;         G.arcs[i][j] = MaxInt;   
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    for(k = 0; k&amp;lt;G.arcnum;++k){                     //构造邻接矩阵 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      cin&amp;gt;&amp;gt;v1&amp;gt;&amp;gt;v2&amp;gt;&amp;gt;w;                                 //输入一条边依附的顶点及权值 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      i = LocateVex(G, v1);  j = LocateVex(G, v2);  //确定v1和v2在G中的位置
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      G.arcs[i][j] = w; //边&amp;lt;v1, v2&amp;gt;的权值置为w 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      G.arcs[j][i] = G.arcs[i][j];              //置&amp;lt;v1, v2&amp;gt;的对称边&amp;lt;v2, v1&amp;gt;的权值为w 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   }//for 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   return OK; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}//CreateUDN 
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; int LocateVex(MGraph G,VertexType u)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; {//存在则返回u在顶点表中的下标;否则返回-1
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   int i;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   for(i=0;i&amp;lt;G.vexnum;++i)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;     if(u==G.vexs[i])
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;       return i;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   return -1;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; }
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;邻接表&#34;&gt;邻接表&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/%E5%9B%BE/1677323643681.png&#34;
+	width=&#34;762&#34;
+	height=&#34;572&#34;
+	srcset=&#34;https://sryasuka.fun/p/%E5%9B%BE/1677323643681_huc30296167c860954eda46b861eca334d_81392_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/%E5%9B%BE/1677323643681_huc30296167c860954eda46b861eca334d_81392_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;133&#34;
+		data-flex-basis=&#34;319px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/%E5%9B%BE/1677323688187.png&#34;
+	width=&#34;763&#34;
+	height=&#34;569&#34;
+	srcset=&#34;https://sryasuka.fun/p/%E5%9B%BE/1677323688187_hu1a3e68663a7ad54ab3dab8ee6b04fc54_54174_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/%E5%9B%BE/1677323688187_hu1a3e68663a7ad54ab3dab8ee6b04fc54_54174_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;134&#34;
+		data-flex-basis=&#34;321px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/%E5%9B%BE/1677323724554.png&#34;
+	width=&#34;762&#34;
+	height=&#34;528&#34;
+	srcset=&#34;https://sryasuka.fun/p/%E5%9B%BE/1677323724554_hu11ba1c579de66562abd5f4591837626e_51259_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/%E5%9B%BE/1677323724554_hu11ba1c579de66562abd5f4591837626e_51259_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;144&#34;
+		data-flex-basis=&#34;346px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h4 id=&#34;邻接表的特点&#34;&gt;邻接表的特点&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;优点：空间效率高，容易寻找顶点的邻接点；&lt;/li&gt;
+&lt;li&gt;缺点：判断两顶点间是否有边或弧，需搜索两结点对应的单链表，没有邻接矩阵方便。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;邻接表的储存表示&#34;&gt;邻接表的储存表示&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;#define MVNum 100                        	//最大顶点数 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;typedef struct ArcNode{                		//边结点 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    int adjvex;                          		//该边所指向的顶点的位置 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    struct ArcNode * nextarc;          	//指向下一条边的指针 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    OtherInfo info;                      	              //和边相关的信息 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}ArcNode; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;typedef struct VNode{ 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    VerTexType data;                    	//顶点信息 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    ArcNode * firstarc;                	//指向第一条依附该顶点的边的指针 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}VNode, AdjList[MVNum];               	//AdjList表示邻接表类型 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;typedef struct{ 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    AdjList vertices;                 		//邻接表 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    int vexnum, arcnum;              		//图的当前顶点数和边数 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}ALGraph; 
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;采用邻接表表示法创建无向网&#34;&gt;采用邻接表表示法创建无向网&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;输入总顶点数和总边数。&lt;/li&gt;
+&lt;li&gt;依次输入点的信息存入顶点表中，使每个表头结点的指针域初始化为NULL。&lt;/li&gt;
+&lt;li&gt;创建邻接表。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Status CreateUDG(ALGraph &amp;amp;G){ 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;　　//采用邻接表表示法，创建无向图G 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;　  cin&amp;gt;&amp;gt;G.vexnum&amp;gt;&amp;gt;G.arcnum;               	//输入总顶点数，总边数 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    for(i = 0; i&amp;lt;G.vexnum; ++i){          	//输入各点，构造表头结点表 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;       cin&amp;gt;&amp;gt; G.vertices[i].data;           	//输入顶点值 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;       G.vertices[i].firstarc=NULL;       	//初始化表头结点的指针域为NULL 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    }//for 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    for(k = 0; k&amp;lt;G.arcnum;++k){        		//输入各边，构造邻接表 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;       cin&amp;gt;&amp;gt;v1&amp;gt;&amp;gt;v2;                 			//输入一条边依附的两个顶点 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;       i = LocateVex(G, v1);  j = LocateVex(G, v2);    
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;       p1=new ArcNode;               			//生成一个新的边结点*p1 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;　　  p1-&amp;gt;adjvex=j;                   			//邻接点序号为j 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;　  　p1-&amp;gt;nextarc= G.vertices[i].firstarc;  G.vertices[i].firstarc=p1;  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      //将新结点*p1插入顶点vi的边表头部 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      p2=new ArcNode; //生成另一个对称的新的边结点*p2 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;　　  p2-&amp;gt;adjvex=i;                   			//邻接点序号为i 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;　  　p2-&amp;gt;nextarc= G.vertices[j].firstarc;  G.vertices[j].firstarc=p2;  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      //将新结点*p2插入顶点vj的边表头部 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    }//for 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    return OK; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}//CreateUDG 
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;图的遍历&#34;&gt;图的遍历&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/%E5%9B%BE/1677324115842.png&#34;
+	width=&#34;764&#34;
+	height=&#34;570&#34;
+	srcset=&#34;https://sryasuka.fun/p/%E5%9B%BE/1677324115842_huec6e7eb849eef08ac621abc1cf106517_197946_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/%E5%9B%BE/1677324115842_huec6e7eb849eef08ac621abc1cf106517_197946_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;134&#34;
+		data-flex-basis=&#34;321px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/%E5%9B%BE/1677324138907.png&#34;
+	width=&#34;776&#34;
+	height=&#34;589&#34;
+	srcset=&#34;https://sryasuka.fun/p/%E5%9B%BE/1677324138907_hu121290c17ab91438314baf8547b4eecc_370565_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/%E5%9B%BE/1677324138907_hu121290c17ab91438314baf8547b4eecc_370565_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;131&#34;
+		data-flex-basis=&#34;316px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;深度优先的DFS算法&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;void DFS(ALGraph G, int v){        		//图G为邻接表类型 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  cout&amp;lt;&amp;lt;v;  visited[v] = true;    		//访问第v个顶点
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  p= G.vertices[v].firstarc;     //p指向v的边链表的第一个边结点 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;while(p!=NULL){              	//边结点非空 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  w=p-&amp;gt;adjvex;               	//表示w是v的邻接点 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  if(!visited[w])  DFS(G, w); 	//如果w未访问，则递归调用DFS 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  p=p-&amp;gt;nextarc;                	//p指向下一个边结点 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; } 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;} 
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;广度优先的BFS算法&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;void BFS (Graph G, int v){ 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    //按广度优先非递归遍历连通图G 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    cout&amp;lt;&amp;lt;v; visited[v] = true;     		//访问第v个顶点
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    InitQueue(Q);              			//辅助队列Q初始化，置空         
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    EnQueue(Q, v);            			//v进队 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    while(!QueueEmpty(Q)){   		//队列非空 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;       DeQueue(Q, u);        			//队头元素出队并置为u 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;       for(w = FirstAdjVex(G, u); w&amp;gt;=0; w = NextAdjVex(G, u, w)) 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;       if(!visited[w]){               	//w为u的尚未访问的邻接顶点 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;             cout&amp;lt;&amp;lt;w; visited[w] = true;	EnQueue(Q, w); //w进队 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;          }//if 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    }//while 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}//BFS 
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;最小生成树&#34;&gt;最小生成树&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  void ShortestPath_DIJ(AMGraph G, int v0){ 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    //用Dijkstra算法求有向网G的v0顶点到其余顶点的最短路径 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    n=G.vexnum;                    		//n为G中顶点的个数 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    for(v = 0; v&amp;lt;n; ++v){             	//n个顶点依次初始化 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;       S[v] = false;                  	//S初始为空集 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;       D[v] = G.arcs[v0][v];           	//将v0到各个终点的最短路径长度初始化 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;       if(D[v]&amp;lt; MaxInt)  Path [v]=v0; //v0和v之间有弧，将v的前驱置为v0 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;       else Path [v]=-1;               	//如果v0和v之间无弧，则将v的前驱置为-1 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      }//for 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      S[v0]=true;                    	//将v0加入S 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      D[v0]=0;                      		//源点到源点的距离为0 	
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      /*―开始主循环，每次求得v0到某个顶点v的最短路径，将v加到S集―*/ 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      for(i=1;i&amp;lt;n; ++i){               	//对其余n−1个顶点，依次进行计算 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        min= MaxInt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        for(w=0;w&amp;lt;n; ++w) 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;          if(!S[w]&amp;amp;&amp;amp;D[w]&amp;lt;min)  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;              {v=w; min=D[w];}         	//选择一条当前的最短路径，终点为v 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        S[v]=true;                   		//将v加入S 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        for(w=0;w&amp;lt;n; ++w) 	//更新从v0出发到集合V−S上所有顶点的最短路径长度 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        if(!S[w]&amp;amp;&amp;amp;(D[v]+G.arcs[v][w]&amp;lt;D[w])){ 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;             D[w]=D[v]+G.arcs[v][w];   	//更新D[w] 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;             Path [w]=v;              		//更改w的前驱为v 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        }//if 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    }//for       
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}//ShortestPath_DIJ 
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
+        </item>
+        <item>
+        <title>查找</title>
+        <link>https://sryasuka.fun/p/%E6%9F%A5%E6%89%BE/</link>
+        <pubDate>Sat, 25 Feb 2023 00:00:00 +0000</pubDate>
+        
+        <guid>https://sryasuka.fun/p/%E6%9F%A5%E6%89%BE/</guid>
+        <description>&lt;img src="https://sryasuka.fun/p/%E6%9F%A5%E6%89%BE/Find.png" alt="Featured image of post 查找" /&gt;&lt;h2 id=&#34;查找基本概念&#34;&gt;查找基本概念&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;查找表:
+由同一类型的数据元素（或记录）构成的集合&lt;/li&gt;
+&lt;li&gt;静态查找表：
+查找的同时对查找表不做修改操作（如插入和删除）&lt;/li&gt;
+&lt;li&gt;动态查找表：
+查找的同时对查找表具有修改操作&lt;/li&gt;
+&lt;li&gt;关键字
+记录中某个数据项的值，可用来识别一个记录&lt;/li&gt;
+&lt;li&gt;主关键字：
+唯一标识数据元素&lt;/li&gt;
+&lt;li&gt;次关键字：
+可以标识若干个数据元素&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;线性表查找&#34;&gt;线性表查找&lt;/h2&gt;
+&lt;h3 id=&#34;顺序查找&#34;&gt;顺序查找&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;int LocateELem(SqList L,ElemType e)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;{  for (i=0;i&amp;lt; L.length;i++)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      if (L.elem[i]==e) return i+1;                
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  return 0;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;改进&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;int Search_Seq( SSTable  ST , KeyType  key ){
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   //若成功返回其位置信息，否则返回0
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  ST.R[0].key =key;   
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; for( i=ST.length; ST.R[ i ].key!=key;  - - i  );
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; //不用for(i=n; i&amp;gt;0; - -i) 或 for(i=1; i&amp;lt;=n; i++)  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   return i; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;时间复杂度: O(n)  (n+1)/2&lt;/p&gt;
+&lt;h3 id=&#34;折半查找&#34;&gt;折半查找&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;int Search_Bin(SSTable ST,KeyType key){
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;//若找到，则函数值为该元素在表中的位置，否则为0
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    low=1;high=ST.length;						 while(low&amp;lt;=high){
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        mid=(low+high)/2;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        if(key==ST.R[mid].key) return mid; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        else if(key&amp;lt;ST.R[mid].key) high=mid-1;//前一子表查找
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        else low=mid+1;                       		//后一子表查找
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    }									    return 0;		//表中不存在待查元素
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;时间复杂度 O(log2 n)&lt;/p&gt;
+&lt;p&gt;不适合用链表适合用顺序表&lt;/p&gt;
+&lt;h3 id=&#34;分块查找&#34;&gt;分块查找&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/%E6%9F%A5%E6%89%BE/1677326497415.jpg&#34;
+	width=&#34;708&#34;
+	height=&#34;90&#34;
+	srcset=&#34;https://sryasuka.fun/p/%E6%9F%A5%E6%89%BE/1677326497415_hub18eb5fd47e148182ad7ea90a4a95a6e_4289_480x0_resize_q75_box.jpg 480w, https://sryasuka.fun/p/%E6%9F%A5%E6%89%BE/1677326497415_hub18eb5fd47e148182ad7ea90a4a95a6e_4289_1024x0_resize_q75_box.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;786&#34;
+		data-flex-basis=&#34;1888px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;效率比顺序快比折半慢&lt;/p&gt;
+&lt;h2 id=&#34;树查找&#34;&gt;树查找&lt;/h2&gt;
+&lt;h3 id=&#34;二叉排序树&#34;&gt;二叉排序树&lt;/h3&gt;
+&lt;p&gt;二叉排序树或是空树，或是满足如下性质的二叉树：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;若其左子树非空，则左子树上所有结点的值均小于根结点的值；&lt;/li&gt;
+&lt;li&gt;若其右子树非空，则右子树上所有结点的值均大于等于根结点的值；&lt;/li&gt;
+&lt;li&gt;其左右子树本身又各是一棵二叉排序树&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/%E6%9F%A5%E6%89%BE/1677326802960.jpg&#34;
+	width=&#34;464&#34;
+	height=&#34;343&#34;
+	srcset=&#34;https://sryasuka.fun/p/%E6%9F%A5%E6%89%BE/1677326802960_hu1ba8ad765fbdfad758f6c3384dce0383_37610_480x0_resize_q75_box.jpg 480w, https://sryasuka.fun/p/%E6%9F%A5%E6%89%BE/1677326802960_hu1ba8ad765fbdfad758f6c3384dce0383_37610_1024x0_resize_q75_box.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;135&#34;
+		data-flex-basis=&#34;324px&#34;
+	
+&gt;    &lt;img src=&#34;https://sryasuka.fun/p/%E6%9F%A5%E6%89%BE/1677326764761.jpg&#34;
+	width=&#34;496&#34;
+	height=&#34;342&#34;
+	srcset=&#34;https://sryasuka.fun/p/%E6%9F%A5%E6%89%BE/1677326764761_hud05125093166811e0ba17be8e23e3237_30559_480x0_resize_q75_box.jpg 480w, https://sryasuka.fun/p/%E6%9F%A5%E6%89%BE/1677326764761_hud05125093166811e0ba17be8e23e3237_30559_1024x0_resize_q75_box.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;145&#34;
+		data-flex-basis=&#34;348px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;右图 左分树 6 在 4 下 不是二叉排序树&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;BSTree SearchBST(BSTree T,KeyType key) {
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   if((!T) || key==T-&amp;gt;data.key) return T;       	 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   else if (key&amp;lt;T-&amp;gt;data.key)  return SearchBST(T-&amp;gt;lchild,key);	//在左子树中继续查找
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   else return SearchBST(T-&amp;gt;rchild,key);    		   		//在右子树中继续查找
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;} // SearchBST
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
+        </item>
+        <item>
         <title>Linux 05.06.13</title>
         <link>https://sryasuka.fun/p/linux-05.06.13/</link>
         <pubDate>Wed, 22 Feb 2023 00:00:00 +0000</pubDate>
@@ -2125,14 +3128,6 @@
 &lt;/div&gt;&lt;p&gt;相册语法来自 &lt;a class=&#34;link&#34; href=&#34;https://typlog.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Typlog&lt;/a&gt;&lt;/p&gt;
 </description>
-        </item>
-        <item>
-        <title></title>
-        <link>https://sryasuka.fun/p/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-        
-        <guid>https://sryasuka.fun/p/</guid>
-        <description></description>
         </item>
         
     </channel>

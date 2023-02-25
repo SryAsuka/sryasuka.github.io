@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='串、数组和广义表'>
+<title>串、数组和广义表</title>
+
+<link rel='canonical' href='https://sryasuka.fun/p/%E4%B8%B2%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8/'>
+
+<link rel="stylesheet" href="/scss/style.min.5be32ca3f6e1a997c75795c4359147cc6d4fbd34948c0acd51e31d237033978a.css"><meta property='og:title' content='串、数组和广义表'>
+<meta property='og:description' content='串、数组和广义表'>
+<meta property='og:url' content='https://sryasuka.fun/p/%E4%B8%B2%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8/'>
+<meta property='og:site_name' content='SryAsuka'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2023-02-25T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2023-02-25T00:00:00&#43;00:00'/><meta property='og:image' content='https://sryasuka.fun/p/%E4%B8%B2%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8/SAAGT.png' />
+<meta name="twitter:title" content="串、数组和广义表">
+<meta name="twitter:description" content="串、数组和广义表"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://sryasuka.fun/p/%E4%B8%B2%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8/SAAGT.png' />
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu4ae24c0d6920a998f721630cfb7a6277_6068_300x0_resize_box_3.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">✨</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">SryAsuka</a></h1>
+            <h2 class="site-description">Where of what&#39;s past is prologue.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/SryAsuka'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://sryasuka.fun/index.xml'
+                        target="_blank"
+                        title="RSS"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-rss" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="5" cy="19" r="1" />
+  <path d="M4 4a16 16 0 0 1 16 16" />
+  <path d="M4 11a9 9 0 0 1 9 9" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com/SryAsuka'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/s/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/s/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/s/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/links/s/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#串">串</a>
+      <ol>
+        <li><a href="#串的定义">串的定义</a></li>
+        <li><a href="#串的类型定义存储结构及运算">串的类型定义、存储结构及运算</a>
+          <ol>
+            <li><a href="#串的存储结构">串的存储结构</a></li>
+            <li><a href="#串的模式匹配算法">串的模式匹配算法</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#数组">数组</a></li>
+    <li><a href="#广义表">广义表</a>
+      <ol>
+        <li><a href="#广义表的基本运算">广义表的基本运算</a></li>
+        <li><a href="#广义表的特点">广义表的特点</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/%E4%B8%B2%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8/">
+                <img src="/p/%E4%B8%B2%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8/SAAGT_hu2dc5c42be9f281dc0f35b02f70637176_36037_800x0_resize_box_3.png"
+                        srcset="/p/%E4%B8%B2%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8/SAAGT_hu2dc5c42be9f281dc0f35b02f70637176_36037_800x0_resize_box_3.png 800w, /p/%E4%B8%B2%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8/SAAGT_hu2dc5c42be9f281dc0f35b02f70637176_36037_1600x0_resize_box_3.png 1600w"
+                        width="800" 
+                        height="603" 
+                        loading="lazy"
+                        alt="Featured image of post 串、数组和广义表" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/data-structure/" style="background-color: #2a9d8f; color: #fff;">
+                Data structure
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/%E4%B8%B2%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8/">串、数组和广义表</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            串、数组和广义表
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Feb 25, 2023</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    2 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="串">串</h2>
+<h3 id="串的定义">串的定义</h3>
+<p>串(String)&mdash;-零个或多个字符组成的有限序列</p>
+<p><img src="/p/%E4%B8%B2%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8/fe3f8967a8372b60cc8f93aac31966c.png"
+	width="670"
+	height="337"
+	srcset="/p/%E4%B8%B2%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8/fe3f8967a8372b60cc8f93aac31966c_hu15977babbe31143af00a3c1de44496ad_9708_480x0_resize_box_3.png 480w, /p/%E4%B8%B2%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8/fe3f8967a8372b60cc8f93aac31966c_hu15977babbe31143af00a3c1de44496ad_9708_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="198"
+		data-flex-basis="477px"
+	
+></p>
+<h3 id="串的类型定义存储结构及运算">串的类型定义、存储结构及运算</h3>
+<p><img src="/p/%E4%B8%B2%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8/daeab1bb816463a2424d9c84d237892.png"
+	width="698"
+	height="168"
+	srcset="/p/%E4%B8%B2%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8/daeab1bb816463a2424d9c84d237892_hu1eec1911e094b5f8bb986c7159455362_12436_480x0_resize_box_3.png 480w, /p/%E4%B8%B2%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8/daeab1bb816463a2424d9c84d237892_hu1eec1911e094b5f8bb986c7159455362_12436_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="415"
+		data-flex-basis="997px"
+	
+></p>
+<p>基本操作：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">(1)  StrAssign (&amp;T,chars)                //串赋值
+</span></span><span class="line"><span class="cl">(2) StrCompare (S,T)                      //串比较
+</span></span><span class="line"><span class="cl">(3) StrLength (S)                             //求串长
+</span></span><span class="line"><span class="cl">(4) Concat(&amp;T,S1,S2)                     //串联     
+</span></span><span class="line"><span class="cl">(5) SubString(&amp;Sub,S,pos,len)     //求子串
+</span></span><span class="line"><span class="cl">(6) StrCopy(&amp;T,S)                       //串拷贝
+</span></span><span class="line"><span class="cl">(7) StrEmpty(S)                           //串判空
+</span></span><span class="line"><span class="cl">(8) ClearString (&amp;S)                   //清空串
+</span></span><span class="line"><span class="cl">(9)  Index(S,T,pos)                     //子串的位置
+</span></span><span class="line"><span class="cl">(11) Replace(&amp;S,T,V)                //串替换
+</span></span><span class="line"><span class="cl">(12) StrInsert(&amp;S,pos,T)            //子串插入
+</span></span><span class="line"><span class="cl">(13) StrDelete(&amp;S,pos,len)        //子串删除
+</span></span><span class="line"><span class="cl">(14) DestroyString(&amp;S)             //串销毁
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="串的存储结构">串的存储结构</h4>
+<p>顺序存储：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">typedef struct{
+</span></span><span class="line"><span class="cl"> char *ch;      //若串非空,则按串长分配存储区,
+</span></span><span class="line"><span class="cl">                //否则ch为NULL
+</span></span><span class="line"><span class="cl"> int  length;   //串长度
+</span></span><span class="line"><span class="cl">}HString;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>链式存储：</p>
+<p><img src="/p/%E4%B8%B2%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8/4634f9faa1b9319d3a2471fd395b0e2.png"
+	width="877"
+	height="357"
+	srcset="/p/%E4%B8%B2%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8/4634f9faa1b9319d3a2471fd395b0e2_hu7c70d2b30dd0e7cac1cb4cac0f524f04_11280_480x0_resize_box_3.png 480w, /p/%E4%B8%B2%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8/4634f9faa1b9319d3a2471fd395b0e2_hu7c70d2b30dd0e7cac1cb4cac0f524f04_11280_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="245"
+		data-flex-basis="589px"
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">#define CHUNKSIZE 80       //可由用户定义的块大小
+</span></span><span class="line"><span class="cl">typedef struct Chunk{
+</span></span><span class="line"><span class="cl"> char  ch[CHUNKSIZE];
+</span></span><span class="line"><span class="cl"> struct Chunk *next;
+</span></span><span class="line"><span class="cl">}Chunk;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">typedef struct{
+</span></span><span class="line"><span class="cl"> Chunk *head,*tail;      //串的头指针和尾指针
+</span></span><span class="line"><span class="cl"> int curlen;             //串的当前长度
+</span></span><span class="line"><span class="cl">}LString;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>链式存储的优缺点</p>
+<ol>
+<li>优点：操作方便</li>
+<li>缺点：存储密度较低</li>
+</ol>
+<p><em>PS: 存储密度 = 串值所占的存储位/实际分配的存储位</em></p>
+<p><strong>可以使用可将多个字符存放在一个结点中，以克服其缺点</strong></p>
+<h4 id="串的模式匹配算法">串的模式匹配算法</h4>
+<p><strong>BF算法</strong> :</p>
+<p>Index(S,T,pos)</p>
+<p>将主串的第pos个字符和模式的第一个字符比较，若相等，继续逐个比较后续字符；
+若不等，从主串的下一字符起，重新与模式的第一个字符比较。</p>
+<p>直到主串的一个连续子串字符序列与模式相等 。返回值为S中与T匹配的子序列第一个字符的序号，即匹配成功。</p>
+<p>否则，匹配失败，返回值 0</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">Index</span><span class="p">(</span><span class="n">SString</span> <span class="n">S</span><span class="p">,</span><span class="n">SString</span> <span class="n">T</span><span class="p">,</span><span class="kt">int</span> <span class="n">pos</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="n">pos</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">  <span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">while</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;=</span> <span class="n">S</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&amp;&amp;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">T</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">){</span>
+</span></span><span class="line"><span class="cl">     <span class="k">if</span> <span class="p">(</span> <span class="n">S</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">T</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="p">){</span>
+</span></span><span class="line"><span class="cl">      <span class="o">++</span><span class="n">i</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">     <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">{</span> 
+</span></span><span class="line"><span class="cl">      <span class="n">i</span><span class="o">=</span><span class="n">i</span><span class="o">-</span><span class="n">j</span><span class="o">+</span><span class="mi">2</span><span class="p">;</span> <span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span><span class="p">(</span> <span class="n">j</span> <span class="o">&gt;</span> <span class="n">T</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">)</span>   
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">i</span> <span class="o">-</span> <span class="n">T</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">  <span class="k">else</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="/p/%E4%B8%B2%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8/1677312267808.jpg"
+	width="763"
+	height="257"
+	srcset="/p/%E4%B8%B2%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8/1677312267808_hufeca99dc5160045cce64b25d508d9d8d_53531_480x0_resize_q75_box.jpg 480w, /p/%E4%B8%B2%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8/1677312267808_hufeca99dc5160045cce64b25d508d9d8d_53531_1024x0_resize_q75_box.jpg 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="296"
+		data-flex-basis="712px"
+	
+></p>
+<p><strong>BF算法时间复杂度</strong></p>
+<p>例： S=‘0000000001’，T=‘0001’，pos=1</p>
+<p>若n为主串长度，m为子串长度，最坏情况是</p>
+<ol>
+<li>主串前面n-m个位置都部分匹配到子串的最后一位，即这n-m位各比较了m次</li>
+<li>最后m位也各比较了1次</li>
+</ol>
+<p>总次数为：(n-m) * m+m＝(n-m+1) * m</p>
+<p>若m &laquo; n，则算法复杂度O(n*m)</p>
+<h2 id="数组">数组</h2>
+<p>本章的数组既可以是顺序的，也可以是链式结构，用户可根据需要选择。</p>
+<p><img src="/p/%E4%B8%B2%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8/a3e28b50cdc648321215fbdbebad162.png"
+	width="747"
+	height="566"
+	srcset="/p/%E4%B8%B2%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8/a3e28b50cdc648321215fbdbebad162_hua26d11645460780a290917b590791a12_30206_480x0_resize_box_3.png 480w, /p/%E4%B8%B2%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8/a3e28b50cdc648321215fbdbebad162_hua26d11645460780a290917b590791a12_30206_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="131"
+		data-flex-basis="316px"
+	
+></p>
+<p>基本操作：</p>
+<pre><code>```
+(1) InitArray (&amp;A,n,bound1, boundn)     //构造数组A
+(2) DestroyArray (&amp;A)                     // 销毁数组A
+(3) Value(A,&amp;e,index1,…,indexn)   //取数组元素值
+(4) Assign (A,&amp;e,index1,…,indexn) //给数组元素赋值
+```
+</code></pre>
+<p>一维数组</p>
+<p><img src="/p/%E4%B8%B2%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8/4a895fb10cba357af629d841383853b.png"
+	width="750"
+	height="456"
+	srcset="/p/%E4%B8%B2%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8/4a895fb10cba357af629d841383853b_huac6f0241f649ec97482ee483f92ff746_25660_480x0_resize_box_3.png 480w, /p/%E4%B8%B2%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8/4a895fb10cba357af629d841383853b_huac6f0241f649ec97482ee483f92ff746_25660_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="164"
+		data-flex-basis="394px"
+	
+></p>
+<p>二维数组</p>
+<p><img src="/p/%E4%B8%B2%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8/f414f7af66b9f11a92bf29d90da79dc.png"
+	width="757"
+	height="563"
+	srcset="/p/%E4%B8%B2%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8/f414f7af66b9f11a92bf29d90da79dc_hu762fdb624e37beb05a7091538caaa0c8_25744_480x0_resize_box_3.png 480w, /p/%E4%B8%B2%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8/f414f7af66b9f11a92bf29d90da79dc_hu762fdb624e37beb05a7091538caaa0c8_25744_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="134"
+		data-flex-basis="322px"
+	
+></p>
+<p><img src="/p/%E4%B8%B2%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8/4252eabe92e6c6e43a93abddbeb8ace.png"
+	width="701"
+	height="302"
+	srcset="/p/%E4%B8%B2%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8/4252eabe92e6c6e43a93abddbeb8ace_huae3c1398daea288d89d2971c6a247179_18233_480x0_resize_box_3.png 480w, /p/%E4%B8%B2%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8/4252eabe92e6c6e43a93abddbeb8ace_huae3c1398daea288d89d2971c6a247179_18233_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="232"
+		data-flex-basis="557px"
+	
+></p>
+<p>行序优先的表示：</p>
+<p><img src="/p/%E4%B8%B2%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8/15952b38b5fb77bec9e7da20b4bb7d1.png"
+	width="754"
+	height="566"
+	srcset="/p/%E4%B8%B2%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8/15952b38b5fb77bec9e7da20b4bb7d1_huf3b4cddc0e7526561c6e1569479c7ec9_36380_480x0_resize_box_3.png 480w, /p/%E4%B8%B2%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8/15952b38b5fb77bec9e7da20b4bb7d1_huf3b4cddc0e7526561c6e1569479c7ec9_36380_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="133"
+		data-flex-basis="319px"
+	
+></p>
+<p><img src="/p/%E4%B8%B2%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8/eac7029d1f0f3d07fe1eb41ae62aa76.png"
+	width="725"
+	height="356"
+	srcset="/p/%E4%B8%B2%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8/eac7029d1f0f3d07fe1eb41ae62aa76_huca4c846ee7f77f36a2bf3b73dbe06f6b_21659_480x0_resize_box_3.png 480w, /p/%E4%B8%B2%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8/eac7029d1f0f3d07fe1eb41ae62aa76_huca4c846ee7f77f36a2bf3b73dbe06f6b_21659_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="203"
+		data-flex-basis="488px"
+	
+></p>
+<h2 id="广义表">广义表</h2>
+<p>广义表（列表）: n (&gt;=0)个表元素组成的有限序列，记作LS = (a0, a1, a2, …, an-1)</p>
+<p>LS是表名，ai是表元素，它可以是表 (称为子表)，可以是数据元素(称为原子)。</p>
+<p><em>PS:n为表的长度。n = 0 的广义表为空表</em></p>
+<h3 id="广义表的基本运算">广义表的基本运算</h3>
+<ol>
+<li>求表头GetHead(L)：非空广义表的第一个元素，可以是一个单元素，也可以是一个子表</li>
+<li>求表尾GetTail(L)：非空广义表除去表头元素以外其它元素所构成的表。表尾一定是一个表</li>
+</ol>
+<p>练习  A=(a,b,(c,d),(e,(f,g)))</p>
+<p>GetHead(GetTail(GetHead(GetTail(GetTail(A))))) = ?</p>
+<p>解题过程</p>
+<ol>
+<li>GetTail(A)= (b,(c,d),(e,(f,g))) = S</li>
+<li>GetTail(S)=((c,d),(e,(f,g)))=S1</li>
+<li>GetHead(S1)=(c,d)=S2</li>
+<li>GetTail(S2)=(d)=S3</li>
+<li>GetHead(S3)=d</li>
+</ol>
+<h3 id="广义表的特点">广义表的特点</h3>
+<ol>
+<li>有次序性: 一个直接前驱和一个直接后继</li>
+<li>有长度 ＝表中元素个数</li>
+<li>有深度 ＝表中括号的重数</li>
+<li>可递归: 自己可以作为自己的子表</li>
+<li>可共享: 可以为其他广义表所共享</li>
+</ol>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/%E5%9B%BE/">
+        
+        
+            <div class="article-image">
+                <img src="/p/%E5%9B%BE/Pic.56424cc9e902f126306e19072bfa4dae_huc140da47fd37f5aa577f04e490961b98_16099_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 图"
+                        
+                        data-hash="md5-VkJMyekC8SYwbhkHK/pNrg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">图</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E6%9F%A5%E6%89%BE/">
+        
+        
+            <div class="article-image">
+                <img src="/p/%E6%9F%A5%E6%89%BE/Find.cd055ad796921511f9794e95ca8d73f1_hu7dc183bcb08b1f208801dfb9abfd3438_15594_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 查找"
+                        
+                        data-hash="md5-zQVa15aSFRH5eU6Vyo1z8Q==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">查找</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/">
+        
+        
+            <div class="article-image">
+                <img src="/p/%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/Stacks_and_queues.bb5bd3aa9ba96101a398540fd1ef11f2_huda7fe0680db057bb15a758c1801f5cde_24118_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 栈和队列"
+                        
+                        data-hash="md5-u1vTqpupYQGjmFQP0e8R8g==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">栈和队列</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E7%BA%BF%E6%80%A7%E8%A1%A8/">
+        
+        
+            <div class="article-image">
+                <img src="/p/%E7%BA%BF%E6%80%A7%E8%A1%A8/Linear_tables.0ac509950e12bbc6a3ead0618b9bd7c8_hua6ee4ed3cf660c859c134ad90be5e6ce_35023_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 线性表"
+                        
+                        data-hash="md5-CsUJlQ4Su8aj6tBhi5vXyA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">线性表</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <script src="//cdn.jsdelivr.net/npm/twikoo@1.5.11/dist/twikoo.all.min.js"></script>
+<div id="tcomment"></div>
+<style>
+    .twikoo {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+    :root[data-scheme="dark"] {
+        --twikoo-body-text-color-main: rgba(255, 255, 255, 0.9);
+        --twikoo-body-text-color: rgba(255, 255, 255, 0.7);
+    }
+    .twikoo .el-input-group__prepend,
+    .twikoo .tk-action-icon,
+    .twikoo .tk-time,
+    .twikoo .tk-comments-count {
+        color: var(--twikoo-body-text-color);
+    }
+    .twikoo .el-input__inner,
+    .twikoo .el-textarea__inner,
+    .twikoo .tk-preview-container,
+    .twikoo .tk-content,
+    .twikoo .tk-nick,
+    .twikoo .tk-send {
+        color: var(--twikoo-body-text-color-main);
+    }
+    .twikoo .el-button{
+        color: var(--twikoo-body-text-color)!important;
+    }
+    .OwO .OwO-body {
+        background-color: var(--body-background) !important;
+        color: var(--body-text-color) !important;
+    }
+</style><script>
+    twikoo.init({
+        envId: 'https:\/\/twikoo.sryasuka.fun\/',
+        el: '#tcomment',lang: 'zh-CN',})
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2021 - 
+        
+        2023 SryAsuka
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.16.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
