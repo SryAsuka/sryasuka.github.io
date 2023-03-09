@@ -6,7 +6,245 @@
         <description>Recent content in Posts on SryAsuka</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Sat, 25 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://sryasuka.fun/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 09 Mar 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://sryasuka.fun/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>EA与ROSE的使用</title>
+        <link>https://sryasuka.fun/p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
+        <pubDate>Thu, 09 Mar 2023 00:00:00 +0000</pubDate>
+        
+        <guid>https://sryasuka.fun/p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
+        <description>&lt;img src="https://sryasuka.fun/p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/EA.jpg" alt="Featured image of post EA与ROSE的使用" /&gt;&lt;h2 id=&#34;ea的使用enterprise-architect-14&#34;&gt;EA的使用(Enterprise Architect 14)&lt;/h2&gt;
+&lt;h3 id=&#34;熟悉界面&#34;&gt;熟悉界面&lt;/h3&gt;
+&lt;h4 id=&#34;初始化界面&#34;&gt;初始化界面&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/736f77e9ef31825aa04f5dd123481e1.png&#34;
+	width=&#34;1920&#34;
+	height=&#34;1027&#34;
+	srcset=&#34;https://sryasuka.fun/p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/736f77e9ef31825aa04f5dd123481e1_hu1e0fd693748b53e1c67baf4da2ceaacd_132840_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/736f77e9ef31825aa04f5dd123481e1_hu1e0fd693748b53e1c67baf4da2ceaacd_132840_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;186&#34;
+		data-flex-basis=&#34;448px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h4 id=&#34;基本操作--生成文件&#34;&gt;基本操作 — 生成文件&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;创建 NEW File
+&lt;img src=&#34;https://sryasuka.fun/p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/c63d55f224d6846728158760549bb63.png&#34;
+	width=&#34;756&#34;
+	height=&#34;439&#34;
+	srcset=&#34;https://sryasuka.fun/p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/c63d55f224d6846728158760549bb63_hu4b123d71c943a0967085ebfc09c8a50a_16702_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/c63d55f224d6846728158760549bb63_hu4b123d71c943a0967085ebfc09c8a50a_16702_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;172&#34;
+		data-flex-basis=&#34;413px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;这将会创建一个后缀为eapx的文件（此用demo做测试）
+&lt;img src=&#34;https://sryasuka.fun/p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/7e28ae3aa372b99bf1870317578d9a9.png&#34;
+	width=&#34;309&#34;
+	height=&#34;69&#34;
+	srcset=&#34;https://sryasuka.fun/p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/7e28ae3aa372b99bf1870317578d9a9_hu4657e20b840b174ef1bc41e14dd002c4_8104_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/7e28ae3aa372b99bf1870317578d9a9_hu4657e20b840b174ef1bc41e14dd002c4_8104_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;447&#34;
+		data-flex-basis=&#34;1074px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;左侧Project Browser建包-点击上方文件夹图标建包&lt;br&gt;
+&lt;img src=&#34;https://sryasuka.fun/p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/2f148cdde35a6b8cc4d61e846d8d5e9.png&#34;
+	width=&#34;188&#34;
+	height=&#34;332&#34;
+	srcset=&#34;https://sryasuka.fun/p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/2f148cdde35a6b8cc4d61e846d8d5e9_huc8ccaa82a35650b115957f9e36ba0a9d_4787_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/2f148cdde35a6b8cc4d61e846d8d5e9_huc8ccaa82a35650b115957f9e36ba0a9d_4787_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;56&#34;
+		data-flex-basis=&#34;135px&#34;
+	
+&gt;
+&lt;img src=&#34;https://sryasuka.fun/p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/35c22c471966a15682deead04f99d7f.png&#34;
+	width=&#34;420&#34;
+	height=&#34;312&#34;
+	srcset=&#34;https://sryasuka.fun/p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/35c22c471966a15682deead04f99d7f_hu0b86fbebca2d8e671a5f39dcce17b1d3_5976_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/35c22c471966a15682deead04f99d7f_hu0b86fbebca2d8e671a5f39dcce17b1d3_5976_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;134&#34;
+		data-flex-basis=&#34;323px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;文件夹右侧图标创建模型
+&lt;img src=&#34;https://sryasuka.fun/p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/7adc3463e254073970053aed3a45bad.png&#34;
+	width=&#34;891&#34;
+	height=&#34;566&#34;
+	srcset=&#34;https://sryasuka.fun/p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/7adc3463e254073970053aed3a45bad_hu3eac5663a998978e48b016d0a41af8aa_36016_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/7adc3463e254073970053aed3a45bad_hu3eac5663a998978e48b016d0a41af8aa_36016_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;157&#34;
+		data-flex-basis=&#34;377px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;模型图&#34;&gt;模型图&lt;/h4&gt;
+&lt;p&gt;UML Structrual(UML结构)&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/3028c1c5855f6925d6d257361b64697.png&#34;
+	width=&#34;519&#34;
+	height=&#34;269&#34;
+	srcset=&#34;https://sryasuka.fun/p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/3028c1c5855f6925d6d257361b64697_hu2c1cbf6f08205931c982a348ce6295ce_6819_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/3028c1c5855f6925d6d257361b64697_hu2c1cbf6f08205931c982a348ce6295ce_6819_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;192&#34;
+		data-flex-basis=&#34;463px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;从上至下分别为&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;包&lt;/li&gt;
+&lt;li&gt;静态类图&lt;/li&gt;
+&lt;li&gt;复合结构&lt;/li&gt;
+&lt;li&gt;组件&lt;/li&gt;
+&lt;li&gt;部署&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;UML Behaivoral(UML行为)&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/c4f2b42d4c55d9a94ea13bd26a35c59.png&#34;
+	width=&#34;520&#34;
+	height=&#34;266&#34;
+	srcset=&#34;https://sryasuka.fun/p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/c4f2b42d4c55d9a94ea13bd26a35c59_hu3c26e3fbcba0723e774084a7604b70bb_7995_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/c4f2b42d4c55d9a94ea13bd26a35c59_hu3c26e3fbcba0723e774084a7604b70bb_7995_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;195&#34;
+		data-flex-basis=&#34;469px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;从上至下分别为&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;用例&lt;/li&gt;
+&lt;li&gt;活动图&lt;/li&gt;
+&lt;li&gt;状态机&lt;/li&gt;
+&lt;li&gt;通信图&lt;/li&gt;
+&lt;li&gt;顺序图&lt;/li&gt;
+&lt;li&gt;定时&lt;/li&gt;
+&lt;li&gt;交互概述&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;uml常见图介绍&#34;&gt;UML常见图介绍&lt;/h4&gt;
+&lt;h5 id=&#34;类图&#34;&gt;类图&lt;/h5&gt;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/f41f96262d9094bfdbdbd5c24cf4ddd.png&#34;
+	width=&#34;1042&#34;
+	height=&#34;685&#34;
+	srcset=&#34;https://sryasuka.fun/p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/f41f96262d9094bfdbdbd5c24cf4ddd_hud166b83051d36a596c51853fe2a10a54_34013_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/f41f96262d9094bfdbdbd5c24cf4ddd_hud166b83051d36a596c51853fe2a10a54_34013_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;152&#34;
+		data-flex-basis=&#34;365px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;拖动 Toolbox 的组件于白色界面&lt;/p&gt;
+&lt;p&gt;Class&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;类表&lt;/li&gt;
+&lt;li&gt;接口&lt;/li&gt;
+&lt;li&gt;数据表&lt;/li&gt;
+&lt;li&gt;列举&lt;/li&gt;
+&lt;li&gt;信号&lt;/li&gt;
+&lt;li&gt;关联关系&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;连接线&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;关联&lt;/li&gt;
+&lt;li&gt;泛化&lt;/li&gt;
+&lt;li&gt;组合&lt;/li&gt;
+&lt;li&gt;聚合&lt;/li&gt;
+&lt;li&gt;关联表&lt;/li&gt;
+&lt;li&gt;实现&lt;/li&gt;
+&lt;li&gt;模板绑定&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;em&gt;PS：&lt;/em&gt; 组合是多个组合成整体，聚合是多个整体聚合&lt;/p&gt;
+&lt;p&gt;右侧 Element Properties 修改属性值&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/ef0279fc1210a0bf14b1a719110d0a9.png&#34;
+	width=&#34;395&#34;
+	height=&#34;809&#34;
+	srcset=&#34;https://sryasuka.fun/p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/ef0279fc1210a0bf14b1a719110d0a9_hu162da600209170ecc26016f816efe7a9_15025_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/ef0279fc1210a0bf14b1a719110d0a9_hu162da600209170ecc26016f816efe7a9_15025_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;48&#34;
+		data-flex-basis=&#34;117px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;下方 Features &amp;amp; Properties 增改数据成员和成员函数&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/ff58cdb5634fd7379feb5299c21e2d9.png&#34;
+	width=&#34;1040&#34;
+	height=&#34;316&#34;
+	srcset=&#34;https://sryasuka.fun/p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/ff58cdb5634fd7379feb5299c21e2d9_hu6ed9a5959c6969496b17124a6b53c5eb_8452_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/ff58cdb5634fd7379feb5299c21e2d9_hu6ed9a5959c6969496b17124a6b53c5eb_8452_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;329&#34;
+		data-flex-basis=&#34;789px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h5 id=&#34;活动图&#34;&gt;活动图&lt;/h5&gt;
+&lt;p&gt;&lt;img src=&#34;https://sryasuka.fun/p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/f615d51bddcb0e0b066da3308b36b91.png&#34;
+	width=&#34;193&#34;
+	height=&#34;629&#34;
+	srcset=&#34;https://sryasuka.fun/p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/f615d51bddcb0e0b066da3308b36b91_hu753fefb7553a1df4199fe859645a736d_16641_480x0_resize_box_3.png 480w, https://sryasuka.fun/p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/f615d51bddcb0e0b066da3308b36b91_hu753fefb7553a1df4199fe859645a736d_16641_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;30&#34;
+		data-flex-basis=&#34;73px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Toolbox:&lt;/p&gt;
+&lt;p&gt;Activity:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;活动（可以再分的非原子动作）（activity可以包含多个action）&lt;/li&gt;
+&lt;li&gt;活动（无法再分的原子动作）&lt;/li&gt;
+&lt;li&gt;分区&lt;/li&gt;
+&lt;li&gt;发送&lt;/li&gt;
+&lt;li&gt;接收&lt;/li&gt;
+&lt;li&gt;结构活动&lt;/li&gt;
+&lt;li&gt;区域&lt;/li&gt;
+&lt;li&gt;例外&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&amp;hellip;&lt;/p&gt;
+&lt;p&gt;Control Nodes（控制结点）：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;初始节点&lt;/li&gt;
+&lt;li&gt;决策&lt;/li&gt;
+&lt;li&gt;合并&lt;/li&gt;
+&lt;li&gt;同步&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&amp;hellip;&amp;hellip;&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>串、数组和广义表</title>
         <link>https://sryasuka.fun/p/%E4%B8%B2%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8/</link>
         <pubDate>Sat, 25 Feb 2023 00:00:00 +0000</pubDate>

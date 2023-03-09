@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='UML'>
+<title>EA与ROSE的使用</title>
+
+<link rel='canonical' href='https://sryasuka.fun/p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/'>
+
+<link rel="stylesheet" href="/scss/style.min.5be32ca3f6e1a997c75795c4359147cc6d4fbd34948c0acd51e31d237033978a.css"><meta property='og:title' content='EA与ROSE的使用'>
+<meta property='og:description' content='UML'>
+<meta property='og:url' content='https://sryasuka.fun/p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/'>
+<meta property='og:site_name' content='SryAsuka'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2023-03-09T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2023-03-09T00:00:00&#43;00:00'/><meta property='og:image' content='https://sryasuka.fun/p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/EA.jpg' />
+<meta name="twitter:title" content="EA与ROSE的使用">
+<meta name="twitter:description" content="UML"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://sryasuka.fun/p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/EA.jpg' />
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu4ae24c0d6920a998f721630cfb7a6277_6068_300x0_resize_box_3.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">✨</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">SryAsuka</a></h1>
+            <h2 class="site-description">Where of what&#39;s past is prologue.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/SryAsuka'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://sryasuka.fun/index.xml'
+                        target="_blank"
+                        title="RSS"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-rss" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="5" cy="19" r="1" />
+  <path d="M4 4a16 16 0 0 1 16 16" />
+  <path d="M4 11a9 9 0 0 1 9 9" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com/SryAsuka'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/s/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/s/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/s/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/links/s/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#ea的使用enterprise-architect-14">EA的使用(Enterprise Architect 14)</a>
+      <ol>
+        <li><a href="#熟悉界面">熟悉界面</a>
+          <ol>
+            <li><a href="#初始化界面">初始化界面</a></li>
+            <li><a href="#基本操作--生成文件">基本操作 — 生成文件</a></li>
+            <li><a href="#模型图">模型图</a></li>
+            <li><a href="#uml常见图介绍">UML常见图介绍</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/">
+                <img src="/p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/EA_hu8b7fd3263fd079e5c689aae18dab6f96_12494_800x0_resize_q75_box.jpg"
+                        srcset="/p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/EA_hu8b7fd3263fd079e5c689aae18dab6f96_12494_800x0_resize_q75_box.jpg 800w, /p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/EA_hu8b7fd3263fd079e5c689aae18dab6f96_12494_1600x0_resize_q75_box.jpg 1600w"
+                        width="800" 
+                        height="564" 
+                        loading="lazy"
+                        alt="Featured image of post EA与ROSE的使用" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/uml/" style="background-color: #aa4d8f; color: #fff;">
+                UML
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/">EA与ROSE的使用</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            UML
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Mar 09, 2023</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    1 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="ea的使用enterprise-architect-14">EA的使用(Enterprise Architect 14)</h2>
+<h3 id="熟悉界面">熟悉界面</h3>
+<h4 id="初始化界面">初始化界面</h4>
+<p><img src="/p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/736f77e9ef31825aa04f5dd123481e1.png"
+	width="1920"
+	height="1027"
+	srcset="/p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/736f77e9ef31825aa04f5dd123481e1_hu1e0fd693748b53e1c67baf4da2ceaacd_132840_480x0_resize_box_3.png 480w, /p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/736f77e9ef31825aa04f5dd123481e1_hu1e0fd693748b53e1c67baf4da2ceaacd_132840_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="186"
+		data-flex-basis="448px"
+	
+></p>
+<h4 id="基本操作--生成文件">基本操作 — 生成文件</h4>
+<ol>
+<li>
+<p>创建 NEW File
+<img src="/p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/c63d55f224d6846728158760549bb63.png"
+	width="756"
+	height="439"
+	srcset="/p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/c63d55f224d6846728158760549bb63_hu4b123d71c943a0967085ebfc09c8a50a_16702_480x0_resize_box_3.png 480w, /p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/c63d55f224d6846728158760549bb63_hu4b123d71c943a0967085ebfc09c8a50a_16702_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="172"
+		data-flex-basis="413px"
+	
+></p>
+</li>
+<li>
+<p>这将会创建一个后缀为eapx的文件（此用demo做测试）
+<img src="/p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/7e28ae3aa372b99bf1870317578d9a9.png"
+	width="309"
+	height="69"
+	srcset="/p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/7e28ae3aa372b99bf1870317578d9a9_hu4657e20b840b174ef1bc41e14dd002c4_8104_480x0_resize_box_3.png 480w, /p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/7e28ae3aa372b99bf1870317578d9a9_hu4657e20b840b174ef1bc41e14dd002c4_8104_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="447"
+		data-flex-basis="1074px"
+	
+></p>
+</li>
+<li>
+<p>左侧Project Browser建包-点击上方文件夹图标建包<br>
+<img src="/p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/2f148cdde35a6b8cc4d61e846d8d5e9.png"
+	width="188"
+	height="332"
+	srcset="/p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/2f148cdde35a6b8cc4d61e846d8d5e9_huc8ccaa82a35650b115957f9e36ba0a9d_4787_480x0_resize_box_3.png 480w, /p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/2f148cdde35a6b8cc4d61e846d8d5e9_huc8ccaa82a35650b115957f9e36ba0a9d_4787_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="56"
+		data-flex-basis="135px"
+	
+>
+<img src="/p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/35c22c471966a15682deead04f99d7f.png"
+	width="420"
+	height="312"
+	srcset="/p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/35c22c471966a15682deead04f99d7f_hu0b86fbebca2d8e671a5f39dcce17b1d3_5976_480x0_resize_box_3.png 480w, /p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/35c22c471966a15682deead04f99d7f_hu0b86fbebca2d8e671a5f39dcce17b1d3_5976_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="134"
+		data-flex-basis="323px"
+	
+></p>
+</li>
+<li>
+<p>文件夹右侧图标创建模型
+<img src="/p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/7adc3463e254073970053aed3a45bad.png"
+	width="891"
+	height="566"
+	srcset="/p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/7adc3463e254073970053aed3a45bad_hu3eac5663a998978e48b016d0a41af8aa_36016_480x0_resize_box_3.png 480w, /p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/7adc3463e254073970053aed3a45bad_hu3eac5663a998978e48b016d0a41af8aa_36016_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="157"
+		data-flex-basis="377px"
+	
+></p>
+</li>
+</ol>
+<h4 id="模型图">模型图</h4>
+<p>UML Structrual(UML结构)</p>
+<p><img src="/p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/3028c1c5855f6925d6d257361b64697.png"
+	width="519"
+	height="269"
+	srcset="/p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/3028c1c5855f6925d6d257361b64697_hu2c1cbf6f08205931c982a348ce6295ce_6819_480x0_resize_box_3.png 480w, /p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/3028c1c5855f6925d6d257361b64697_hu2c1cbf6f08205931c982a348ce6295ce_6819_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="192"
+		data-flex-basis="463px"
+	
+></p>
+<p>从上至下分别为</p>
+<ol>
+<li>包</li>
+<li>静态类图</li>
+<li>复合结构</li>
+<li>组件</li>
+<li>部署</li>
+</ol>
+<p>UML Behaivoral(UML行为)</p>
+<p><img src="/p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/c4f2b42d4c55d9a94ea13bd26a35c59.png"
+	width="520"
+	height="266"
+	srcset="/p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/c4f2b42d4c55d9a94ea13bd26a35c59_hu3c26e3fbcba0723e774084a7604b70bb_7995_480x0_resize_box_3.png 480w, /p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/c4f2b42d4c55d9a94ea13bd26a35c59_hu3c26e3fbcba0723e774084a7604b70bb_7995_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="195"
+		data-flex-basis="469px"
+	
+></p>
+<p>从上至下分别为</p>
+<ol>
+<li>用例</li>
+<li>活动图</li>
+<li>状态机</li>
+<li>通信图</li>
+<li>顺序图</li>
+<li>定时</li>
+<li>交互概述</li>
+</ol>
+<h4 id="uml常见图介绍">UML常见图介绍</h4>
+<h5 id="类图">类图</h5>
+<p><img src="/p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/f41f96262d9094bfdbdbd5c24cf4ddd.png"
+	width="1042"
+	height="685"
+	srcset="/p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/f41f96262d9094bfdbdbd5c24cf4ddd_hud166b83051d36a596c51853fe2a10a54_34013_480x0_resize_box_3.png 480w, /p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/f41f96262d9094bfdbdbd5c24cf4ddd_hud166b83051d36a596c51853fe2a10a54_34013_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="152"
+		data-flex-basis="365px"
+	
+></p>
+<p>拖动 Toolbox 的组件于白色界面</p>
+<p>Class</p>
+<ol>
+<li>类表</li>
+<li>接口</li>
+<li>数据表</li>
+<li>列举</li>
+<li>信号</li>
+<li>关联关系</li>
+</ol>
+<p>连接线</p>
+<ol>
+<li>关联</li>
+<li>泛化</li>
+<li>组合</li>
+<li>聚合</li>
+<li>关联表</li>
+<li>实现</li>
+<li>模板绑定</li>
+</ol>
+<p><em>PS：</em> 组合是多个组合成整体，聚合是多个整体聚合</p>
+<p>右侧 Element Properties 修改属性值</p>
+<p><img src="/p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/ef0279fc1210a0bf14b1a719110d0a9.png"
+	width="395"
+	height="809"
+	srcset="/p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/ef0279fc1210a0bf14b1a719110d0a9_hu162da600209170ecc26016f816efe7a9_15025_480x0_resize_box_3.png 480w, /p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/ef0279fc1210a0bf14b1a719110d0a9_hu162da600209170ecc26016f816efe7a9_15025_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="48"
+		data-flex-basis="117px"
+	
+></p>
+<p>下方 Features &amp; Properties 增改数据成员和成员函数</p>
+<p><img src="/p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/ff58cdb5634fd7379feb5299c21e2d9.png"
+	width="1040"
+	height="316"
+	srcset="/p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/ff58cdb5634fd7379feb5299c21e2d9_hu6ed9a5959c6969496b17124a6b53c5eb_8452_480x0_resize_box_3.png 480w, /p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/ff58cdb5634fd7379feb5299c21e2d9_hu6ed9a5959c6969496b17124a6b53c5eb_8452_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="329"
+		data-flex-basis="789px"
+	
+></p>
+<h5 id="活动图">活动图</h5>
+<p><img src="/p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/f615d51bddcb0e0b066da3308b36b91.png"
+	width="193"
+	height="629"
+	srcset="/p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/f615d51bddcb0e0b066da3308b36b91_hu753fefb7553a1df4199fe859645a736d_16641_480x0_resize_box_3.png 480w, /p/ea%E4%B8%8Erose%E7%9A%84%E4%BD%BF%E7%94%A8/f615d51bddcb0e0b066da3308b36b91_hu753fefb7553a1df4199fe859645a736d_16641_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="30"
+		data-flex-basis="73px"
+	
+></p>
+<p>Toolbox:</p>
+<p>Activity:</p>
+<ol>
+<li>活动（可以再分的非原子动作）（activity可以包含多个action）</li>
+<li>活动（无法再分的原子动作）</li>
+<li>分区</li>
+<li>发送</li>
+<li>接收</li>
+<li>结构活动</li>
+<li>区域</li>
+<li>例外</li>
+</ol>
+<p>&hellip;</p>
+<p>Control Nodes（控制结点）：</p>
+<ol>
+<li>初始节点</li>
+<li>决策</li>
+<li>合并</li>
+<li>同步</li>
+</ol>
+<p>&hellip;&hellip;</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    <script src="//cdn.jsdelivr.net/npm/twikoo@1.5.11/dist/twikoo.all.min.js"></script>
+<div id="tcomment"></div>
+<style>
+    .twikoo {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+    :root[data-scheme="dark"] {
+        --twikoo-body-text-color-main: rgba(255, 255, 255, 0.9);
+        --twikoo-body-text-color: rgba(255, 255, 255, 0.7);
+    }
+    .twikoo .el-input-group__prepend,
+    .twikoo .tk-action-icon,
+    .twikoo .tk-time,
+    .twikoo .tk-comments-count {
+        color: var(--twikoo-body-text-color);
+    }
+    .twikoo .el-input__inner,
+    .twikoo .el-textarea__inner,
+    .twikoo .tk-preview-container,
+    .twikoo .tk-content,
+    .twikoo .tk-nick,
+    .twikoo .tk-send {
+        color: var(--twikoo-body-text-color-main);
+    }
+    .twikoo .el-button{
+        color: var(--twikoo-body-text-color)!important;
+    }
+    .OwO .OwO-body {
+        background-color: var(--body-background) !important;
+        color: var(--body-text-color) !important;
+    }
+</style><script>
+    twikoo.init({
+        envId: 'https:\/\/twikoo.sryasuka.fun\/',
+        el: '#tcomment',lang: 'zh-CN',})
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2021 - 
+        
+        2023 SryAsuka
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.16.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

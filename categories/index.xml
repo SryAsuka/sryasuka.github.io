@@ -6,7 +6,15 @@
         <description>Recent content in Categories on SryAsuka</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Sat, 25 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://sryasuka.fun/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 09 Mar 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://sryasuka.fun/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>UML</title>
+        <link>https://sryasuka.fun/categories/uml/</link>
+        <pubDate>Thu, 09 Mar 2023 00:00:00 +0000</pubDate>
+        
+        <guid>https://sryasuka.fun/categories/uml/</guid>
+        <description>&lt;img src="https://sryasuka.fun/categories/uml/UML-logo.png" alt="Featured image of post UML" /&gt;</description>
+        </item>
+        <item>
         <title>Data structure</title>
         <link>https://sryasuka.fun/categories/data-structure/</link>
         <pubDate>Sat, 25 Feb 2023 00:00:00 +0000</pubDate>
